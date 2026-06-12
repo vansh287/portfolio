@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Vansh Pandit — Learning to See, Carefully</title>
+<meta name="description" content="Working notes of Vansh Pandit — a mathematics student at IISER Thiruvananthapuram building vision systems for medicine. Radiomics, PET/CT, novelty detection, Bayesian statistics." />
+<script>document.documentElement.classList.add('js');
+(function(){try{var t=localStorage.getItem('lamp');if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='78' font-size='72' font-family='serif'>∫</text></svg>" />
+<style>
+/* ================= paper & ink ================= */
+:root{
+  --paper:#f6f1e7;
+  --paper-deep:#efe8da;
+  --ink:#28241e;
+  --ink-soft:#5b5546;
+  --faint:#8a8270;
+  --rule:#d8cfbc;
+  --pen:#1d4f91;          /* ballpoint blue */
+  --red:#a23b2e;          /* red pen */
+  --hl:#f3e3b2;           /* highlighter */
+  --box:#fbf8f1;
+  --serif:'Newsreader',Georgia,serif;
+  --mono:'IBM Plex Mono',Consolas,monospace;
+  --mw:215px;             /* margin-note width */
+}
+[data-theme="dark"]{
+  --paper:#191512;
+  --paper-deep:#14110e;
+  --ink:#e9e1d2;
+  --ink-soft:#b0a68f;
+  --faint:#7d745f;
+  --rule:#3a342b;
+  --pen:#8db1e8;
+  --red:#d97862;
+  --hl:#4a3f22;
+  --box:#211c17;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--serif);
+  font-size:1.06rem;
+  line-height:1.72;
+  transition:background .45s ease,color .45s ease;
+  overflow-x:hidden;
+}
+/* paper grain */
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:5;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+  opacity:.07;mix-blend-mode:multiply;
+}
+[data-theme="dark"] body::before{opacity:.10;mix-blend-mode:overlay}
+::selection{background:var(--hl)}
+
+a{color:var(--pen);text-decoration:none;background-image:linear-gradient(currentColor,currentColor);background-size:100% 1px;background-position:0 96%;background-repeat:no-repeat;transition:color .25s}
+a:hover{color:var(--red)}
+sup{font-size:.68em}
+
+/* ================= header ================= */
+#bar{position:fixed;top:0;left:0;height:2px;background:var(--red);width:0%;z-index:90}
+header.site{
+  position:sticky;top:0;z-index:80;
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  padding:10px clamp(16px,4vw,40px);
+  background:color-mix(in srgb,var(--paper) 88%,transparent);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--rule);
+  font-family:var(--mono);font-size:.78rem;
+}
+header.site .who{color:var(--ink-soft);white-space:nowrap}
+header.site .who b{color:var(--ink);font-weight:500}
+nav.toc{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;max-width:62vw}
+nav.toc::-webkit-scrollbar{display:none}
+nav.toc a{
+  color:var(--ink-soft);background:none;padding:6px 9px;border-radius:6px;white-space:nowrap;
+  border-bottom:2px solid transparent;
+}
+nav.toc a:hover{color:var(--ink);background:var(--paper-deep)}
+nav.toc a.on{color:var(--red);border-bottom-color:var(--red)}
+#lamp{
+  font-family:var(--mono);font-size:.78rem;color:var(--ink-soft);
+  background:none;border:1px solid var(--rule);border-radius:999px;
+  padding:5px 12px;cursor:pointer;white-space:nowrap;
+  transition:.3s;display:flex;align-items:center;gap:7px;
+}
+#lamp:hover{color:var(--ink);border-color:var(--faint)}
+#lamp .bulb{width:8px;height:8px;border-radius:50%;background:#e8b73a;box-shadow:0 0 7px #e8b73a;transition:.3s}
+[data-theme="dark"] #lamp .bulb{background:#4a4336;box-shadow:none}
+
+/* ================= page column ================= */
+.page{max-width:740px;margin:0 auto;padding:0 clamp(18px,4.5vw,32px)}
+@media(min-width:1180px){.page{transform:translateX(calc(var(--mw) / -2.4))}}
+
+/* ================= title block ================= */
+.titleblock{padding-top:72px;text-align:center}
+.preprint{
+  font-family:var(--mono);font-size:.72rem;color:var(--faint);letter-spacing:.4px;
+  display:flex;justify-content:center;gap:8px;flex-wrap:wrap;
+}
+.preprint .tag{border:1px solid var(--rule);border-radius:999px;padding:2px 10px}
+h1.paper-title{
+  font-size:clamp(2.3rem,6.4vw,3.9rem);font-weight:600;line-height:1.12;
+  letter-spacing:-.5px;margin:34px 0 10px;
+}
+h1 .careful{font-style:italic;font-weight:500;position:relative;white-space:nowrap}
+h1 .careful svg{position:absolute;left:0;bottom:-6px;width:100%;height:14px;overflow:visible}
+h1 .careful path{fill:none;stroke:var(--red);stroke-width:2.4;stroke-linecap:round}
+.subtitle{font-size:1.12rem;color:var(--ink-soft);font-style:italic;max-width:560px;margin:0 auto}
+.author{margin-top:30px;font-size:1.05rem}
+.author .nm{font-weight:600;font-variant:small-caps;letter-spacing:1px;font-size:1.18rem}
+.affil{font-size:.84rem;color:var(--ink-soft);margin-top:6px;line-height:1.7}
+.statusline{
+  font-family:var(--mono);font-size:.78rem;color:var(--ink-soft);
+  margin-top:22px;min-height:1.5em;
+}
+.statusline .lbl{color:var(--faint)}
+.statusline .cur{display:inline-block;width:7px;height:1em;background:var(--red);vertical-align:-2px;margin-left:2px;animation:blink 1.05s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+
+/* abstract */
+.abstract{
+  margin:44px auto 0;max-width:620px;text-align:justify;hyphens:auto;
+  border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);
+  padding:22px 6px 24px;position:relative;
+}
+.abstract h3{
+  font-variant:small-caps;letter-spacing:3px;text-align:center;font-weight:600;
+  font-size:.95rem;margin-bottom:12px;
+}
+.abstract p{font-size:.98rem;line-height:1.78}
+.abstract p::first-letter{
+  font-size:3.1em;float:left;line-height:.82;padding:4px 8px 0 0;font-weight:600;color:var(--red);
+}
+.keywords{margin:18px auto 0;max-width:620px;font-size:.84rem;color:var(--ink-soft);text-align:center}
+.keywords b{font-variant:small-caps;letter-spacing:1px;font-weight:600;color:var(--ink)}
+.papelinks{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:30px}
+.plink{
+  font-family:var(--mono);font-size:.8rem;color:var(--ink);
+  border:1.6px solid var(--ink);padding:8px 17px;background:var(--box);
+  border-radius:255px 15px 225px 15px/15px 225px 15px 255px;  /* wobbly */
+  transition:transform .2s,box-shadow .2s,color .2s;
+  background-image:none;
+}
+.plink:hover{transform:translateY(-2px) rotate(-.6deg);box-shadow:3px 4px 0 var(--rule);color:var(--red)}
+.plink.primary{background:var(--ink);color:var(--paper)}
+.plink.primary:hover{color:var(--hl)}
+
+/* ================= sections ================= */
+section.s{padding-top:90px}
+.shead{display:flex;align-items:baseline;gap:14px;margin-bottom:26px}
+.snum{font-family:var(--mono);color:var(--red);font-size:1rem}
+h2{
+  font-size:clamp(1.5rem,3.4vw,2.05rem);font-weight:600;letter-spacing:-.3px;position:relative;display:inline-block;
+}
+h2 .scribble{position:absolute;left:-2px;bottom:-9px;width:calc(100% + 6px);height:12px;overflow:visible}
+h2 .scribble path{
+  fill:none;stroke:var(--red);stroke-width:2.2;stroke-linecap:round;opacity:.85;
+  stroke-dasharray:1;stroke-dashoffset:1;
+}
+.js .in h2 .scribble path{animation:draw .9s .15s ease forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+h3.sub{font-size:1.18rem;font-weight:600;margin:38px 0 4px}
+h3.sub .no{font-family:var(--mono);font-size:.85rem;color:var(--red);margin-right:10px}
+.meta{font-family:var(--mono);font-size:.74rem;color:var(--faint);margin-bottom:12px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.meta .chip{border:1px solid var(--rule);border-radius:999px;padding:2px 10px;background:var(--box)}
+.meta .chip.live{border-color:var(--red);color:var(--red)}
+.meta .chip.live::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--red);margin-right:6px;animation:blink 1.6s infinite}
+p.body{margin-bottom:16px;color:var(--ink)}
+p.body b{font-weight:600}
+.prose{position:relative}
+
+/* margin notes */
+.mnote{
+  font-size:.8rem;line-height:1.55;color:var(--ink-soft);font-style:italic;
+}
+.mnote::before{content:'✎ ';color:var(--red);font-style:normal}
+@media(min-width:1180px){
+  .mnote{float:right;clear:right;width:var(--mw);margin-right:calc(-1 * var(--mw) - 46px);margin-top:4px;text-align:left;
+    border-top:1px solid var(--rule);padding-top:6px}
+}
+@media(max-width:1179.5px){
+  .mnote{display:block;border-left:2.5px solid var(--red);padding:6px 0 6px 14px;margin:14px 0;background:var(--box)}
+}
+
+/* highlighter */
+.hl{background:linear-gradient(104deg,transparent .6%,var(--hl) 2.6%,var(--hl) 97.5%,transparent 98%);padding:0 3px;border-radius:3px}
+
+/* definition / remark boxes */
+.defbox{
+  border:1.7px solid var(--ink);background:var(--box);
+  border-radius:255px 15px 225px 15px/15px 225px 15px 255px;
+  padding:18px 22px;margin:26px 0;font-size:.97rem;
+}
+.defbox .dlabel{font-weight:700;font-variant:small-caps;letter-spacing:.6px}
+.defbox .qed{float:right;font-weight:600}
+.remark{border-left:2.5px solid var(--rule);padding:2px 0 2px 18px;margin:24px 0;color:var(--ink-soft);font-size:.96rem}
+.remark .rlabel{font-style:italic;font-weight:600;color:var(--ink)}
+
+/* tiny detail list */
+ul.dets{list-style:none;margin:10px 0 6px}
+ul.dets li{padding-left:24px;position:relative;margin-bottom:8px;font-size:.95rem;color:var(--ink-soft)}
+ul.dets li::before{content:'—';position:absolute;left:0;color:var(--red)}
+ul.dets li b{color:var(--ink);font-weight:600}
+
+/* ================= figure ================= */
+figure.fig{margin:54px 0 0}
+.figframe{
+  border:1.7px solid var(--ink);background:var(--box);
+  border-radius:15px 255px 15px 225px/225px 15px 255px 15px;
+  padding:14px;position:relative;
+}
+.figframe svg{display:block;width:100%;height:auto}
+figcaption{font-size:.84rem;color:var(--ink-soft);margin-top:12px;line-height:1.6}
+figcaption b{font-weight:700;color:var(--ink)}
+#figdyn{color:var(--pen);font-style:italic}
+.map .grat{stroke:var(--rule);stroke-width:1;stroke-dasharray:2 6}
+.map .move{fill:none;stroke:var(--faint);stroke-width:1.1;stroke-dasharray:2 7;opacity:.55}
+.map text{font-family:var(--mono);fill:var(--faint)}
+.map .arc{fill:none;stroke:var(--pen);stroke-width:1.7;stroke-dasharray:5 7;opacity:0}
+.js .in .map .arc{animation:arcin 1s ease forwards, ants 22s linear infinite}
+.map .arc:nth-of-type(2){animation-delay:.25s,0s}
+.map .arc:nth-of-type(3){animation-delay:.5s,0s}
+@keyframes arcin{to{opacity:.75}}
+@keyframes ants{to{stroke-dashoffset:-240}}
+.map .node{cursor:pointer}
+.map .node circle.c{fill:var(--paper);stroke:var(--ink);stroke-width:2}
+.map .node circle.pulse{fill:none;stroke:var(--red);stroke-width:1.4;opacity:0}
+.js .in .map .node circle.pulse{animation:pulse 2.6s ease-out infinite}
+@keyframes pulse{0%{r:6;opacity:.8}70%{r:20;opacity:0}100%{r:20;opacity:0}}
+.map .node:hover circle.c{stroke:var(--red);fill:var(--hl)}
+.map .node text{fill:var(--ink);font-family:var(--mono);font-size:12.5px}
+.map .home circle.c{fill:var(--red);stroke:var(--red)}
+.map .compass *{stroke:var(--faint);fill:none;stroke-width:1.2}
+.map .compass text{fill:var(--faint);stroke:none}
+.traveler{fill:var(--red)}
+@supports not (offset-path:path('M0 0 L1 1')){.traveler{display:none}}
+.t1{offset-path:path('M500 360 Q 240 240 152 92');animation:travel 7s linear infinite}
+.t2{offset-path:path('M500 360 Q 540 190 472 98');animation:travel 6s 1.2s linear infinite}
+.t3{offset-path:path('M500 360 Q 552 342 558 306');animation:travel 4s .6s linear infinite}
+@keyframes travel{0%{offset-distance:0%;opacity:0}8%{opacity:1}88%{opacity:1}100%{offset-distance:100%;opacity:0}}
+
+/* ---------- figure: decision path ---------- */
+.dp text{font-family:var(--mono)}
+.dp .ars path{
+  fill:none;stroke:var(--ink);stroke-width:1.7;marker-end:url(#arr);opacity:.85;
+  stroke-dasharray:1;stroke-dashoffset:1;
+}
+.js .in .dp .ars path{animation:draw .5s ease forwards}
+.dp .ars path:nth-of-type(1){animation-delay:.55s}
+.dp .ars path:nth-of-type(2){animation-delay:1.0s}
+.dp .ars path:nth-of-type(3){animation-delay:1.45s}
+.dp .ars path:nth-of-type(4){animation-delay:1.9s}
+.dp .ars path:nth-of-type(5){animation-delay:2.35s}
+.js .dp .ars path{animation-fill-mode:forwards}
+.dp .dns g{cursor:pointer}
+.js .dp .dns g{opacity:0}
+.js .in .dp .dns g{animation:npop .45s ease forwards}
+.dp .dns g:nth-of-type(1){animation-delay:.3s}
+.dp .dns g:nth-of-type(2){animation-delay:.75s}
+.dp .dns g:nth-of-type(3){animation-delay:1.2s}
+.dp .dns g:nth-of-type(4){animation-delay:1.65s}
+.dp .dns g:nth-of-type(5){animation-delay:2.1s}
+.dp .dns g:nth-of-type(6){animation-delay:2.55s}
+@keyframes npop{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+.dp .dns rect{fill:var(--box);stroke:var(--ink);stroke-width:1.6;transition:fill .25s}
+.dp .dns g:hover rect{fill:var(--hl)}
+.dp .tt{font-size:11.5px;font-weight:600;fill:var(--ink);letter-spacing:.4px}
+.dp .ss{font-size:10px;font-style:italic;fill:var(--ink-soft)}
+.dp .lab{font-size:9.5px;font-style:italic;fill:var(--faint)}
+.dp .foot{font-size:9.5px;font-style:italic;fill:var(--faint)}
+.dp .now rect{stroke:var(--red);stroke-width:2.1}
+.dp .now .tt{fill:var(--red)}
+.dp .gag path{fill:none;stroke:var(--faint);stroke-width:1.4;stroke-dasharray:3 5}
+.dp .gag .x1,.dp .gag .x2{stroke:var(--red);stroke-width:2.2;stroke-dasharray:none;stroke-linecap:round}
+.dp .gag text{fill:var(--red);font-size:9.5px;font-style:italic}
+
+/* ================= toolbox ================= */
+.tools{display:flex;flex-wrap:wrap;gap:11px;margin:14px 0 6px}
+.tool{
+  font-family:var(--mono);font-size:.81rem;padding:7px 15px;color:var(--ink);
+  border:1.5px solid var(--ink);background:var(--box);
+  border-radius:225px 14px 255px 14px/14px 255px 14px 225px;
+  transition:transform .18s,box-shadow .18s,background .18s;cursor:default;
+}
+.tool:hover{transform:rotate(-1.2deg) translateY(-2px);box-shadow:2.5px 3px 0 var(--rule);background:var(--hl)}
+.tool.train{border-style:dashed;color:var(--ink-soft);background:transparent}
+.tool.train:hover{background:var(--box)}
+.toolhead{font-variant:small-caps;letter-spacing:1.6px;font-weight:600;font-size:.95rem;margin-top:30px}
+.toolhead .n{font-family:var(--mono);color:var(--red);font-size:.8rem;letter-spacing:0}
+
+/* ================= table (booktabs) ================= */
+table.bt{width:100%;border-collapse:collapse;margin:18px 0 8px;font-size:.95rem}
+table.bt thead th{
+  font-variant:small-caps;letter-spacing:1px;font-weight:600;text-align:left;
+  border-top:2.2px solid var(--ink);border-bottom:1.1px solid var(--ink);
+  padding:9px 12px 7px;
+}
+table.bt td{padding:11px 12px;vertical-align:top;color:var(--ink-soft)}
+table.bt td:first-child{font-family:var(--mono);font-size:.78rem;white-space:nowrap;color:var(--faint);padding-top:14px}
+table.bt td b{color:var(--ink);font-weight:600}
+table.bt tbody tr{transition:background .2s}
+table.bt tbody tr:hover{background:var(--box)}
+table.bt tbody{border-bottom:2.2px solid var(--ink)}
+.tabnote{font-size:.84rem;color:var(--ink-soft);font-style:italic}
+
+/* ================= beyond list ================= */
+ul.beyond{list-style:none;margin-top:6px}
+ul.beyond li{margin-bottom:20px;padding-left:30px;position:relative}
+ul.beyond li::before{content:'§';position:absolute;left:2px;top:1px;color:var(--red);font-weight:600}
+ul.beyond b{font-weight:600}
+ul.beyond .when{font-family:var(--mono);font-size:.72rem;color:var(--faint)}
+
+/* ================= correspondence ================= */
+.bigmail{
+  display:inline-block;font-size:clamp(1.25rem,3.6vw,1.9rem);font-weight:600;color:var(--pen);
+  background-size:100% 2px;margin:8px 0 4px;
+}
+.bigmail:hover{color:var(--red)}
+.stampwrap{position:relative;margin-top:38px;display:flex;gap:26px;align-items:center;flex-wrap:wrap}
+.stamp{
+  font-family:var(--mono);font-weight:600;letter-spacing:2.5px;font-size:.86rem;color:var(--red);
+  border:3px double var(--red);border-radius:8px;padding:13px 20px;text-transform:uppercase;
+  transform:rotate(-7deg);opacity:.92;text-align:center;line-height:1.5;
+  mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='80'%3E%3Cfilter id='r'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.32' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1.4 -0.18'/%3E%3C/filter%3E%3Crect width='160' height='80' filter='url(%23r)'/%3E%3C/svg%3E");
+}
+.js .stamp{opacity:0}
+.js .in .stamp{animation:stampin .5s .45s cubic-bezier(.2,1.6,.4,1) forwards}
+@keyframes stampin{
+  0%{transform:rotate(-16deg) scale(2.6);opacity:0}
+  62%{transform:rotate(-6deg) scale(.94);opacity:.95}
+  100%{transform:rotate(-7deg) scale(1);opacity:.92}
+}
+.altlinks{font-size:.95rem;color:var(--ink-soft);margin-top:26px;line-height:2.1}
+.altlinks .lab{font-family:var(--mono);font-size:.74rem;color:var(--faint);display:inline-block;width:86px}
+
+/* ================= references ================= */
+ol.refs{list-style:none;counter-reset:rf;margin-top:8px}
+ol.refs li{
+  counter-increment:rf;position:relative;padding-left:44px;margin-bottom:16px;
+  font-size:.95rem;color:var(--ink-soft);
+}
+ol.refs li::before{
+  content:'[' counter(rf) ']';position:absolute;left:0;top:0;
+  font-family:var(--mono);font-size:.82rem;color:var(--red);
+}
+ol.refs b{color:var(--ink);font-weight:600}
+.refnote{margin-top:18px;font-size:.85rem;font-style:italic;color:var(--ink-soft)}
+
+/* ================= colophon ================= */
+footer.colophon{
+  margin-top:100px;border-top:1px solid var(--rule);
+  padding:34px clamp(18px,4.5vw,32px) 60px;text-align:center;
+  font-size:.84rem;color:var(--ink-soft);
+}
+footer.colophon .mono{font-family:var(--mono);font-size:.72rem;color:var(--faint);margin-top:10px}
+footer.colophon .fin{font-size:1.5rem;margin-top:22px;color:var(--red)}
+
+/* back to top */
+#top-btn{
+  position:fixed;right:22px;bottom:22px;z-index:70;
+  font-family:var(--serif);font-size:1.15rem;color:var(--ink);
+  width:44px;height:44px;border:1.6px solid var(--ink);background:var(--box);cursor:pointer;
+  border-radius:225px 14px 255px 14px/14px 255px 14px 225px;
+  opacity:0;visibility:hidden;transform:translateY(10px);transition:.3s;
+}
+#top-btn.show{opacity:1;visibility:visible;transform:none}
+#top-btn:hover{box-shadow:2.5px 3px 0 var(--rule);transform:translateY(-2px)}
+
+/* ink splash on click */
+.splash{
+  position:fixed;pointer-events:none;z-index:95;width:14px;height:14px;
+  background:var(--ink);border-radius:46% 54% 52% 48%/48% 46% 54% 52%;
+  transform:translate(-50%,-50%) scale(0);opacity:.32;
+  animation:splash .6s ease-out forwards;
+}
+@keyframes splash{
+  60%{opacity:.16}
+  100%{transform:translate(-50%,-50%) scale(7) rotate(40deg);opacity:0}
+}
+
+/* reveals */
+.js .rv{opacity:0;transform:translateY(22px);transition:opacity .8s cubic-bezier(.2,.7,.3,1),transform .8s cubic-bezier(.2,.7,.3,1)}
+.js .rv.in{opacity:1;transform:none}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+  .js .rv{opacity:1;transform:none}
+}
+@media print{
+  header.site,#top-btn,#bar,.statusline{display:none}
+  body{background:#fff}
+  body::before{display:none}
+  .page{transform:none}
+}
+</style>
+</head>
+<body>
+
+<div id="bar"></div>
+
+<header class="site">
+  <div class="who"><b>V.&thinsp;Pandit</b> · working notes</div>
+  <nav class="toc" id="toc">
+    <a href="#intro">1&nbsp;Intro</a>
+    <a href="#now">2&nbsp;Now</a>
+    <a href="#earlier">3&nbsp;Earlier</a>
+    <a href="#toolbox">4&nbsp;Tools</a>
+    <a href="#education">5&nbsp;School</a>
+    <a href="#beyond">6&nbsp;Beyond</a>
+    <a href="#contact">7&nbsp;Write</a>
+  </nav>
+  <button id="lamp" aria-label="Toggle desk lamp"><span class="bulb"></span><span id="lampTxt">lamp on</span></button>
+</header>
+
+<main class="page">
+
+  <!-- ============ TITLE BLOCK ============ -->
+  <div class="titleblock">
+    <div class="preprint rv in">
+      <span class="tag">preprint · vansh/2026.06</span>
+      <span class="tag">[ cs.CV&nbsp;∩&nbsp;math.ST ]</span>
+      <span class="tag">rev. June 2026</span>
+    </div>
+    <h1 class="paper-title">Learning to see,<br/><span class="careful">carefully<svg viewBox="0 0 200 14" preserveAspectRatio="none"><path d="M3 9 C 35 3, 70 12, 105 7 S 170 4, 197 8" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.1s .9s ease forwards"/></svg></span>.</h1>
+    <p class="subtitle">Working notes of a mathematics student who builds vision systems for medicine.</p>
+
+    <div class="author">
+      <div class="nm">Vansh Pandit<sup>†&thinsp;‡</sup></div>
+      <div class="affil">
+        <sup>†</sup>&thinsp;BS-MS Mathematics · minor in Data Science, IISER Thiruvananthapuram &nbsp;·&nbsp;
+        <sup>‡</sup>&thinsp;research: IIT Jammu &amp; TU Dresden (EKFZ)
+      </div>
+    </div>
+
+    <div class="statusline"><span class="lbl">status:</span> <span id="typed"></span><span class="cur"></span></div>
+
+    <div class="abstract rv">
+      <h3>Abstract</h3>
+      <p>I am a mathematics undergraduate (minor: data science) who originally wanted to study
+      biology — and who found, after a long detour through theorems and code, a way back to the body:
+      teaching computers to read medical images. My interest is computer vision for medical imaging —
+      representation learning, generalization, novelty detection: the unglamorous, essential work of
+      making a model behave when it meets data it has never seen. I learned statistics by implementing
+      it from scratch at IIT&nbsp;Madras, fell for vision while chasing unknown objects through street
+      scenes, and am currently being humbled by raw ultrasound signals (TU&nbsp;Dresden) and by PET/CT
+      scans of head-and-neck cancer (IIT&nbsp;Jammu, MICCAI&nbsp;2026 HECKTOR). What follows is a
+      snapshot of that trajectory. This document is under active revision — and so am I.</p>
+    </div>
+    <div class="keywords rv"><b>Keywords:</b> medical image analysis · radiomics · novelty detection · Bayesian inference · reproducibility</div>
+
+    <div class="papelinks rv">
+      <a class="plink primary" href="mailto:vansh23@iisertvm.ac.in">✉ correspond</a>
+      <a class="plink" href="https://github.com/vansh287" target="_blank" rel="noopener">code ↗</a>
+      <a class="plink" href="https://linkedin.com/in/vansh-pandit" target="_blank" rel="noopener">linkedin ↗</a>
+      <a class="plink" href="mailto:vansh23@iisertvm.ac.in?subject=Please%20send%20your%20full%20CV">full CV: on request</a>
+    </div>
+  </div>
+
+  <!-- ============ 1 INTRO ============ -->
+  <section class="s rv" id="intro">
+    <div class="shead"><span class="snum">§&thinsp;1</span><h2>Introduction<svg class="scribble" viewBox="0 0 220 12" preserveAspectRatio="none"><path d="M3 8 C 40 2, 90 11, 130 6 S 200 4, 217 7" pathLength="1"/></svg></h2></div>
+    <div class="prose">
+      <p class="body">I grew up in <b>Kashmir</b>, surrounded by mountains that take instructions from
+      no one. Maybe that's where it started: I knew early that I didn't want a life spent executing
+      someone else's ideas on someone else's schedule — <span class="hl">I wanted to develop my
+      own.</span> Research was the only job description that matched. So I cleared the IISER Aptitude
+      Test and moved nearly the entire length of India south, to study by the Arabian Sea.</p>
+
+      <p class="body">The original plan, honestly, was <b>biology</b> — but my Class&nbsp;XII stream had
+      other opinions. So I took the next door over: a BS-MS in <b>mathematics</b> with a minor in
+      <b>data science</b>. Rigorous enough to go anywhere; flexible enough, I hoped, to find my way back
+      to living things eventually. (Spoiler: it worked. Medical imaging <i>is</i> biology — you just
+      enter through the mathematics wing.)</p>
+
+      <p class="body">I refused to commit to a field I hadn't tested, so I treated my early years as a
+      deliberate survey of AI and ML. First a summer at <b>IIT Madras</b> doing statistical learning —
+      implementing models from scratch, learning what real data does to clean theory. Then a semester of
+      <b>semantic segmentation</b> back at IISER TVM, and that project decided everything: for the first
+      time I could literally <b>see what my mathematics was doing</b> — masks, boundaries, objects
+      assembling themselves out of pixels. Equations I could watch. I was gone.</p>
+
+      <p class="body">Then I discovered that computer vision and medicine overlap, and the two halves of
+      the plan — the biology I wanted and the mathematics I trained — finally clicked together:
+      ultrasound radiomics with <b>TU Dresden</b>, PET/CT oncology pipelines with <b>IIT Jammu</b>.
+      Since then there is no going back. (Other corners of computer vision remain very much on the
+      exploration list.)</p>
+    </div>
+  </section>
+
+  <!-- ============ 2 NOW ============ -->
+  <section class="s rv" id="now">
+    <div class="shead"><span class="snum">§&thinsp;2</span><h2>What I'm building now<svg class="scribble" viewBox="0 0 220 12" preserveAspectRatio="none"><path d="M3 7 C 50 12, 100 3, 150 8 S 205 6, 217 7" pathLength="1"/></svg></h2></div>
+    <div class="prose">
+
+      <h3 class="sub"><span class="no">2.1</span>Teaching one pipeline three clinical questions</h3>
+      <div class="meta">
+        <span class="chip live">in progress</span>
+        <span class="chip">IIT Jammu · research intern</span>
+        <span class="chip">Jun 2026 → present · hybrid</span>
+        <span class="chip">MICCAI 2026 · HECKTOR</span>
+      </div>
+      <p class="body">For the <b>MICCAI 2026 HECKTOR challenge</b> I'm building a single, clean multimodal
+      pipeline that reads <b>FDG-PET/CT</b> scans of head-and-neck cancer and answers three clinically
+      linked questions: <i>where is the disease</i> (automatic segmentation of primary tumours and lymph
+      nodes), <i>how advanced is it</i> (radiological TN staging), and <i>what happens next</i>
+      (recurrence-free survival prognosis).</p>
+      <ul class="dets">
+        <li><b>One pipeline, three heads</b> — segmentation, staging and prognosis share one backbone instead of living in three scripts.</li>
+        <li><b>Radiomics-inspired texture features</b> with robust normalization, so results survive the jump between hospitals and scanners.</li>
+        <li><b>Docker-packaged and modular</b>, because "works on my machine" is not a clinical standard.</li>
+      </ul>
+
+      <h3 class="sub"><span class="no">2.2</span>Reading ultrasound before it becomes a picture</h3>
+      <div class="meta">
+        <span class="chip live">in progress</span>
+        <span class="chip">TU Dresden · EKFZ, Hybrid Echo group</span>
+        <span class="chip">Jan 2026 → present</span>
+      </div>
+      <p class="body">In the <b>QuantUS</b> open-source project I develop the core <b>B-mode radiomics
+      pipeline</b> (QuantUS-Backend-QUS): first-order and <b>GLCM texture features</b> computed directly
+      from <b>raw RF ultrasound signals</b> — before the familiar grey picture even exists. The
+      interesting problem is trust: an ultrasound number should mean the same thing on every machine, so
+      I implement <b>phantom-based normalization</b> to make results device-independent and reproducible.
+      I also work on backend refactoring and GUI integration, because a method only matters if a
+      clinician can actually click on it.</p>
+
+      <figure class="fig rv" id="fig1">
+        <div class="figframe">
+          <svg class="map" viewBox="0 0 720 420" xmlns="http://www.w3.org/2000/svg" aria-label="Stylized map of collaborations">
+            <!-- graticule -->
+            <g class="grat">
+              <line x1="0" y1="105" x2="720" y2="105"/><line x1="0" y1="210" x2="720" y2="210"/><line x1="0" y1="315" x2="720" y2="315"/>
+              <line x1="180" y1="0" x2="180" y2="420"/><line x1="360" y1="0" x2="360" y2="420"/><line x1="540" y1="0" x2="540" y2="420"/>
+            </g>
+            <text x="8" y="100" font-size="10">51°N</text>
+            <text x="8" y="205" font-size="10">32°N</text>
+            <text x="8" y="310" font-size="10">13°N</text>
+            <!-- compass -->
+            <g class="compass" transform="translate(668,44)">
+              <circle r="20"/><line x1="0" y1="14" x2="0" y2="-14"/>
+              <path d="M0 -14 l4 7 h-8 z" fill="var(--faint)"/>
+              <text x="-4" y="-26" font-size="11">N</text>
+            </g>
+            <!-- the move south -->
+            <path class="move" d="M430 64 Q 396 220 494 354"/>
+            <!-- arcs from home -->
+            <path class="arc" d="M500 360 Q 240 240 152 92" pathLength="120"/>
+            <path class="arc" d="M500 360 Q 540 190 472 98" pathLength="120"/>
+            <path class="arc" d="M500 360 Q 552 342 558 306" pathLength="120"/>
+            <!-- travelers -->
+            <circle class="traveler t1" r="3.4"/>
+            <circle class="traveler t2" r="3.4"/>
+            <circle class="traveler t3" r="3.4"/>
+            <!-- nodes -->
+            <g class="node" data-blurb="Dresden, Germany — QuantUS radiomics with the Hybrid Echo group (EKFZ), TU Dresden.">
+              <circle class="pulse" cx="152" cy="92" r="6"/>
+              <circle class="c" cx="152" cy="92" r="6"/>
+              <text x="138" y="74">Dresden · TUD</text>
+            </g>
+            <g class="node" data-blurb="Jammu — research intern at IIT Jammu: PET/CT pipelines for the MICCAI 2026 HECKTOR challenge.">
+              <circle class="pulse" cx="472" cy="98" r="6"/>
+              <circle class="c" cx="472" cy="98" r="6"/>
+              <text x="488" y="96">Jammu · IIT</text>
+            </g>
+            <g class="node" data-blurb="Kashmir — hometown. The mountains I measure everything against.">
+              <circle class="pulse" cx="430" cy="56" r="6"/>
+              <circle class="c" cx="430" cy="56" r="6"/>
+              <text x="344" y="50">Kashmir (home)</text>
+            </g>
+            <g class="node" data-blurb="Chennai — statistical learning from scratch at IIT Madras (summer 2025).">
+              <circle class="pulse" cx="558" cy="306" r="6"/>
+              <circle class="c" cx="558" cy="306" r="6"/>
+              <text x="574" y="304">Chennai · IITM</text>
+            </g>
+            <g class="node home" data-blurb="Thiruvananthapuram — home base. Mathematics at IISER TVM, by the sea.">
+              <circle class="pulse" cx="500" cy="360" r="6"/>
+              <circle class="c" cx="500" cy="360" r="6"/>
+              <text x="330" y="384">Thiruvananthapuram · IISER (home)</text>
+            </g>
+            <text x="14" y="404" font-size="10" font-style="italic">not drawn to scale — apologies to cartographers</text>
+          </svg>
+        </div>
+        <figcaption><b>Figure 1.</b> Collaboration graph, plotted loosely by geography; the red node is the current home base.
+        <span id="figdyn">Hover a node for details.</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ 3 EARLIER ============ -->
+  <section class="s rv" id="earlier">
+    <div class="shead"><span class="snum">§&thinsp;3</span><h2>Earlier work<svg class="scribble" viewBox="0 0 220 12" preserveAspectRatio="none"><path d="M3 8 C 45 3, 95 12, 140 5 S 205 8, 217 6" pathLength="1"/></svg></h2></div>
+    <div class="prose">
+
+      <h3 class="sub"><span class="no">3.1</span>Segmenting things no dataset warned you about</h3>
+      <div class="meta">
+        <span class="chip">IISER TVM</span>
+        <span class="chip">Aug 2025 → Dec 2025</span>
+      </div>
+      <p class="body">Streets are full of objects no training set anticipated — and a vision system that
+      only recognises what it was shown is a liability. I built an automated pipeline for <b>semantic
+      segmentation of both known and novel objects</b>, extending ideas from AIDE with lightweight
+      captioning models (<b>GLAMM</b>, <b>CODA-LM</b>) so the system can <i>describe</i> what it cannot
+      yet <i>classify</i>. Proof-of-concept on <b>Cityscapes</b>; benchmarked on IDD, IDD-Anomaly and
+      Carla-Anomaly.</p>
+
+      <h3 class="sub"><span class="no">3.2</span>Rebuilding machine learning before trusting it</h3>
+      <div class="meta">
+        <span class="chip">IIT Madras</span>
+        <span class="chip">May 2025 → Jul 2025</span>
+      </div>
+      <p class="body">Before I let libraries do my thinking, I spent a summer <b>implementing classical
+      and Bayesian machine-learning models from scratch</b> — NumPy, first principles, no shortcuts — and
+      comparing them honestly against their scikit-learn counterparts on real datasets. Regression,
+      classification, the full report. It permanently changed how I read other people's models.</p>
+    </div>
+  </section>
+
+  <!-- ============ 4 TOOLBOX ============ -->
+  <section class="s rv" id="toolbox">
+    <div class="shead"><span class="snum">§&thinsp;4</span><h2>Methods &amp; instruments<svg class="scribble" viewBox="0 0 220 12" preserveAspectRatio="none"><path d="M3 6 C 55 11, 110 3, 160 9 S 207 5, 217 8" pathLength="1"/></svg></h2></div>
+    <div class="prose">
+      <div class="toolhead"><span class="n">4.1&ensp;</span>Trusted hands — used in real projects, would bet on them</div>
+      <div class="tools">
+        <span class="tool">Python</span><span class="tool">NumPy</span><span class="tool">Pandas</span>
+        <span class="tool">scikit-learn</span><span class="tool">PyMC</span><span class="tool">MATLAB</span><span class="tool">LaTeX</span>
+      </div>
+      <div class="toolhead"><span class="n">4.2&ensp;</span>In training — currently building calluses</div>
+      <div class="tools">
+        <span class="tool train">PyTorch</span><span class="tool train">OpenCV</span>
+        <span class="tool train">TensorFlow</span><span class="tool train">PyRadiomics</span><span class="tool train">Docker</span>
+      </div>
+      <div class="toolhead"><span class="n">4.3&ensp;</span>Formal coursework</div>
+      <p class="body" style="margin-top:10px">Machine Learning I &amp; II · Mathematical Statistics · Probability Theory · Introduction to AI — taken the mathematician's way, with the proofs.</p>
+    </div>
+  </section>
+
+  <!-- ============ 5 EDUCATION ============ -->
+  <section class="s rv" id="education">
+    <div class="shead"><span class="snum">§&thinsp;5</span><h2>Education<svg class="scribble" viewBox="0 0 220 12" preserveAspectRatio="none"><path d="M3 8 C 40 12, 85 3, 130 9 S 200 5, 217 7" pathLength="1"/></svg></h2></div>
+    <table class="bt">
+      <thead><tr><th>Years</th><th>Degree</th><th>Institution</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2023 — 2028 (exp.)</td>
+          <td><b>BS-MS Dual Degree, Mathematics</b> · minor in Data Science<br/>research-first curriculum, currently year 3</td>
+          <td>Indian Institute of Science Education and Research (IISER), Thiruvananthapuram, Kerala</td>
+        </tr>
+        <tr>
+          <td>2023</td>
+          <td><b>Higher Secondary Certificate</b></td>
+          <td>KC Gurukul Public School, Jammu, J&amp;K</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="tabnote">Table 1: the formal education. The informal kind happens after midnight in the computer lab.</p>
+  </section>
+
+  <!-- ============ 6 BEYOND ============ -->
+  <section class="s rv" id="beyond">
+    <div class="shead"><span class="snum">§&thinsp;6</span><h2>Beyond the lab<svg class="scribble" viewBox="0 0 220 12" preserveAspectRatio="none"><path d="M3 7 C 50 3, 100 11, 150 5 S 205 9, 217 6" pathLength="1"/></svg></h2></div>
+    <div class="prose">
+      <ul class="beyond">
+        <li>
+          <b>Red Cross Mission — teaching mathematics and science to children with disabilities.</b><br/>
+          The hardest and most rewarding teaching I've done. If you can explain fractions to a child the
+          textbook gave up on, you can explain your model to a review committee.
+        </li>
+        <li>
+          <b>LACAM-25</b> — International Conference on Latest Advances in Computational and Applied
+          Mathematics, IISER TVM. <span class="when">Dec 8–11, 2025</span>
+        </li>
+        <li>
+          <b>Data Science Symposium</b>, IISER TVM — talks, posters, and an irresponsible amount of
+          coffee. <span class="when">2025</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 7 CONTACT ============ -->
+  <section class="s rv" id="contact">
+    <div class="shead"><span class="snum">§&thinsp;7</span><h2>Correspondence<svg class="scribble" viewBox="0 0 220 12" preserveAspectRatio="none"><path d="M3 8 C 45 12, 90 4, 140 9 S 200 4, 217 8" pathLength="1"/></svg></h2></div>
+    <div class="prose">
+      <p class="body">The fastest way to reach me is the oldest one:</p>
+      <a class="bigmail" href="mailto:vansh23@iisertvm.ac.in">vansh23@iisertvm.ac.in</a>
+      <p class="body" style="margin-top:14px">I read everything — collaboration ideas, hard questions,
+      reading recommendations, or a polite note pointing out an error in these pages. Especially that
+      last one.</p>
+      <div class="altlinks">
+        <div><span class="lab">github</span><a href="https://github.com/vansh287" target="_blank" rel="noopener">github.com/vansh287 ↗</a></div>
+        <div><span class="lab">linkedin</span><a href="https://linkedin.com/in/vansh-pandit" target="_blank" rel="noopener">linkedin.com/in/vansh-pandit ↗</a></div>
+        <div><span class="lab">phone</span><a href="tel:+916005942890">+91 60059 42890</a></div>
+        <div><span class="lab">cv</span><a href="mailto:vansh23@iisertvm.ac.in?subject=Please%20send%20your%20full%20CV">full PDF on request</a></div>
+      </div>
+      <div class="stampwrap">
+        <div class="stamp">accepting<br/>collaborations<br/><span style="letter-spacing:1px;font-size:.7rem">est. 2023 · no expiry</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ REFERENCES ============ -->
+</main>
+
+<footer class="colophon">
+  <div>Typeset by hand in plain HTML &amp; CSS — no framework, no template, one human and a text editor.</div>
+  <div class="mono">set in Newsreader &amp; IBM Plex Mono · compiled June 2026 · errata welcome → <a href="mailto:vansh23@iisertvm.ac.in?subject=Erratum">email</a></div>
+  <div class="mono">© <span id="yr"></span> Vansh Pandit</div>
+  <div class="mono">also published as: <a href="scan.html">the workstation edition →</a></div>
+  <div class="fin">∎</div>
+</footer>
+
+<button id="top-btn" aria-label="Back to top">↑</button>
+
+<script>
+/* ---------- year ---------- */
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* ---------- lamp (theme) ---------- */
+const lamp = document.getElementById('lamp'), lampTxt = document.getElementById('lampTxt'), root = document.documentElement;
+function setLampTxt(){ lampTxt.textContent = root.getAttribute('data-theme')==='dark' ? 'lamp off' : 'lamp on'; }
+setLampTxt();
+lamp.addEventListener('click', () => {
+  const dark = root.getAttribute('data-theme')==='dark';
+  if(dark) root.removeAttribute('data-theme'); else root.setAttribute('data-theme','dark');
+  try{ localStorage.setItem('lamp', dark ? 'light' : 'dark'); }catch(e){}
+  setLampTxt();
+});
+
+/* ---------- scroll progress + back-to-top + toc highlight ---------- */
+const bar = document.getElementById('bar'), topBtn = document.getElementById('top-btn');
+const tocLinks = [...document.querySelectorAll('nav.toc a')];
+const sections = tocLinks.map(a => document.querySelector(a.getAttribute('href')));
+function onScroll(){
+  const y = scrollY, h = document.documentElement.scrollHeight - innerHeight;
+  bar.style.width = (h>0 ? (y/h)*100 : 0) + '%';
+  topBtn.classList.toggle('show', y > 700);
+  let cur = -1;
+  sections.forEach((s,i) => { if(s && y >= s.offsetTop - 140) cur = i; });
+  tocLinks.forEach((a,i) => a.classList.toggle('on', i===cur));
+}
+addEventListener('scroll', onScroll, {passive:true}); onScroll();
+topBtn.addEventListener('click', () => scrollTo({top:0, behavior:'smooth'}));
+
+/* ---------- typed status ---------- */
+const phrases = [
+  'cleaning PET/CT volumes…',
+  'extracting GLCM features from raw RF…',
+  'proving a lemma, slowly…',
+  'reading about domain generalization…',
+  'refactoring the QuantUS backend…',
+  'making chai, planning experiments…'
+];
+const typed = document.getElementById('typed');
+let pi=0, ci=0, del=false;
+function type(){
+  const p = phrases[pi];
+  typed.textContent = p.slice(0,ci);
+  if(!del){ if(ci<p.length){ci++; setTimeout(type, 46+Math.random()*44);} else {del=true; setTimeout(type, 2300);} }
+  else { if(ci>0){ci--; setTimeout(type, 22);} else {del=false; pi=(pi+1)%phrases.length; setTimeout(type, 420);} }
+}
+setTimeout(type, 800);
+
+/* ---------- reveals ---------- */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+}), {threshold:.12});
+document.querySelectorAll('.rv, section.s').forEach(el => io.observe(el));
+
+/* ---------- figure: map hover blurbs ---------- */
+const figdyn = document.getElementById('figdyn');
+if(figdyn){
+  const idle = figdyn.textContent;
+  document.querySelectorAll('.map .node').forEach(n => {
+    n.addEventListener('mouseenter', () => figdyn.textContent = n.dataset.blurb);
+    n.addEventListener('mouseleave', () => figdyn.textContent = idle);
+    n.addEventListener('click', () => figdyn.textContent = n.dataset.blurb);
+  });
+}
+
+/* ---------- ink splash on click ---------- */
+addEventListener('click', e => {
+  if(e.target.closest('a,button')) return;            /* keep links crisp */
+  const s = document.createElement('span');
+  s.className = 'splash';
+  s.style.left = e.clientX+'px'; s.style.top = e.clientY+'px';
+  document.body.appendChild(s);
+  setTimeout(() => s.remove(), 650);
+});
+</script>
+</body>
+</html>
