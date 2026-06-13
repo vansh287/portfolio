@@ -350,6 +350,16 @@ input[type=range]::-moz-range-thumb{width:13px;height:13px;background:var(--cyan
 .scoutcap b{color:var(--amber);font-weight:500}
 #lzread{color:var(--cyan)}
 
+/* ============ research focus ============ */
+.focus{border:1px solid var(--line2);background:var(--panel);padding:22px 22px 24px}
+.flead{font-size:.96rem;line-height:1.72;color:var(--txt);margin:0;max-width:74ch}
+.flead b{color:var(--cyan);font-weight:600}
+.fhead{font-size:.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin:24px 0 14px}
+.ftags{display:flex;flex-wrap:wrap;gap:10px}
+.ftags span{font-size:.78rem;color:var(--txt);background:var(--bg);border:1px solid var(--line2);
+  border-radius:2px;padding:7px 13px;letter-spacing:.3px;transition:.18s}
+.ftags span:hover{color:var(--cyan);border-color:var(--cyan)}
+
 /* ============ footer ============ */
 footer{border-top:1px solid var(--line);margin-top:110px;padding:30px 0 120px;
   text-align:center;font-size:.68rem;color:var(--faint);letter-spacing:.6px;line-height:2.1}
@@ -383,6 +393,7 @@ footer .alt a{color:var(--amber)}
 <nav id="bnav" aria-label="Sections">
   <a href="#findings"><b>01</b>findings</a>
   <a href="#series"><b>02</b>series</a>
+  <a href="#focus"><b>0R</b>focus</a>
   <a href="#scout"><b>0L</b>scout</a>
   <a href="#roi"><b>03</b>roi</a>
   <a href="#priors"><b>04</b>priors</a>
@@ -431,6 +442,25 @@ footer .alt a{color:var(--amber)}
       <span class="fl imp" style="--i:10"><span class="n">2.</span> High collaboration potential. Robustness &gt; benchmarks; rigor &gt; hype.</span>
       <span class="fl imp" style="--i:11"><span class="n">3.</span> Recommended follow-up: see § consult. No referral needed.</span>
       <div class="sig">electronically signed — <b>V. PANDIT</b>, jun 2026</div>
+    </div>
+  </section>
+
+  <!-- ================= 0R RESEARCH FOCUS ================= -->
+  <section class="blk rv" id="focus">
+    <div class="bhead"><span class="bnum">[ 0R ]</span><div class="rule"></div></div>
+    <h2 class="bt">Research <span>focus</span></h2>
+    <div class="focus">
+      <p class="flead">I want to build <b>computer-vision systems for medicine</b> that a clinician can
+      actually trust — robust before clever, interpretable before state-of-the-art. Whether a model points
+      at the right thing matters to me more than where it lands on a leaderboard.</p>
+      <div class="fhead">// broadly interested in</div>
+      <div class="ftags">
+        <span>medical image segmentation</span>
+        <span>radiomics / quantitative imaging</span>
+        <span>representation &amp; self-supervised learning</span>
+        <span>3D / volumetric vision</span>
+        <span>geometry + statistics of vision</span>
+      </div>
     </div>
   </section>
 

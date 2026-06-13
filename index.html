@@ -192,6 +192,11 @@ p.body b{font-weight:600}
 
 /* highlighter */
 .hl{background:linear-gradient(104deg,transparent .6%,var(--hl) 2.6%,var(--hl) 97.5%,transparent 98%);padding:0 3px;border-radius:3px}
+.lead{font-size:1.12rem;line-height:1.62;color:var(--ink);margin-bottom:22px;font-weight:500}
+.rint{margin-top:24px;padding:16px 20px;border:1px solid var(--rule);border-left:3px solid var(--red);background:var(--paper-deep);border-radius:3px}
+.rint .lab{font-family:var(--mono);font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--red);display:block;margin-bottom:10px}
+.kw{margin:12px 0 0;font-family:var(--mono);font-size:.82rem;color:var(--ink-soft);line-height:1.95}
+.kw b{color:var(--ink)}
 
 /* definition / remark boxes */
 .defbox{
@@ -469,6 +474,10 @@ footer.colophon .fin{font-size:1.5rem;margin-top:22px;color:var(--red)}
   <section class="s rv" id="intro">
     <div class="shead"><span class="snum">§&thinsp;1</span><h2>Introduction<svg class="scribble" viewBox="0 0 220 12" preserveAspectRatio="none"><path d="M3 8 C 40 2, 90 11, 130 6 S 200 4, 217 7" pathLength="1"/></svg></h2></div>
     <div class="prose">
+      <p class="lead">I work on <b>computer vision for medical imaging</b> — building models that are
+      accurate, interpretable, and grounded in the mathematics underneath, not just the benchmark on
+      top. What follows is how someone from the mountains of Kashmir found his way to that.</p>
+
       <p class="body">I grew up in <b>Kashmir</b>, surrounded by mountains that take instructions from
       no one. Maybe that's where it started: I knew early that I didn't want a life spent executing
       someone else's ideas on someone else's schedule — <span class="hl">I wanted to develop my
@@ -493,6 +502,17 @@ footer.colophon .fin{font-size:1.5rem;margin-top:22px;color:var(--red)}
       ultrasound radiomics with <b>TU Dresden</b>, PET/CT oncology pipelines with <b>IIT Jammu</b>.
       Since then there is no going back. (Other corners of computer vision remain very much on the
       exploration list.)</p>
+
+      <div class="rint">
+        <span class="lab">Research interests</span>
+        <p class="body" style="margin-bottom:0">Broadly, I want computer-vision systems that earn a
+        clinician's trust: <span class="hl">robust before they are clever, interpretable before they are
+        state-of-the-art.</span> Whether a model points at the right thing matters to me more than where
+        it lands on a leaderboard.</p>
+        <p class="kw"><b>Currently drawn to:</b> medical image segmentation · radiomics &amp; quantitative
+        imaging · representation &amp; self-supervised learning · 3D / volumetric vision · the geometry and
+        statistics underneath it all.</p>
+      </div>
     </div>
   </section>
 
