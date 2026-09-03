@@ -769,12 +769,12 @@ footer .altlink:hover{color:var(--band-link);border-bottom-color:currentColor}
         <picture>
           <source type="image/webp" sizes="(max-width:760px) 92vw, (max-width:1180px) 84vw, 900px"
                   srcset="figures/pipeline-900.webp 900w, figures/pipeline-1400.webp 1400w, figures/pipeline-2000.webp 2000w" />
-          <img src="figures/pipeline.png" width="2925" height="1634" loading="lazy" decoding="async"
-               alt="Three-stage pipeline diagram. Stage one segments PET/CT with an nnU-Net to produce primary tumour and nodal masks. Stage two derives nodal stage from six geometric features through an ordinal gradient booster and a PET activity gate, and derives tumour stage by fusing a ConvNeXt on a 140 mm crop with a tabular classifier. Stage three predicts recurrence-free survival with a mask-free Cox model over clinical variables and predicted stage." />
+          <img src="figures/pipeline.png" width="2839" height="1520" loading="lazy" decoding="async"
+               alt="Three-stage pipeline diagram. Stage one crops a co-registered PET/CT pair to 3.27 mm and segments the primary tumour and nodes with a five-fold nnU-Net, scored by Dice. Stage two derives nodal stage from six geometric features of the segmented nodes, including greatest diameter, count and laterality, through an ordinal gradient booster and a fixed PET activity gate at tau 2.5; tumour stage fuses an ImageNet-initialised ConvNeXt on a 140 mm crop with a gradient-boosted tabular model over seventeen shape and PET features, weighted 60 image to 40 tabular. Stage three predicts recurrence-free survival with a Cox proportional-hazards model over clinical variables and predicted stage only, with imaging deliberately excluded as scanner-dependent." />
         </picture>
         <span class="zoomtag">View full size</span>
       </a>
-      <figcaption><b>Figure 1.</b> The pipeline. Segmentation feeds both staging heads; the survival model is deliberately mask-free. The flame marks a learned component, the blue tag marks a fixed rule with no training at all.</figcaption>
+      <figcaption><b>Figure 1.</b> The pipeline. Segmentation feeds both staging heads; the survival model deliberately does not use the masks. The flame marks a learned component, the blue tag marks a fixed rule with no training at all.</figcaption>
     </figure>
 
     <figure class="plate">
