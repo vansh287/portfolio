@@ -12,6 +12,10 @@ __pycache__/
 site/backups/
 img/_original-portrait.jpg
 
+# Scratch files from local checks
+_*.png
+_*.html
+
 # Private — never publish
 HECKTOR_comparison.xlsx
 linkedin-banner.png
