@@ -99,6 +99,23 @@ def save_portrait(image_bytes, offset=0.5, zoom=1.0):
     }
 
 
+def remember_crop(offset, zoom):
+    """Write the crop into content.json straight away.
+
+    The editor posts its whole in-memory content on save, so a tab opened
+    before these fields existed would otherwise wipe them. Recording the crop
+    server-side, at the moment it is applied, keeps it authoritative.
+    """
+    try:
+        c = json.loads(CONTENT.read_text(encoding="utf-8"))
+        c.setdefault("person", {})["photo_offset"] = round(float(offset), 4)
+        c["person"]["photo_zoom"] = round(float(zoom), 4)
+        CONTENT.write_text(json.dumps(c, indent=2, ensure_ascii=False) + "\n",
+                           encoding="utf-8")
+    except Exception:  # noqa: BLE001 - never let bookkeeping break a crop
+        pass
+
+
 class Handler(SimpleHTTPRequestHandler):
     def __init__(self, *a, **kw):
         super().__init__(*a, directory=str(ROOT), **kw)
@@ -152,6 +169,14 @@ class Handler(SimpleHTTPRequestHandler):
                 content = data.get("content")
                 if not isinstance(content, dict):
                     return self.send_json({"error": "no content"}, 400)
+                # a tab opened before a field existed would otherwise erase it
+                try:
+                    on_disk = json.loads(CONTENT.read_text(encoding="utf-8"))
+                    for key in ("photo_offset", "photo_zoom"):
+                        if key not in content.get("person", {}) and key in on_disk.get("person", {}):
+                            content.setdefault("person", {})[key] = on_disk["person"][key]
+                except Exception:  # noqa: BLE001
+                    pass
                 backup_content()
                 CONTENT.write_text(
                     json.dumps(content, indent=2, ensure_ascii=False) + "\n",
@@ -172,6 +197,7 @@ class Handler(SimpleHTTPRequestHandler):
                 out = save_portrait(base64.b64decode(raw),
                                     data.get("offset", 0.5),
                                     data.get("zoom", 1.0))
+                remember_crop(out["offset"], out["zoom"])
                 return self.send_json({"ok": True, **out})
 
             if route == "/api/recrop":
@@ -183,6 +209,7 @@ class Handler(SimpleHTTPRequestHandler):
                 out = save_portrait(original.read_bytes(),
                                     data.get("offset", 0.5),
                                     data.get("zoom", 1.0))
+                remember_crop(out["offset"], out["zoom"])
                 return self.send_json({"ok": True, **out})
 
         except Exception as exc:  # noqa: BLE001
