@@ -1,35 +1,35 @@
 {
   "_readme": "Everything on the site lives in this file. Edit it through the GUI (run 'Edit website.bat') or by hand, then run build.py. Type real characters (· – → &) — they are escaped for you. Only fields ending in _html accept markup: <b>bold</b>, <i>italic</i>, <a class=\"inline\" href=\"...\">links</a>.",
   "meta": {
-    "title": "Vansh Pandit — Computer vision for medical imaging",
-    "description": "Vansh Pandit — BS-MS student in applied mathematics at IISER Thiruvananthapuram working on computer vision for medical imaging: segmentation, radiomics and outcome prediction from PET/CT and ultrasound.",
-    "og_description": "Segmentation, radiomics and outcome prediction from PET/CT and ultrasound. MICCAI 2026 HECKTOR, QuantUS, IISER Thiruvananthapuram.",
+    "title": "Vansh Pandit — Computer vision",
+    "description": "Vansh Pandit — BS-MS student in applied mathematics at IISER Thiruvananthapuram working in computer vision: segmentation, representation learning and generalisation. Most of the work so far has been in medical imaging, but the questions are not specific to medicine.",
+    "og_description": "Computer vision — segmentation, representation learning, and whether a model still works on data it has never seen. Mostly medical imaging so far; open to the rest.",
     "url": "https://vansh287.github.io/portfolio/",
     "og_image": "https://vansh287.github.io/portfolio/og-image.png",
     "last_updated": "September 2026",
     "footer_link_label": "Also written as a paper: Learning to See, Carefully",
-    "footer_link_href": "paper.html"
+    "footer_link_href": "paper.html",
+    "og_image_alt": "Vansh Pandit — computer vision"
   },
   "person": {
     "name": "Vansh Pandit",
-    "kicker": "Computer vision · Medical imaging · Applied mathematics",
-    "role": "I teach machines to read medical scans.",
-    "job_title": "Student researcher, computer vision and medical image analysis",
-    "schema_description": "BS-MS student in applied mathematics at IISER Thiruvananthapuram working on computer vision for medical imaging.",
+    "kicker": "Computer vision · Applied mathematics",
+    "role": "I teach machines to see.",
+    "job_title": "Student researcher, computer vision",
+    "schema_description": "BS-MS student in applied mathematics at IISER Thiruvananthapuram working in computer vision, with most of his work so far in medical image analysis.",
     "affiliation": "IISER Thiruvananthapuram",
     "knows_about": [
       "Computer Vision",
-      "Medical Image Analysis",
       "Image Segmentation",
+      "Representation Learning",
+      "Domain Generalisation",
+      "Anomaly Detection",
+      "Medical Image Analysis",
       "Radiomics",
-      "Quantitative Ultrasound",
-      "Survival Analysis",
       "Reinforcement Learning",
       "Applied Mathematics"
     ],
     "email": "vansh23@iisertvm.ac.in",
-    "phone": "+91 60059 42890",
-    "phone_href": "tel:+916005942890",
     "github": "https://github.com/vansh287",
     "linkedin": "https://www.linkedin.com/in/vansh-pandit-884046272/",
     "photo_alt": "Portrait of Vansh Pandit",
@@ -38,11 +38,11 @@
   },
   "intro": {
     "paragraphs_html": [
-      "I am a fourth-year BS-MS student in applied mathematics at <b>IISER Thiruvananthapuram</b>. My work sits where computer vision meets medicine: segmenting what matters in a scan, turning it into numbers that hold up, and predicting something a clinician actually needs to know.",
-      "What I care about most is generalisation. A model that scores well on the hospitals it trained on can fall apart at one it has never seen, and I would rather have a small model whose reasoning I can follow than a large one I have to trust on faith. I like taking an idea from the mathematics underneath it down to a reproducible implementation somebody else can run."
+      "I am a fourth-year BS-MS student in applied mathematics at <b>IISER Thiruvananthapuram</b>, and computer vision is the thing I keep coming back to. Most of my work so far has been on medical images — finding what matters in a scan, turning it into numbers that hold up, predicting something a clinician actually needs to know — but the questions that keep me there are not really about medicine.",
+      "What I care about is <b>generalisation</b>. A model that scores well on the data it was trained on can fall apart on data it has never seen, and I would rather have a small model whose reasoning I can follow than a large one I have to take on trust. That problem turns up everywhere — different hospitals and scanners, streets in weather nobody photographed, terrain a simulator invented — which is how I have ended up chasing it through PET/CT, ultrasound, driving scenes and a drone."
     ],
     "now_label": "Right now:",
-    "now_html": "building the B-mode radiomics pipeline for QuantUS at TU Dresden, and scoping a master's thesis for next year. Open to conversations about either.",
+    "now_html": "building the B-mode radiomics pipeline for QuantUS at TU Dresden, and looking for a master's thesis for next year. Medical imaging is the likeliest home for it, but I would happily be talked into another corner of vision.",
     "buttons": [
       {
         "label": "Read my paper",
@@ -76,14 +76,14 @@
   ],
   "interests": {
     "heading": "Research interests",
-    "lead_html": "Broadly, I want computer-vision systems that earn a clinician's trust: robust before they are clever, interpretable before they are state of the art. Whether a model points at the right thing matters to me more than where it lands on a leaderboard. I am equally curious about the wider landscape of vision, from driving scenes to anomaly detection.",
+    "lead_html": "I want vision systems that earn trust: robust before they are clever, interpretable before they are state of the art. Whether a model points at the right thing matters to me more than where it lands on a leaderboard. Medicine is where that bar is hardest to clear, which is why most of my work lives there — but the same question follows me anywhere a model has to cope with data nobody showed it.",
     "tags": [
-      "Medical image segmentation",
-      "Radiomics & quantitative imaging",
-      "Cross-centre generalisation",
+      "Segmentation",
+      "Generalisation & domain shift",
       "Representation & self-supervised learning",
-      "3D / volumetric vision",
       "Novelty & anomaly detection",
+      "3D / volumetric vision",
+      "Medical imaging & radiomics",
       "Survival analysis"
     ]
   },
@@ -356,8 +356,8 @@
   "contact": {
     "heading": "Contact",
     "kicker": "09 — Contact",
-    "title": "Currently scoping a master's thesis.",
-    "text_html": "Collaboration ideas, thesis directions, hard questions, or a note pointing out that something on this page is wrong. Especially the last one. I read everything.",
+    "title": "Looking for a master's thesis.",
+    "text_html": "Collaboration ideas, thesis directions, a hard question, or a note telling me something on this page is wrong — especially that last one. I read everything, and I answer.",
     "links": [
       {
         "label": "GitHub",
@@ -368,11 +368,6 @@
         "label": "LinkedIn",
         "href": "https://www.linkedin.com/in/vansh-pandit-884046272/",
         "me": true
-      },
-      {
-        "label": "+91 60059 42890",
-        "href": "tel:+916005942890",
-        "me": false
       },
       {
         "label": "CV on request",
