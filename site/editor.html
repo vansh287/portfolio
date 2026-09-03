@@ -273,6 +273,10 @@ const PAGES = {
   ),
 
   photo: () => {
+    /* the crop lives in the content, so the sliders always show the real one */
+    if (typeof C.person.photo_offset !== 'number') C.person.photo_offset = 0.5;
+    if (typeof C.person.photo_zoom   !== 'number') C.person.photo_zoom   = 1.0;
+
     const wrap = el('div', {class:'photowrap'});
     const prev = el('img', {src:'/img/vansh-340.jpg?t=' + Date.now(), alt:'Portrait preview'});
     let pending = null;
@@ -291,10 +295,24 @@ const PAGES = {
       r.readAsDataURL(f);
     }
 
-    const offset = el('input', {type:'range', min:'0', max:'100', value:'50'});
-    const zoom   = el('input', {type:'range', min:'100', max:'250', value:'100'});
+    /* start from the stored crop, not from a hard-coded default */
+    const offset = el('input', {type:'range', min:'0', max:'100', step:'1',
+      value: String(Math.round(C.person.photo_offset * 100))});
+    const zoom = el('input', {type:'range', min:'100', max:'300', step:'1',
+      value: String(Math.round(C.person.photo_zoom * 100))});
+    const offOut = el('span', {class:'sub'}, '');
+    const zoomOut = el('span', {class:'sub'}, '');
+
+    function readouts(){
+      const o = Number(offset.value);
+      offOut.textContent = o === 0 ? 'top' : o === 100 ? 'bottom'
+        : o === 50 ? 'centred' : o + '% down';
+      zoomOut.textContent = (Number(zoom.value) / 100).toFixed(2) + '×';
+    }
+    readouts();
+
     let timer = null;
-    const queue = () => { clearTimeout(timer); timer = setTimeout(apply, 220); };
+    const queue = () => { readouts(); clearTimeout(timer); timer = setTimeout(apply, 220); };
     offset.addEventListener('input', queue);
     zoom.addEventListener('input', queue);
 
@@ -308,26 +326,48 @@ const PAGES = {
         const j = await r.json();
         if (j.error) throw new Error(j.error);
         prev.src = j.thumb;
+        /* trust the server: it reports what it actually cropped to */
+        C.person.photo_offset = j.offset;
+        C.person.photo_zoom = j.zoom;
+        offset.value = String(Math.round(j.offset * 100));
+        zoom.value = String(Math.round(j.zoom * 100));
+        readouts();
+        pending = null;
+        markDirty();
         setStatus('Photo updated — press Save to rebuild', 'ok');
-        dirty = true; $('#save').disabled = false;
       }catch(err){ setStatus(err.message, 'err'); }
+    }
+
+    function reset(){
+      offset.value = '50'; zoom.value = '100'; apply();
     }
 
     wrap.append(
       el('div', {class:'photoprev'}, prev),
       el('div', {class:'photoctl'},
         drop, file,
-        el('div', {class:'field', style:'margin-top:16px'}, el('label', {}, 'Vertical position'), offset),
-        el('div', {class:'field'}, el('label', {}, 'Zoom'), zoom),
-        el('button', {class:'btn', onclick: apply}, 'Re-crop current photo')
+        el('div', {class:'field', style:'margin-top:16px'},
+          el('label', {}, 'Vertical position', offOut), offset),
+        el('div', {class:'field'}, el('label', {}, 'Zoom', zoomOut), zoom),
+        el('div', {style:'display:flex;gap:8px;flex-wrap:wrap'},
+          el('button', {class:'btn', onclick: apply}, 'Re-crop now'),
+          el('button', {class:'btn small', onclick: reset}, 'Reset crop'))
       ));
 
-    page('Photo', 'Drop in a new picture, then nudge the crop until your face sits well. Every size the site needs is generated for you.',
+    page('Photo', 'Drop in a new picture, then nudge the crop until your face sits well. The sliders show the crop that is actually in use, and every size the site needs is regenerated for you.',
       wrap,
       text('Alt text', C.person, 'photo_alt', {hint:'described for screen readers'}),
       text('Caption, left', C.person, 'photo_caption_left'),
       text('Caption, right', C.person, 'photo_caption_right')
     );
+
+    /* if there is no stored original, re-cropping cannot work — say so */
+    fetch('/api/photo-state').then(r => r.json()).then(st => {
+      if (st.has_original) return;
+      offset.disabled = zoom.disabled = true;
+      wrap.querySelectorAll('.photoctl .btn').forEach(b => b.disabled = true);
+      drop.textContent = 'Drop a photo here first — no original is stored to re-crop';
+    }).catch(() => {});
   },
 
   intro: () => page('Introduction', 'The opening block: the paragraphs beside your photo, the highlighted “Right now” note, and the two buttons.',

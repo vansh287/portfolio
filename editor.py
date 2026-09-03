@@ -54,7 +54,11 @@ def backup_content():
 
 
 def save_portrait(image_bytes, offset=0.5, zoom=1.0):
-    """Crop to the portrait ratio and write every size the page asks for."""
+    """Crop to the portrait ratio and write every size the page asks for.
+
+    Returns the thumbnail plus the offset and zoom actually used, so the
+    editor's sliders can never drift away from the crop on disk.
+    """
     from PIL import Image, ImageOps
 
     src = ImageOps.exif_transpose(Image.open(io.BytesIO(image_bytes))).convert("RGB")
@@ -88,7 +92,11 @@ def save_portrait(image_bytes, offset=0.5, zoom=1.0):
 
     buf = io.BytesIO()
     crop.resize((320, 402), Image.LANCZOS).save(buf, "JPEG", quality=80)
-    return "data:image/jpeg;base64," + base64.b64encode(buf.getvalue()).decode()
+    return {
+        "thumb": "data:image/jpeg;base64," + base64.b64encode(buf.getvalue()).decode(),
+        "offset": round(offset, 4),
+        "zoom": round(zoom, 4),
+    }
 
 
 class Handler(SimpleHTTPRequestHandler):
@@ -126,6 +134,9 @@ class Handler(SimpleHTTPRequestHandler):
         if route == "/":
             self.path = "/site/editor.html"
             return SimpleHTTPRequestHandler.do_GET(self)
+        if route == "/api/photo-state":
+            return self.send_json(
+                {"has_original": (ROOT / "img" / "_original-portrait.jpg").exists()})
         if route == "/api/content":
             try:
                 return self.send_json(json.loads(CONTENT.read_text(encoding="utf-8")))
@@ -158,20 +169,21 @@ class Handler(SimpleHTTPRequestHandler):
                 raw = data.get("data", "")
                 if "," in raw:
                     raw = raw.split(",", 1)[1]
-                thumb = save_portrait(base64.b64decode(raw),
-                                      data.get("offset", 0.5),
-                                      data.get("zoom", 1.0))
-                return self.send_json({"ok": True, "thumb": thumb})
+                out = save_portrait(base64.b64decode(raw),
+                                    data.get("offset", 0.5),
+                                    data.get("zoom", 1.0))
+                return self.send_json({"ok": True, **out})
 
             if route == "/api/recrop":
                 data = self.read_json()
                 original = ROOT / "img" / "_original-portrait.jpg"
                 if not original.exists():
-                    return self.send_json({"error": "no original stored"}, 400)
-                thumb = save_portrait(original.read_bytes(),
-                                      data.get("offset", 0.5),
-                                      data.get("zoom", 1.0))
-                return self.send_json({"ok": True, "thumb": thumb})
+                    return self.send_json(
+                        {"error": "No original photo is stored yet — drop a picture in first."}, 400)
+                out = save_portrait(original.read_bytes(),
+                                    data.get("offset", 0.5),
+                                    data.get("zoom", 1.0))
+                return self.send_json({"ok": True, **out})
 
         except Exception as exc:  # noqa: BLE001
             import traceback

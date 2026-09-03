@@ -34,7 +34,9 @@
     "linkedin": "https://www.linkedin.com/in/vansh-pandit-884046272/",
     "photo_alt": "Portrait of Vansh Pandit",
     "photo_caption_left": "Vansh Pandit",
-    "photo_caption_right": "Thiruvananthapuram, 2026"
+    "photo_caption_right": "Thiruvananthapuram, 2026",
+    "photo_offset": 0,
+    "photo_zoom": 1.1
   },
   "intro": {
     "paragraphs_html": [
