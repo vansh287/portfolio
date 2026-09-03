@@ -3,850 +3,1091 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Vansh Pandit — Learning to See, Carefully</title>
-<meta name="description" content="Working notes of Vansh Pandit — a mathematics student at IISER Thiruvananthapuram building vision systems for medicine. Radiomics, PET/CT, novelty detection, Bayesian statistics." />
+<title>Vansh Pandit — Computer vision for medical imaging</title>
+<meta name="description" content="Vansh Pandit — BS-MS student in applied mathematics at IISER Thiruvananthapuram working on computer vision for medical imaging: segmentation, radiomics and outcome prediction from PET/CT and ultrasound." />
 <meta name="author" content="Vansh Pandit" />
-<meta name="theme-color" content="#f6f1e7" />
+<meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#14151a" media="(prefers-color-scheme: dark)" />
 <meta name="robots" content="index, follow" />
+<script>
+/* set the theme before first paint so there is no flash */
+document.documentElement.classList.add('js');
+(function(){try{var t=localStorage.getItem('theme');
+if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+</script>
 <link rel="canonical" href="https://vansh287.github.io/portfolio/" />
-<meta property="og:type" content="website" />
+
+<meta property="og:type" content="profile" />
 <meta property="og:site_name" content="Vansh Pandit" />
-<meta property="og:title" content="Vansh Pandit — Learning to see, carefully" />
-<meta property="og:description" content="Computer vision and medical imaging research, projects, and skills — by a mathematics student at IISER Thiruvananthapuram." />
+<meta property="og:title" content="Vansh Pandit — Computer vision for medical imaging" />
+<meta property="og:description" content="Segmentation, radiomics and outcome prediction from PET/CT and ultrasound. MICCAI 2026 HECKTOR, QuantUS, IISER Thiruvananthapuram." />
 <meta property="og:url" content="https://vansh287.github.io/portfolio/" />
 <meta property="og:image" content="https://vansh287.github.io/portfolio/og-image.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="Vansh Pandit — computer vision, medical imaging, mathematics" />
+<meta property="og:image:alt" content="Vansh Pandit — computer vision for medical imaging" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Vansh Pandit — Learning to see, carefully" />
-<meta name="twitter:description" content="Computer vision and medical imaging research, projects, and skills." />
+<meta name="twitter:title" content="Vansh Pandit — Computer vision for medical imaging" />
+<meta name="twitter:description" content="Segmentation, radiomics and outcome prediction from PET/CT and ultrasound. MICCAI 2026 HECKTOR, QuantUS, IISER Thiruvananthapuram." />
 <meta name="twitter:image" content="https://vansh287.github.io/portfolio/og-image.png" />
+
+<link rel="preload" href="fonts/gambetta-700.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="fonts/switzer-400.woff2" as="font" type="font/woff2" crossorigin />
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Vansh Pandit",
-  "url": "https://vansh287.github.io/portfolio/",
-  "image": "https://vansh287.github.io/portfolio/og-image.png",
-  "jobTitle": "Computer Vision and Medical Imaging Researcher",
-  "description": "Fourth-year BS-MS dual-degree student in computational mathematics at IISER Thiruvananthapuram working in computer vision, medical image analysis, and quantitative imaging.",
-  "affiliation": { "@type": "CollegeOrUniversity", "name": "IISER Thiruvananthapuram" },
-  "knowsAbout": ["Computer Vision","Medical Image Analysis","Quantitative Imaging","Radiomics","Image Segmentation","Machine Learning","Mathematics"],
-  "sameAs": ["https://github.com/vansh287","https://www.linkedin.com/in/vansh-pandit-884046272/"]
+  "@graph": [
+    {
+      "@type": "ScholarlyArticle",
+      "name": "Geometry Meets Metabolism: Interpretable Segmentation, Staging, and Prognosis in Head and Neck PET/CT",
+      "author": {
+        "@type": "Person",
+        "name": "Vansh Pandit",
+        "url": "https://vansh287.github.io/portfolio/"
+      },
+      "datePublished": "2026-08-09",
+      "inLanguage": "en",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "isPartOf": {
+        "@type": "PublicationEvent",
+        "name": "MICCAI 2026 HECKTOR Challenge"
+      },
+      "keywords": [
+        "Head and neck cancer",
+        "PET/CT",
+        "Tumour segmentation",
+        "TNM staging",
+        "Survival analysis",
+        "Interpretable models",
+        "Cross-centre generalisation"
+      ],
+      "codeRepository": "https://github.com/vansh287/HECKTOR2026-VisionII",
+      "url": "https://github.com/vansh287/HECKTOR2026-VisionII/blob/main/paper/HECKTOR_16.pdf"
+    },
+    {
+      "@type": "Person",
+      "name": "Vansh Pandit",
+      "url": "https://vansh287.github.io/portfolio/",
+      "image": "https://vansh287.github.io/portfolio/img/vansh.jpg",
+      "jobTitle": "Student researcher, computer vision and medical image analysis",
+      "description": "BS-MS student in applied mathematics at IISER Thiruvananthapuram working on computer vision for medical imaging.",
+      "affiliation": {
+        "@type": "CollegeOrUniversity",
+        "name": "IISER Thiruvananthapuram"
+      },
+      "knowsAbout": [
+        "Computer Vision",
+        "Medical Image Analysis",
+        "Image Segmentation",
+        "Radiomics",
+        "Quantitative Ultrasound",
+        "Survival Analysis",
+        "Reinforcement Learning",
+        "Applied Mathematics"
+      ],
+      "sameAs": [
+        "https://github.com/vansh287",
+        "https://www.linkedin.com/in/vansh-pandit-884046272/"
+      ]
+    }
+  ]
 }
 </script>
-<script>document.documentElement.classList.add('js');
-(function(){try{var t=localStorage.getItem('lamp');if(t==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}})();</script>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%2328241e'/><circle cx='50' cy='50' r='26' fill='none' stroke='%23f6f1e7' stroke-width='6'/><path d='M50 8V22 M50 78V92 M8 50H22 M78 50H92' stroke='%23f6f1e7' stroke-width='6' stroke-linecap='round'/><circle cx='50' cy='50' r='7' fill='%23a23b2e'/></svg>" />
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='16' fill='%231c1b17'/><text x='50' y='68' font-family='Georgia,serif' font-size='54' font-weight='700' fill='%23fbfaf7' text-anchor='middle'>V</text></svg>" />
+
 <style>
-/* ================= paper & ink ================= */
+/* ===========================================================
+   Gambetta (headings) + Switzer (text) — Indian Type Foundry,
+   self-hosted. Warm white, ink, one blue accent.
+   =========================================================== */
+@font-face{font-family:Gambetta;src:url('fonts/gambetta-400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:Gambetta;src:url('fonts/gambetta-400-italic.woff2') format('woff2');font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:Gambetta;src:url('fonts/gambetta-600.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:Gambetta;src:url('fonts/gambetta-700.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:Switzer;src:url('fonts/switzer-400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:Switzer;src:url('fonts/switzer-500.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:Switzer;src:url('fonts/switzer-600.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap}
+
+/* ---------- light (default) ---------- */
 :root{
-  --paper:#f6f1e7;
-  --paper-deep:#efe8da;
-  --ink:#28241e;
-  --ink-soft:#5b5546;
-  --faint:#8a8270;
-  --rule:#d8cfbc;
-  --pen:#1d4f91;          /* ballpoint blue */
-  --red:#a23b2e;          /* red pen */
-  --hl:#f3e3b2;           /* highlighter */
-  --box:#fbf8f1;
-  --serif:'Newsreader',Georgia,serif;
-  --mono:'IBM Plex Mono',Consolas,monospace;
-  --mw:215px;             /* margin-note width */
+  color-scheme:light;
+  --paper:#fbfaf7;
+  --paper2:#f3f0e9;
+  --card:#ffffff;
+  --ink:#1c1b17;
+  --ink2:#56534a;
+  --faint:#8d8a80;
+  --rule:#e3dfd5;
+  --accent:#1d4f91;
+  --accent-2:#163d70;
+  --accent-tint:#eaf0f7;
+  --on-accent:#ffffff;
+
+  --band:#15161a;          /* contact + footer band */
+  --band-ink:#ffffff;
+  --band-ink2:#b3afa5;
+  --band-faint:#8d8a80;
+  --band-rule:#26272c;
+  --band-link:#9dc0ee;
+
+  --shadow:0 20px 44px -30px rgba(28,27,23,.42);
+  --grain:.032;
+
+  --serif:Gambetta,Georgia,'Times New Roman',serif;
+  --sans:Switzer,'Helvetica Neue',Arial,sans-serif;
+
+  --pad:clamp(20px,4.5vw,56px);
+  --maxw:1080px;
 }
-[data-theme="dark"]{
-  --paper:#191512;
-  --paper-deep:#14110e;
-  --ink:#e9e1d2;
-  --ink-soft:#b0a68f;
-  --faint:#7d745f;
-  --rule:#3a342b;
-  --pen:#8db1e8;
-  --red:#d97862;
-  --hl:#4a3f22;
-  --box:#211c17;
+
+/* ---------- dark tokens, shared by the toggle and the system default ---------- */
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#14151a;
+  --paper2:#1b1d24;
+  --card:#191b21;
+  --ink:#e9e7e1;
+  --ink2:#a8a59d;
+  --faint:#77746d;
+  --rule:#2a2d35;
+  --accent:#85acdf;
+  --accent-2:#a6c6ef;
+  --accent-tint:#1a2432;
+  --on-accent:#10131a;
+
+  --band:#1d2027;
+  --band-ink:#f3f1eb;
+  --band-ink2:#a8a59d;
+  --band-faint:#77746d;
+  --band-rule:#2d313a;
+  --band-link:#9dc0ee;
+
+  --shadow:0 20px 48px -26px rgba(0,0,0,.72);
+  --grain:.05;
 }
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --paper:#14151a;
+    --paper2:#1b1d24;
+    --card:#191b21;
+    --ink:#e9e7e1;
+    --ink2:#a8a59d;
+    --faint:#77746d;
+    --rule:#2a2d35;
+    --accent:#85acdf;
+    --accent-2:#a6c6ef;
+    --accent-tint:#1a2432;
+    --on-accent:#10131a;
+
+    --band:#1d2027;
+    --band-ink:#f3f1eb;
+    --band-ink2:#a8a59d;
+    --band-faint:#77746d;
+    --band-rule:#2d313a;
+    --band-link:#9dc0ee;
+
+    --shadow:0 20px 48px -26px rgba(0,0,0,.72);
+    --grain:.05;
+  }
+}
+
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 body{
-  background:var(--paper);
-  color:var(--ink);
-  font-family:var(--serif);
-  font-size:1.06rem;
-  line-height:1.72;
-  transition:background .45s ease,color .45s ease;
-  overflow-x:hidden;
+  background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:1rem;line-height:1.7;font-weight:400;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  position:relative;
 }
-/* paper grain */
-body::before{
-  content:'';position:fixed;inset:0;pointer-events:none;z-index:5;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
-  opacity:.07;mix-blend-mode:multiply;
-}
-[data-theme="dark"] body::before{opacity:.10;mix-blend-mode:overlay}
-::selection{background:var(--hl)}
+body.locked{overflow:hidden}
+img{max-width:100%;display:block}
 
-a{color:var(--pen);text-decoration:none;background-image:linear-gradient(currentColor,currentColor);background-size:100% 1px;background-position:0 96%;background-repeat:no-repeat;transition:color .25s}
-a:hover{color:var(--red)}
-sup{font-size:.68em}
-
-/* ================= header ================= */
-#bar{position:fixed;top:0;left:0;height:2px;background:var(--red);width:0%;z-index:90}
-header.site{
-  position:sticky;top:0;z-index:80;
-  display:flex;align-items:center;justify-content:space-between;gap:14px;
-  padding:10px clamp(16px,4vw,40px);
-  background:color-mix(in srgb,var(--paper) 88%,transparent);
-  backdrop-filter:blur(8px);
-  border-bottom:1px solid var(--rule);
-  font-family:var(--mono);font-size:.78rem;
-}
-header.site .who{color:var(--ink-soft);white-space:nowrap}
-header.site .who b{color:var(--ink);font-weight:500}
-nav.toc{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;max-width:62vw}
-nav.toc::-webkit-scrollbar{display:none}
-nav.toc a{
-  color:var(--ink-soft);background:none;padding:6px 9px;border-radius:6px;white-space:nowrap;
-  border-bottom:2px solid transparent;
-}
-nav.toc a:hover{color:var(--ink);background:var(--paper-deep)}
-nav.toc a.on{color:var(--red);border-bottom-color:var(--red)}
-#lamp{
-  font-family:var(--mono);font-size:.78rem;color:var(--ink-soft);
-  background:none;border:1px solid var(--rule);border-radius:999px;
-  padding:5px 12px;cursor:pointer;white-space:nowrap;
-  transition:.3s;display:flex;align-items:center;gap:7px;
-}
-#lamp:hover{color:var(--ink);border-color:var(--faint)}
-#lamp .bulb{width:8px;height:8px;border-radius:50%;background:#e8b73a;box-shadow:0 0 7px #e8b73a;transition:.3s}
-[data-theme="dark"] #lamp .bulb{background:#4a4336;box-shadow:none}
-
-/* ================= page column ================= */
-.page{max-width:740px;margin:0 auto;padding:0 clamp(18px,4.5vw,32px)}
-@media(min-width:1180px){.page{transform:translateX(calc(var(--mw) / -2.4))}}
-
-/* ================= title block ================= */
-.titleblock{padding-top:72px;text-align:center}
-.preprint{
-  font-family:var(--mono);font-size:.72rem;color:var(--faint);letter-spacing:.4px;
-  display:flex;justify-content:center;gap:8px;flex-wrap:wrap;
-}
-.preprint .tag{border:1px solid var(--rule);border-radius:999px;padding:2px 10px}
-h1.paper-title{
-  font-size:clamp(2.3rem,6.4vw,3.9rem);font-weight:600;line-height:1.12;
-  letter-spacing:-.5px;margin:34px 0 10px;
-}
-h1 .careful{font-style:italic;font-weight:500;position:relative;white-space:nowrap}
-h1 .careful svg{position:absolute;left:0;bottom:-6px;width:100%;height:14px;overflow:visible}
-h1 .careful path{fill:none;stroke:var(--red);stroke-width:2.4;stroke-linecap:round}
-.subtitle{font-size:1.12rem;color:var(--ink-soft);font-style:italic;max-width:560px;margin:0 auto}
-.author{margin-top:30px;font-size:1.05rem}
-.author .nm{font-weight:600;font-variant:small-caps;letter-spacing:1px;font-size:1.18rem}
-.affil{font-size:.84rem;color:var(--ink-soft);margin-top:6px;line-height:1.7}
-.statusline{
-  font-family:var(--mono);font-size:.78rem;color:var(--ink-soft);
-  margin-top:22px;min-height:1.5em;
-}
-.statusline .lbl{color:var(--faint)}
-.statusline .cur{display:inline-block;width:7px;height:1em;background:var(--red);vertical-align:-2px;margin-left:2px;animation:blink 1.05s steps(1) infinite}
-@keyframes blink{50%{opacity:0}}
-
-/* abstract */
-.abstract{
-  margin:44px auto 0;max-width:620px;text-align:justify;hyphens:auto;
-  border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);
-  padding:22px 6px 24px;position:relative;
-}
-.abstract h3{
-  font-variant:small-caps;letter-spacing:3px;text-align:center;font-weight:600;
-  font-size:.95rem;margin-bottom:12px;
-}
-.abstract p{font-size:.98rem;line-height:1.78}
-.abstract p::first-letter{
-  font-size:3.1em;float:left;line-height:.82;padding:4px 8px 0 0;font-weight:600;color:var(--red);
-}
-.keywords{margin:18px auto 0;max-width:620px;font-size:.84rem;color:var(--ink-soft);text-align:center}
-.keywords b{font-variant:small-caps;letter-spacing:1px;font-weight:600;color:var(--ink)}
-.papelinks{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:30px}
-.plink{
-  font-family:var(--mono);font-size:.8rem;color:var(--ink);
-  border:1.6px solid var(--ink);padding:8px 17px;background:var(--box);
-  border-radius:255px 15px 225px 15px/15px 225px 15px 255px;  /* wobbly */
-  transition:transform .2s,box-shadow .2s,color .2s;
-  background-image:none;
-}
-.plink:hover{transform:translateY(-2px) rotate(-.6deg);box-shadow:3px 4px 0 var(--rule);color:var(--red)}
-.plink.primary{background:var(--ink);color:var(--paper)}
-.plink.primary:hover{color:var(--hl)}
-
-/* ================= sections ================= */
-section.s{padding-top:90px}
-.shead{display:flex;align-items:baseline;gap:14px;margin-bottom:26px}
-.snum{font-family:var(--mono);color:var(--red);font-size:1rem}
-h2{
-  font-size:clamp(1.5rem,3.4vw,2.05rem);font-weight:600;letter-spacing:-.3px;position:relative;display:inline-block;
-}
-h2 .scribble{position:absolute;left:-2px;bottom:-9px;width:calc(100% + 6px);height:12px;overflow:visible}
-h2 .scribble path{
-  fill:none;stroke:var(--red);stroke-width:2.2;stroke-linecap:round;opacity:.85;
-  stroke-dasharray:1;stroke-dashoffset:1;
-}
-.js .in h2 .scribble path{animation:draw .9s .15s ease forwards}
-@keyframes draw{to{stroke-dashoffset:0}}
-h3.sub{font-size:1.18rem;font-weight:600;margin:38px 0 4px}
-h3.sub .no{font-family:var(--mono);font-size:.85rem;color:var(--red);margin-right:10px}
-.meta{font-family:var(--mono);font-size:.74rem;color:var(--faint);margin-bottom:12px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-.meta .chip{border:1px solid var(--rule);border-radius:999px;padding:2px 10px;background:var(--box)}
-.meta .chip.live{border-color:var(--red);color:var(--red)}
-.meta .chip.live::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--red);margin-right:6px;animation:blink 1.6s infinite}
-p.body{margin-bottom:16px;color:var(--ink)}
-p.body b{font-weight:600}
-.prose{position:relative}
-
-/* margin notes */
-.mnote{
-  font-size:.8rem;line-height:1.55;color:var(--ink-soft);font-style:italic;
-}
-.mnote::before{content:'✎ ';color:var(--red);font-style:normal}
-@media(min-width:1180px){
-  .mnote{float:right;clear:right;width:var(--mw);margin-right:calc(-1 * var(--mw) - 46px);margin-top:4px;text-align:left;
-    border-top:1px solid var(--rule);padding-top:6px}
-}
-@media(max-width:1179.5px){
-  .mnote{display:block;border-left:2.5px solid var(--red);padding:6px 0 6px 14px;margin:14px 0;background:var(--box)}
+/* a whisper of paper grain — gives the flat colour some tooth */
+body::after{
+  content:'';position:fixed;inset:0;z-index:1;pointer-events:none;
+  opacity:var(--grain);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* highlighter */
-.hl{background:linear-gradient(104deg,transparent .6%,var(--hl) 2.6%,var(--hl) 97.5%,transparent 98%);padding:0 3px;border-radius:3px}
-.lead{font-size:1.12rem;line-height:1.62;color:var(--ink);margin-bottom:22px;font-weight:500}
-.rint{margin-top:24px;padding:16px 20px;border:1px solid var(--rule);border-left:3px solid var(--red);background:var(--paper-deep);border-radius:3px}
-.rint .lab{font-family:var(--mono);font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--red);display:block;margin-bottom:10px}
-.kw{margin:12px 0 0;font-family:var(--mono);font-size:.82rem;color:var(--ink-soft);line-height:1.95}
-.kw b{color:var(--ink)}
-
-/* definition / remark boxes */
-.defbox{
-  border:1.7px solid var(--ink);background:var(--box);
-  border-radius:255px 15px 225px 15px/15px 225px 15px 255px;
-  padding:18px 22px;margin:26px 0;font-size:.97rem;
+/* the theme swap, eased rather than snapped */
+html.theming,
+html.theming body,
+html.theming *{
+  transition:background-color .38s ease, color .38s ease,
+             border-color .38s ease, fill .38s ease, stroke .38s ease !important;
 }
-.defbox .dlabel{font-weight:700;font-variant:small-caps;letter-spacing:.6px}
-.defbox .qed{float:right;font-weight:600}
-.remark{border-left:2.5px solid var(--rule);padding:2px 0 2px 18px;margin:24px 0;color:var(--ink-soft);font-size:.96rem}
-.remark .rlabel{font-style:italic;font-weight:600;color:var(--ink)}
 
-/* tiny detail list */
-ul.dets{list-style:none;margin:10px 0 6px}
-ul.dets li{padding-left:24px;position:relative;margin-bottom:8px;font-size:.95rem;color:var(--ink-soft)}
-ul.dets li::before{content:'—';position:absolute;left:0;color:var(--red)}
-ul.dets li b{color:var(--ink);font-weight:600}
+/* Blocks lift into place as they enter the viewport.
+   Driven entirely by the native scroll timeline: no JavaScript, and in any
+   browser without support the rule never applies, so content is always visible. */
+@media (prefers-reduced-motion: no-preference){
 
-/* ================= figure ================= */
-figure.fig{margin:54px 0 0}
-.figframe{
-  border:1.7px solid var(--ink);background:var(--box);
-  border-radius:15px 255px 15px 225px/225px 15px 255px 15px;
-  padding:14px;position:relative;
+  /* The intro settles in on load. It is above the fold, so this always
+     completes — it is the one place a fade is safe. */
+  .introgrid > *{animation:intro-in .7s cubic-bezier(.22,.7,.3,1) both}
+  .introgrid > *:nth-child(2){animation-delay:.09s}
+  @keyframes intro-in{
+    from{opacity:0;transform:translateY(12px)}
+    to{opacity:1;transform:none}
+  }
+
+  /* Everything below lifts as it scrolls into view, driven by the native
+     scroll timeline. It animates position only, never opacity, so a browser
+     without support — or a stalled timeline — still shows every word. */
+  @supports (animation-timeline: view()){
+    .reveal{
+      animation:lift linear both;
+      animation-timeline:view();
+      animation-range:entry 0% entry 44%;
+    }
+    @keyframes lift{
+      from{transform:translateY(18px)}
+      to{transform:none}
+    }
+  }
 }
-.figframe svg{display:block;width:100%;height:auto}
-figcaption{font-size:.84rem;color:var(--ink-soft);margin-top:12px;line-height:1.6}
-figcaption b{font-weight:700;color:var(--ink)}
-#figdyn{color:var(--pen);font-style:italic}
+::selection{background:var(--accent);color:var(--on-accent)}
+
+a{color:var(--accent);text-decoration:none}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
+
+.skip{
+  position:absolute;left:-9999px;top:0;z-index:200;
+  background:var(--ink);color:var(--paper);padding:11px 18px;font-size:.9rem;font-weight:600;
+}
+.skip:focus{left:12px;top:12px}
+
+/* ---------- small shared pieces ---------- */
+.kicker{
+  font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--faint);
+}
+.lede{font-size:1.1rem;line-height:1.62;color:var(--ink2)}
+p + p{margin-top:13px}
+.prose{max-width:64ch;color:var(--ink2)}
+.prose b,.prose strong{font-weight:600;color:var(--ink)}
+.inline{
+  color:var(--accent);position:relative;
+  background-image:linear-gradient(var(--accent),var(--accent));
+  background-size:0% 1px;background-position:0 100%;background-repeat:no-repeat;
+  border-bottom:1px solid color-mix(in srgb,var(--accent) 30%,transparent);
+  transition:background-size .3s cubic-bezier(.22,.7,.3,1);
+}
+.inline:hover{background-size:100% 1px}
+
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--sans);font-size:.86rem;font-weight:600;
+  padding:11px 20px;border:1px solid var(--ink);color:var(--ink);background:none;
+  transition:background .16s,color .16s;cursor:pointer;
+}
+.btn{transition:background .18s,color .18s,transform .18s,box-shadow .18s,border-color .18s}
+.btn:hover{background:var(--ink);color:var(--paper);transform:translateY(-2px);box-shadow:var(--shadow)}
+.btn:active{transform:translateY(0)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.btn.primary:hover{background:var(--accent-2);border-color:var(--accent-2)}
+
+/* ===========================================================
+   MENU  —  three-line button, top right
+   =========================================================== */
+.chrome{
+  position:fixed;top:clamp(14px,2.4vw,26px);right:clamp(14px,2.4vw,26px);z-index:120;
+  display:flex;gap:8px;
+}
+#menubtn,#themebtn{
+  width:48px;height:48px;flex:none;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--paper);border:1px solid var(--rule);cursor:pointer;
+  transition:border-color .2s,background .2s,transform .2s,box-shadow .2s;
+}
+#menubtn{flex-direction:column;gap:5px}
+#menubtn:hover,#themebtn:hover{border-color:var(--accent);transform:translateY(-1px);box-shadow:var(--shadow)}
+#themebtn svg{width:19px;height:19px;stroke:var(--ink);fill:none;stroke-width:1.7;
+  stroke-linecap:round;stroke-linejoin:round;transition:transform .45s cubic-bezier(.3,1.3,.4,1)}
+#themebtn:hover svg{transform:rotate(28deg)}
+#themebtn .moon{display:none}
+:root[data-theme="dark"] #themebtn .sun{display:none}
+:root[data-theme="dark"] #themebtn .moon{display:block}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) #themebtn .sun{display:none}
+  :root:not([data-theme="light"]) #themebtn .moon{display:block}
+}
+#menubtn span{display:block;width:19px;height:1.6px;background:var(--ink);transition:transform .26s ease,opacity .18s ease}
+#menubtn[aria-expanded="true"] span:nth-child(1){transform:translateY(6.6px) rotate(45deg)}
+#menubtn[aria-expanded="true"] span:nth-child(2){opacity:0}
+#menubtn[aria-expanded="true"] span:nth-child(3){transform:translateY(-6.6px) rotate(-45deg)}
+
+#scrim{
+  position:fixed;inset:0;z-index:110;background:rgba(28,27,23,.34);
+  opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s;
+}
+#scrim.open{opacity:1;visibility:visible}
+
+#menu{
+  position:fixed;z-index:115;
+  top:calc(clamp(14px,2.4vw,26px) + 56px);right:clamp(14px,2.4vw,26px);
+  width:min(300px,calc(100vw - 28px));
+  background:var(--paper);border:1px solid var(--rule);
+  padding:12px 10px;box-shadow:var(--shadow);
+  opacity:0;visibility:hidden;transform:translateY(-8px);
+  transition:opacity .22s ease,transform .22s ease,visibility .22s;
+}
+#menu.open{opacity:1;visibility:visible;transform:none}
+#menu a{
+  display:flex;align-items:baseline;gap:12px;
+  padding:9px 14px;color:var(--ink);font-size:.98rem;font-weight:500;
+  border-radius:2px;transition:background .15s,color .15s;
+}
+#menu a{transition:background .16s,color .16s,padding-left .16s}
+#menu a:hover{background:var(--paper2);color:var(--accent);padding-left:19px}
+#menu a i{
+  font-style:normal;font-size:.7rem;font-weight:600;letter-spacing:.1em;
+  color:var(--faint);min-width:20px;
+}
+#menu .sep{height:1px;background:var(--rule);margin:10px 14px}
+#menu .out{color:var(--accent)}
+#menu a.here{background:var(--accent-tint);color:var(--accent)}
+#menu a.here i{color:var(--accent)}
+
+/* ===========================================================
+   INTRO
+   =========================================================== */
+#intro{padding-top:clamp(62px,11vh,104px);padding-bottom:clamp(30px,4.5vw,52px)}
+.introgrid{
+  display:grid;grid-template-columns:minmax(0,1.42fr) minmax(0,.78fr);
+  gap:clamp(28px,5vw,62px);align-items:start;
+}
+h1{
+  font-family:var(--serif);font-weight:700;
+  font-size:clamp(2.1rem,4.4vw,3.15rem);line-height:1.08;letter-spacing:-.02em;
+  margin:14px 0 10px;
+}
+.role{
+  font-family:var(--serif);font-style:italic;font-weight:400;
+  font-size:clamp(1.1rem,2.1vw,1.34rem);color:var(--ink2);margin-bottom:24px;
+}
+.introgrid .prose{max-width:56ch}
+.here{
+  margin-top:22px;padding:14px 18px;background:var(--paper2);
+  border-left:2px solid var(--accent);font-size:.95rem;color:var(--ink2);
+}
+.here b{color:var(--ink);font-weight:600}
+.introlinks{display:flex;flex-wrap:wrap;gap:11px;margin-top:26px}
+
+.portrait{position:relative}
+.portrait img{width:100%;height:auto;background:#101116;box-shadow:var(--shadow)}
+.portrait figcaption{
+  margin-top:10px;font-size:.76rem;color:var(--faint);
+  display:flex;justify-content:space-between;gap:12px;
+}
+.updates{margin-top:30px;border-top:1px solid var(--ink);padding-top:14px}
+.updates h2{
+  font-family:var(--sans);font-size:.72rem;font-weight:600;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--faint);margin-bottom:14px;
+}
+.updates ul{list-style:none}
+.updates li{padding-bottom:13px;margin-bottom:13px;border-bottom:1px solid var(--rule);transition:transform .22s}
+.updates li:hover{transform:translateX(3px)}
+.updates li:last-child{border-bottom:0;padding-bottom:0;margin-bottom:0}
+.updates .d{
+  display:block;font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:3px;
+}
+.updates p{font-size:.9rem;line-height:1.55;color:var(--ink2)}
+
+@media(max-width:820px){
+  .introgrid{grid-template-columns:1fr;gap:26px}
+  .side{display:contents}
+  .portrait{order:-1;max-width:230px}
+  .portrait figcaption{display:none}
+  .updates{margin-top:6px}
+}
+
+/* ===========================================================
+   SECTIONS
+   =========================================================== */
+section.s{padding-top:clamp(56px,8vh,88px)}
+.shead{
+  display:flex;align-items:baseline;gap:16px;
+  border-top:1px solid var(--ink);padding-top:14px;margin-bottom:clamp(24px,3.4vw,36px);
+}
+.shead .n{font-size:.72rem;font-weight:600;letter-spacing:.14em;color:var(--accent);padding-top:5px}
+.shead h2{
+  font-family:var(--serif);font-weight:600;
+  font-size:clamp(1.5rem,2.8vw,2.05rem);line-height:1.14;letter-spacing:-.015em;
+}
+
+/* interests */
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.tags span{
+  font-size:.85rem;color:var(--ink2);background:var(--paper2);
+  border:1px solid var(--rule);padding:6px 13px;
+  transition:color .2s,border-color .2s,transform .2s,background .2s;cursor:default;
+}
+.tags span:hover{color:var(--accent);border-color:var(--accent);transform:translateY(-2px);background:var(--accent-tint)}
+
+/* ---------- publication ---------- */
+.paper{
+  border:1px solid var(--rule);background:var(--card);box-shadow:var(--shadow);
+  padding:clamp(22px,3.4vw,34px);
+}
+.paper .venue{font-size:.8rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+.paper h3{
+  font-family:var(--serif);font-weight:600;font-size:clamp(1.22rem,2.4vw,1.68rem);
+  line-height:1.22;letter-spacing:-.012em;margin-bottom:9px;
+}
+.paper .authors{font-size:.92rem;color:var(--ink2);margin-bottom:18px}
+.paper .authors em{font-style:normal;font-weight:600;color:var(--ink)}
+.badge{
+  display:inline-block;font-size:.75rem;font-weight:600;letter-spacing:.06em;
+  background:var(--accent-tint);color:var(--accent);padding:4px 11px;margin-bottom:16px;
+}
+.paperlinks{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.paperbody{display:grid;grid-template-columns:minmax(0,1fr) clamp(190px,21vw,240px);gap:clamp(20px,3.4vw,46px)}
+@media(max-width:820px){.paperbody{grid-template-columns:1fr}}
+.glance{border-top:1px solid var(--ink);padding-top:13px;align-self:start}
+.glance h4{
+  font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--faint);margin-bottom:13px;
+}
+.glance dl{font-size:.84rem;line-height:1.5}
+.glance dt{
+  font-size:.66rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--faint);margin-top:11px;
+}
+.glance dt:first-of-type{margin-top:0}
+.glance dd{color:var(--ink2)}
+.glance dd b{color:var(--ink);font-weight:600}
+
+figure.plate{margin-top:28px}
+figure.plate img{width:100%;height:auto;border:1px solid var(--rule);background:#fff}
+.zoom{display:block;position:relative}
+.zoom .zoomtag{
+  position:absolute;right:10px;bottom:10px;
+  font-size:.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  background:var(--ink);color:var(--paper);padding:5px 10px;
+  opacity:0;transition:opacity .18s;pointer-events:none;
+}
+.zoom:hover .zoomtag,.zoom:focus-visible .zoomtag{opacity:.92}
+.zoom:hover img{border-color:var(--accent)}
+figure.plate figcaption{
+  margin-top:10px;font-size:.85rem;line-height:1.55;color:var(--ink2);max-width:76ch;
+}
+figure.plate figcaption b{color:var(--ink);font-weight:600}
+
+/* ---------- work list ---------- */
+.item{
+  display:grid;grid-template-columns:minmax(0,1fr) clamp(150px,17vw,210px);
+  gap:clamp(14px,2.6vw,34px);
+  border-bottom:1px solid var(--rule);padding:24px 0;
+  position:relative;transition:background .25s;
+}
+.item:first-of-type{border-top:1px solid var(--rule)}
+/* a quiet lift on hover: tint bleeds past the text column, accent bar on the left */
+.item::before{
+  content:'';position:absolute;top:0;bottom:0;left:calc(var(--pad) * -0.5);right:calc(var(--pad) * -0.5);
+  background:var(--paper2);opacity:0;transition:opacity .25s;z-index:-1;
+}
+.item::after{
+  content:'';position:absolute;left:calc(var(--pad) * -0.5);top:0;bottom:0;width:2px;
+  background:var(--accent);transform:scaleY(0);transform-origin:top;
+  transition:transform .3s cubic-bezier(.22,.7,.3,1);
+}
+.item:hover::before{opacity:.55}
+.item:hover::after{transform:scaleY(1)}
+.item h3{
+  font-family:var(--serif);font-weight:600;font-size:1.22rem;line-height:1.28;margin-bottom:7px;
+  transition:color .22s;
+}
+.item:hover h3{color:var(--accent)}
+.item .meta{
+  font-size:.76rem;font-weight:500;color:var(--faint);
+  display:flex;flex-direction:column;gap:5px;text-align:right;padding-top:4px;
+}
+.item .meta .now{color:var(--accent);font-weight:600}
+@media(max-width:720px){
+  .item{grid-template-columns:1fr;gap:8px}
+  .item .meta{flex-direction:row;flex-wrap:wrap;gap:4px 14px;text-align:left;order:-1;padding-top:0}
+}
+
+/* ---------- map ---------- */
+.mapbox{border:1px solid var(--rule);background:var(--card);padding:clamp(10px,1.6vw,18px)}
+.mapbox svg{display:block;width:100%;height:auto}
 .map .grat{stroke:var(--rule);stroke-width:1;stroke-dasharray:2 6}
-.map .move{fill:none;stroke:var(--faint);stroke-width:1.1;stroke-dasharray:2 7;opacity:.55}
-.map text{font-family:var(--mono);fill:var(--faint)}
-.map .arc{fill:none;stroke:var(--pen);stroke-width:1.7;stroke-dasharray:5 7;opacity:0}
-.js .in .map .arc{animation:arcin 1s ease forwards, ants 22s linear infinite}
-.map .arc:nth-of-type(2){animation-delay:.25s,0s}
-.map .arc:nth-of-type(3){animation-delay:.5s,0s}
-@keyframes arcin{to{opacity:.75}}
-@keyframes ants{to{stroke-dashoffset:-240}}
+.map .axis{fill:var(--faint);font-family:var(--sans);font-size:9px;letter-spacing:.06em}
+.map .move{fill:none;stroke:var(--rule);stroke-width:1.2;stroke-dasharray:2 6}
+.map .arc{fill:none;stroke:var(--accent);stroke-width:1.3;stroke-dasharray:4 6;opacity:.55}
+.map .trav{fill:var(--accent)}
+@supports not (offset-path:path('M0 0 L1 1')){.map .trav{display:none}}
+.map .t1{offset-path:path('M500 360 Q 240 240 152 92');animation:travel 8s linear infinite}
+.map .t2{offset-path:path('M500 360 Q 540 190 472 98');animation:travel 7s 1.4s linear infinite}
+.map .t3{offset-path:path('M500 360 Q 552 342 558 306');animation:travel 5.4s .7s linear infinite}
+@keyframes travel{0%{offset-distance:0%;opacity:0}10%{opacity:1}86%{opacity:1}100%{offset-distance:100%;opacity:0}}
 .map .node{cursor:pointer}
-.map .node circle.c{fill:var(--paper);stroke:var(--ink);stroke-width:2}
-.map .node circle.pulse{fill:none;stroke:var(--red);stroke-width:1.4;opacity:0}
-.js .in .map .node circle.pulse{animation:pulse 2.6s ease-out infinite}
-@keyframes pulse{0%{r:6;opacity:.8}70%{r:20;opacity:0}100%{r:20;opacity:0}}
-.map .node:hover circle.c{stroke:var(--red);fill:var(--hl)}
-.map .node text{fill:var(--ink);font-family:var(--mono);font-size:12.5px}
-.map .home circle.c{fill:var(--red);stroke:var(--red)}
-.map .compass *{stroke:var(--faint);fill:none;stroke-width:1.2}
-.map .compass text{fill:var(--faint);stroke:none}
-.traveler{fill:var(--red)}
-@supports not (offset-path:path('M0 0 L1 1')){.traveler{display:none}}
-.t1{offset-path:path('M500 360 Q 240 240 152 92');animation:travel 7s linear infinite}
-.t2{offset-path:path('M500 360 Q 540 190 472 98');animation:travel 6s 1.2s linear infinite}
-.t3{offset-path:path('M500 360 Q 552 342 558 306');animation:travel 4s .6s linear infinite}
-@keyframes travel{0%{offset-distance:0%;opacity:0}8%{opacity:1}88%{opacity:1}100%{offset-distance:100%;opacity:0}}
+.map .node circle.c{fill:var(--paper);stroke:var(--ink);stroke-width:1.6;transition:fill .18s,stroke .18s}
+.map .node text{fill:var(--ink2);font-family:var(--sans);font-size:11px;font-weight:500;transition:fill .18s}
+.map .node:hover circle.c{fill:var(--accent);stroke:var(--accent)}
+.map .node:hover text{fill:var(--accent)}
+.map .home circle.c{fill:var(--ink);stroke:var(--ink)}
+.map .compass *{stroke:var(--rule);fill:none;stroke-width:1.1}
+.map .compass text{fill:var(--faint);stroke:none;font-family:var(--sans);font-size:10px}
+.map .foot{fill:var(--faint);font-family:var(--sans);font-size:9px;font-style:italic}
+.mapcap{
+  margin-top:12px;font-size:.85rem;color:var(--ink2);
+  display:flex;flex-wrap:wrap;gap:6px 10px;
+}
+.mapcap b{color:var(--ink);font-weight:600}
+#mapread{color:var(--accent)}
 
-/* ---------- figure: decision path ---------- */
-.dp text{font-family:var(--mono)}
-.dp .ars path{
-  fill:none;stroke:var(--ink);stroke-width:1.7;marker-end:url(#arr);opacity:.85;
-  stroke-dasharray:1;stroke-dashoffset:1;
-}
-.js .in .dp .ars path{animation:draw .5s ease forwards}
-.dp .ars path:nth-of-type(1){animation-delay:.55s}
-.dp .ars path:nth-of-type(2){animation-delay:1.0s}
-.dp .ars path:nth-of-type(3){animation-delay:1.45s}
-.dp .ars path:nth-of-type(4){animation-delay:1.9s}
-.dp .ars path:nth-of-type(5){animation-delay:2.35s}
-.js .dp .ars path{animation-fill-mode:forwards}
-.dp .dns g{cursor:pointer}
-.js .dp .dns g{opacity:0}
-.js .in .dp .dns g{animation:npop .45s ease forwards}
-.dp .dns g:nth-of-type(1){animation-delay:.3s}
-.dp .dns g:nth-of-type(2){animation-delay:.75s}
-.dp .dns g:nth-of-type(3){animation-delay:1.2s}
-.dp .dns g:nth-of-type(4){animation-delay:1.65s}
-.dp .dns g:nth-of-type(5){animation-delay:2.1s}
-.dp .dns g:nth-of-type(6){animation-delay:2.55s}
-@keyframes npop{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
-.dp .dns rect{fill:var(--box);stroke:var(--ink);stroke-width:1.6;transition:fill .25s}
-.dp .dns g:hover rect{fill:var(--hl)}
-.dp .tt{font-size:11.5px;font-weight:600;fill:var(--ink);letter-spacing:.4px}
-.dp .ss{font-size:10px;font-style:italic;fill:var(--ink-soft)}
-.dp .lab{font-size:9.5px;font-style:italic;fill:var(--faint)}
-.dp .foot{font-size:9.5px;font-style:italic;fill:var(--faint)}
-.dp .now rect{stroke:var(--red);stroke-width:2.1}
-.dp .now .tt{fill:var(--red)}
-.dp .gag path{fill:none;stroke:var(--faint);stroke-width:1.4;stroke-dasharray:3 5}
-.dp .gag .x1,.dp .gag .x2{stroke:var(--red);stroke-width:2.2;stroke-dasharray:none;stroke-linecap:round}
-.dp .gag text{fill:var(--red);font-size:9.5px;font-style:italic}
+/* ---------- education / two-up ---------- */
+.twoup{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:clamp(20px,3vw,44px)}
+.edu .yr{font-size:.76rem;font-weight:600;letter-spacing:.12em;color:var(--faint);margin-bottom:7px}
+.edu h3{font-family:var(--serif);font-weight:600;font-size:1.16rem;margin-bottom:3px;transition:color .2s}
+.edu:hover h3{color:var(--accent)}
+.edu .deg{font-size:.92rem;color:var(--accent);margin-bottom:10px}
+.edu p{font-size:.95rem;color:var(--ink2)}
 
-/* ================= toolbox ================= */
-.tools{display:flex;flex-wrap:wrap;gap:11px;margin:14px 0 6px}
-.tool{
-  font-family:var(--mono);font-size:.81rem;padding:7px 15px;color:var(--ink);
-  border:1.5px solid var(--ink);background:var(--box);
-  border-radius:225px 14px 255px 14px/14px 255px 14px 225px;
-  transition:transform .18s,box-shadow .18s,background .18s;cursor:default;
-}
-.tool:hover{transform:rotate(-1.2deg) translateY(-2px);box-shadow:2.5px 3px 0 var(--rule);background:var(--hl)}
-.tool.train{border-style:dashed;color:var(--ink-soft);background:transparent}
-.tool.train:hover{background:var(--box)}
-.toolhead{font-variant:small-caps;letter-spacing:1.6px;font-weight:600;font-size:.95rem;margin-top:30px}
-.toolhead .n{font-family:var(--mono);color:var(--red);font-size:.8rem;letter-spacing:0}
+.kit{border-top:1px solid var(--rule);margin-top:30px;padding-top:22px;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:22px}
+.kit h4{font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin-bottom:8px}
+.kit p{font-size:.94rem;color:var(--ink2)}
 
-/* ================= table (booktabs) ================= */
-table.bt{width:100%;border-collapse:collapse;margin:18px 0 8px;font-size:.95rem}
-table.bt thead th{
-  font-variant:small-caps;letter-spacing:1px;font-weight:600;text-align:left;
-  border-top:2.2px solid var(--ink);border-bottom:1.1px solid var(--ink);
-  padding:9px 12px 7px;
-}
-table.bt td{padding:11px 12px;vertical-align:top;color:var(--ink-soft)}
-table.bt td:first-child{font-family:var(--mono);font-size:.78rem;white-space:nowrap;color:var(--faint);padding-top:14px}
-table.bt td b{color:var(--ink);font-weight:600}
-table.bt tbody tr{transition:background .2s}
-table.bt tbody tr:hover{background:var(--box)}
-table.bt tbody{border-bottom:2.2px solid var(--ink)}
-.tabnote{font-size:.84rem;color:var(--ink-soft);font-style:italic}
+/* ---------- beyond ---------- */
+ul.beyond{list-style:none}
+ul.beyond li{border-bottom:1px solid var(--rule);padding:18px 0;max-width:70ch}
+ul.beyond li:first-child{border-top:1px solid var(--rule)}
+ul.beyond b{font-family:var(--serif);font-weight:600;font-size:1.08rem;color:var(--ink);display:block;margin-bottom:3px}
+ul.beyond p{font-size:.95rem;color:var(--ink2)}
+ul.beyond .when{font-size:.74rem;font-weight:500;color:var(--faint);margin-top:5px}
 
-/* ================= beyond list ================= */
-ul.beyond{list-style:none;margin-top:6px}
-ul.beyond li{margin-bottom:20px;padding-left:30px;position:relative}
-ul.beyond li::before{content:'§';position:absolute;left:2px;top:1px;color:var(--red);font-weight:600}
-ul.beyond b{font-weight:600}
-ul.beyond .when{font-family:var(--mono);font-size:.72rem;color:var(--faint)}
+/* ---------- contact ---------- */
+#contact{margin-top:clamp(60px,9vh,96px);background:var(--band);color:var(--band-ink2)}
+#contact .inner{padding-top:clamp(42px,6vw,72px);padding-bottom:clamp(42px,6vw,72px)}
+#contact h2{
+  font-family:var(--serif);font-weight:600;color:var(--band-ink);
+  font-size:clamp(1.6rem,3.2vw,2.3rem);line-height:1.16;margin-bottom:14px;
+}
+#contact .kicker{color:var(--band-faint);margin-bottom:18px}
+#contact p{color:var(--band-ink2);max-width:56ch}
+.mailbig{
+  display:inline-block;margin:26px 0 6px;font-family:var(--serif);font-weight:600;
+  font-size:clamp(1.15rem,3vw,1.85rem);color:var(--band-ink);
+  border-bottom:1px solid rgba(255,255,255,.3);transition:border-color .16s,color .16s;
+  word-break:break-word;
+}
+.mailbig:hover{color:var(--band-link);border-bottom-color:var(--band-link)}
+.cxlinks{display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:26px;font-size:.9rem}
+.cxlinks a{color:var(--band-ink2);border-bottom:1px solid transparent;transition:color .16s,border-color .16s}
+.cxlinks a:hover{color:var(--band-ink);border-bottom-color:rgba(255,255,255,.4)}
 
-/* ================= correspondence ================= */
-.bigmail{
-  display:inline-block;font-size:clamp(1.25rem,3.6vw,1.9rem);font-weight:600;color:var(--pen);
-  background-size:100% 2px;margin:8px 0 4px;
-}
-.bigmail:hover{color:var(--red)}
-.stampwrap{position:relative;margin-top:38px;display:flex;gap:26px;align-items:center;flex-wrap:wrap}
-.stamp{
-  font-family:var(--mono);font-weight:600;letter-spacing:2.5px;font-size:.86rem;color:var(--red);
-  border:3px double var(--red);border-radius:8px;padding:13px 20px;text-transform:uppercase;
-  transform:rotate(-7deg);opacity:.92;text-align:center;line-height:1.5;
-  mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='80'%3E%3Cfilter id='r'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.32' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1.4 -0.18'/%3E%3C/filter%3E%3Crect width='160' height='80' filter='url(%23r)'/%3E%3C/svg%3E");
-}
-.js .stamp{opacity:0}
-.js .in .stamp{animation:stampin .5s .45s cubic-bezier(.2,1.6,.4,1) forwards}
-@keyframes stampin{
-  0%{transform:rotate(-16deg) scale(2.6);opacity:0}
-  62%{transform:rotate(-6deg) scale(.94);opacity:.95}
-  100%{transform:rotate(-7deg) scale(1);opacity:.92}
-}
-.altlinks{font-size:.95rem;color:var(--ink-soft);margin-top:26px;line-height:2.1}
-.altlinks .lab{font-family:var(--mono);font-size:.74rem;color:var(--faint);display:inline-block;width:86px}
-
-/* ================= references ================= */
-ol.refs{list-style:none;counter-reset:rf;margin-top:8px}
-ol.refs li{
-  counter-increment:rf;position:relative;padding-left:44px;margin-bottom:16px;
-  font-size:.95rem;color:var(--ink-soft);
-}
-ol.refs li::before{
-  content:'[' counter(rf) ']';position:absolute;left:0;top:0;
-  font-family:var(--mono);font-size:.82rem;color:var(--red);
-}
-ol.refs b{color:var(--ink);font-weight:600}
-.refnote{margin-top:18px;font-size:.85rem;font-style:italic;color:var(--ink-soft)}
-
-/* ================= colophon ================= */
-footer.colophon{
-  margin-top:100px;border-top:1px solid var(--rule);
-  padding:34px clamp(18px,4.5vw,32px) 60px;text-align:center;
-  font-size:.84rem;color:var(--ink-soft);
-}
-footer.colophon .mono{font-family:var(--mono);font-size:.72rem;color:var(--faint);margin-top:10px}
-footer.colophon .fin{font-size:1.5rem;margin-top:22px;color:var(--red)}
-
-/* back to top */
-#top-btn{
-  position:fixed;right:22px;bottom:22px;z-index:70;
-  font-family:var(--serif);font-size:1.15rem;color:var(--ink);
-  width:44px;height:44px;border:1.6px solid var(--ink);background:var(--box);cursor:pointer;
-  border-radius:225px 14px 255px 14px/14px 255px 14px 225px;
-  opacity:0;visibility:hidden;transform:translateY(10px);transition:.3s;
-}
-#top-btn.show{opacity:1;visibility:visible;transform:none}
-#top-btn:hover{box-shadow:2.5px 3px 0 var(--rule);transform:translateY(-2px)}
-
-/* ink splash on click */
-.splash{
-  position:fixed;pointer-events:none;z-index:95;width:14px;height:14px;
-  background:var(--ink);border-radius:46% 54% 52% 48%/48% 46% 54% 52%;
-  transform:translate(-50%,-50%) scale(0);opacity:.32;
-  animation:splash .6s ease-out forwards;
-}
-@keyframes splash{
-  60%{opacity:.16}
-  100%{transform:translate(-50%,-50%) scale(7) rotate(40deg);opacity:0}
-}
-
-/* reveals */
-.js .rv{opacity:0;transform:translateY(22px);transition:opacity .8s cubic-bezier(.2,.7,.3,1),transform .8s cubic-bezier(.2,.7,.3,1)}
-.js .rv.in{opacity:1;transform:none}
+footer{background:var(--band);color:var(--band-faint);font-size:.8rem;border-top:1px solid var(--band-rule)}
+footer .inner{padding-top:20px;padding-bottom:30px;display:flex;flex-wrap:wrap;gap:6px 24px;justify-content:space-between}
+footer .altlink{color:var(--band-ink2);border-bottom:1px solid transparent;transition:color .16s,border-color .16s}
+footer .altlink:hover{color:var(--band-link);border-bottom-color:currentColor}
 
 @media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  *,*::before,*::after{animation:none!important;transition:none!important}
   html{scroll-behavior:auto}
-  .js .rv{opacity:1;transform:none}
 }
 @media print{
-  header.site,#top-btn,#bar,.statusline{display:none}
-  body{background:#fff}
-  body::before{display:none}
-  .page{transform:none}
+  .chrome,#menu,#scrim{display:none}
+  body::after{display:none}
+  .paper,.portrait img{box-shadow:none}
+  #contact,footer{background:#fff;color:#000}
+  #contact h2,.mailbig{color:#000}
+  #contact p,.cxlinks a{color:#333}
+  figure.plate,.item{break-inside:avoid}
 }
 </style>
 </head>
 <body>
 
-<div id="bar"></div>
+<a class="skip" href="#intro">Skip to content</a>
 
-<header class="site">
-  <div class="who"><b>V.&thinsp;Pandit</b> · working notes</div>
-  <nav class="toc" id="toc">
-    <a href="#intro">1&nbsp;Intro</a>
-    <a href="#now">2&nbsp;Now</a>
-    <a href="#earlier">3&nbsp;Earlier</a>
-    <a href="#toolbox">4&nbsp;Tools</a>
-    <a href="#education">5&nbsp;School</a>
-    <a href="#beyond">6&nbsp;Beyond</a>
-    <a href="#contact">7&nbsp;Write</a>
-  </nav>
-  <button id="lamp" aria-label="Toggle desk lamp"><span class="bulb"></span><span id="lampTxt">lamp on</span></button>
-</header>
+<!-- ==================== MENU ==================== -->
+<div class="chrome">
+  <button id="themebtn" type="button" aria-label="Switch to dark theme">
+    <svg class="sun" viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="4.2"/>
+      <path d="M12 2.4v2.4M12 19.2v2.4M2.4 12h2.4M19.2 12h2.4M5.2 5.2l1.7 1.7M17.1 17.1l1.7 1.7M18.8 5.2l-1.7 1.7M6.9 17.1l-1.7 1.7"/>
+    </svg>
+    <svg class="moon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M20.5 14.6A8.6 8.6 0 0 1 9.4 3.5a8.6 8.6 0 1 0 11.1 11.1z"/>
+    </svg>
+  </button>
+  <button id="menubtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+    <span></span><span></span><span></span>
+  </button>
+</div>
+<div id="scrim"></div>
+<nav id="menu" aria-label="Sections">
+  <a href="#intro"><i>01</i>Introduction</a>
+  <a href="#interests"><i>02</i>Research interests</a>
+  <a href="#publication"><i>03</i>Publication</a>
+  <a href="#research"><i>04</i>Research</a>
+  <a href="#places"><i>05</i>Where I&#39;ve worked</a>
+  <a href="#other"><i>06</i>Other work</a>
+  <a href="#education"><i>07</i>Education</a>
+  <a href="#beyond"><i>08</i>Beyond the lab</a>
+  <a href="#contact"><i>09</i>Contact</a>
+  <div class="sep"></div>
+  <a class="out" href="https://github.com/vansh287" rel="me noopener"><i>&nearr;</i>GitHub</a>
+  <a class="out" href="https://www.linkedin.com/in/vansh-pandit-884046272/" rel="me noopener"><i>&nearr;</i>LinkedIn</a>
+</nav>
 
-<main class="page">
+<main>
 
-  <!-- ============ TITLE BLOCK ============ -->
-  <div class="titleblock">
-    <div class="preprint rv in">
-      <span class="tag">preprint · vansh/2026.06</span>
-      <span class="tag">[ cs.CV&nbsp;∩&nbsp;math.ST ]</span>
-      <span class="tag">rev. June 2026</span>
-    </div>
-    <h1 class="paper-title">Learning to see,<br/><span class="careful">carefully<svg viewBox="0 0 200 14" preserveAspectRatio="none"><path d="M3 9 C 35 3, 70 12, 105 7 S 170 4, 197 8" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.1s .9s ease forwards"/></svg></span>.</h1>
-    <p class="subtitle">Working notes of a mathematics student who builds vision systems for medicine.</p>
+<!-- ==================== INTRO ==================== -->
+<section id="intro" class="wrap">
+  <div class="introgrid">
+    <div>
+      <p class="kicker">Computer vision · Medical imaging · Applied mathematics</p>
+      <h1>Vansh Pandit</h1>
+      <p class="role">I teach machines to read medical scans.</p>
 
-    <div class="author">
-      <div class="nm">Vansh Pandit<sup>†&thinsp;‡</sup></div>
-      <div class="affil">
-        <sup>†</sup>&thinsp;BS-MS Dual Degree, Computational Mathematics · minor in Data Science, IISER Thiruvananthapuram &nbsp;·&nbsp;
-        <sup>‡</sup>&thinsp;research: IIT Jammu &amp; TU Dresden, Germany
+      <div class="prose">
+        <p>I am a fourth-year BS-MS student in applied mathematics at <b>IISER Thiruvananthapuram</b>. My work sits where computer vision meets medicine: segmenting what matters in a scan, turning it into numbers that hold up, and predicting something a clinician actually needs to know.</p>
+        <p>What I care about most is generalisation. A model that scores well on the hospitals it trained on can fall apart at one it has never seen, and I would rather have a small model whose reasoning I can follow than a large one I have to trust on faith. I like taking an idea from the mathematics underneath it down to a reproducible implementation somebody else can run.</p>
+      </div>
+
+      <p class="here"><b>Right now:</b> building the B-mode radiomics pipeline for QuantUS at TU Dresden, and scoping a master's thesis for next year. Open to conversations about either.</p>
+
+      <div class="introlinks">
+        <a class="btn primary" href="#publication">Read my paper</a>
+        <a class="btn" href="#contact">Get in touch</a>
       </div>
     </div>
 
-    <div class="statusline"><span class="lbl">status:</span> <span id="typed"></span><span class="cur"></span></div>
-
-    <div class="abstract rv">
-      <h3>Abstract</h3>
-      <p>I am a fourth-year BS-MS dual-degree student in computational mathematics (minor: data
-      science) who originally wanted to study biology — and who found, after a long detour through theorems and code, a way back to the body:
-      teaching computers to read medical images. My interest is computer vision for medical imaging —
-      representation learning, generalization, novelty detection: the unglamorous, essential work of
-      making a model behave when it meets data it has never seen. I learned statistics by implementing
-      it from scratch at IIT&nbsp;Madras, fell for vision while chasing unknown objects through street
-      scenes, and am currently being humbled by raw ultrasound signals (TU&nbsp;Dresden) and by PET/CT
-      scans of head-and-neck cancer (IIT&nbsp;Jammu, MICCAI&nbsp;2026 HECKTOR). What follows is a
-      snapshot of that trajectory. This document is under active revision — and so am I.</p>
+    <div class="side">
+    <figure class="portrait">
+      <picture>
+        <source type="image/webp" sizes="(max-width:820px) 230px, (max-width:1180px) 32vw, 340px"
+                srcset="img/vansh-340.webp 340w, img/vansh-560.webp 560w, img/vansh-880.webp 880w" />
+        <img src="img/vansh-560.jpg"
+             srcset="img/vansh-340.jpg 340w, img/vansh-560.jpg 560w, img/vansh-880.jpg 880w"
+             sizes="(max-width:820px) 230px, (max-width:1180px) 32vw, 340px"
+             width="880" height="1105" alt="Portrait of Vansh Pandit"
+             fetchpriority="high" decoding="async" />
+      </picture>
+      <figcaption><span>Vansh Pandit</span><span>Thiruvananthapuram, 2026</span></figcaption>
+    </figure>
+    <div class="updates reveal">
+      <h2>Recent</h2>
+      <ul>
+        <li>
+          <span class="d">Aug 2026</span>
+          <p>First paper out. <a class="inline" href="#publication">Geometry Meets Metabolism</a> placed in the top 15 at the MICCAI 2026 HECKTOR challenge.</p>
+        </li>
+        <li>
+          <span class="d">Aug 2026</span>
+          <p>Wrapped up the PET/CT oncology work at IIT Jammu; code and feature tables released publicly.</p>
+        </li>
+        <li>
+          <span class="d">Jan 2026</span>
+          <p>Started on the QuantUS B-mode radiomics pipeline with TU Dresden.</p>
+        </li>
+        <li>
+          <span class="d">Dec 2025</span>
+          <p>LACAM-25, IISER Thiruvananthapuram.</p>
+        </li>
+      </ul>
     </div>
-    <div class="keywords rv"><b>Keywords:</b> medical image analysis · radiomics · novelty detection · Bayesian inference · reproducibility</div>
+    </div>
+  </div>
+</section>
 
-    <div class="papelinks rv">
-      <a class="plink primary" href="mailto:vansh23@iisertvm.ac.in">✉ correspond</a>
-      <a class="plink" href="https://github.com/vansh287" target="_blank" rel="noopener">code ↗</a>
-      <a class="plink" href="https://www.linkedin.com/in/vansh-pandit-884046272/" target="_blank" rel="noopener">linkedin ↗</a>
-      <a class="plink" href="mailto:vansh23@iisertvm.ac.in?subject=Please%20send%20your%20full%20CV">full CV: on request</a>
+<!-- ==================== INTERESTS ==================== -->
+<section class="s wrap" id="interests">
+  <div class="shead reveal"><span class="n">02</span><h2>Research interests</h2></div>
+  <div class="prose">
+    <p>Broadly, I want computer-vision systems that earn a clinician's trust: robust before they are clever, interpretable before they are state of the art. Whether a model points at the right thing matters to me more than where it lands on a leaderboard. I am equally curious about the wider landscape of vision, from driving scenes to anomaly detection.</p>
+  </div>
+  <div class="tags reveal">
+    <span>Medical image segmentation</span>
+    <span>Radiomics &amp; quantitative imaging</span>
+    <span>Cross-centre generalisation</span>
+    <span>Representation &amp; self-supervised learning</span>
+    <span>3D / volumetric vision</span>
+    <span>Novelty &amp; anomaly detection</span>
+    <span>Survival analysis</span>
+  </div>
+</section>
+
+<!-- ==================== PUBLICATION ==================== -->
+<section class="s wrap" id="publication">
+  <div class="shead reveal"><span class="n">03</span><h2>Publication</h2></div>
+
+  <article class="paper reveal">
+    <p class="venue">MICCAI 2026 · HECKTOR Challenge</p>
+    <h3>Geometry Meets Metabolism: Interpretable Segmentation, Staging, and Prognosis in Head and Neck PET/CT</h3>
+    <p class="authors"><em>V. Pandit</em> et al. · team Vision-II · August 2026</p>
+    <p class="badge">Ranked in the top 15 of the challenge</p>
+
+    <div class="paperbody">
+    <div>
+    <div class="prose">
+      <p>The challenge pools head-and-neck PET/CT scans from several hospitals and asks three clinical questions at once: outline the primary tumour and the involved lymph nodes, assign the tumour and nodal stage, and predict recurrence-free survival. We built one pipeline for all three, and designed every component for <b>stability across centres</b> rather than for the leaderboard.</p>
+      <p>That constraint decided the design. Nodal stage is read directly off a few geometric measurements of the segmented nodes, chiefly a greatest-dimension diameter that mirrors the size criterion a radiologist already uses, then refined by a fixed rule on metabolic activity. Tumour stage fuses a tabular classifier with a convolutional network on a tumour-centred crop. Survival is a Cox model over clinical variables and predicted stage, with imaging deliberately left out because it is the most scanner-dependent part of the pipeline. Every staging and survival component was selected by its accuracy on a hospital held out during development, not by its average.</p>
+      <p>Two results I did not expect: for nodal staging the plain geometric head beat every image model we tried, on the average centre and on the weakest one; and for survival, nothing with more capacity beat a linear model.</p>
+    </div>
+
+    <div class="paperlinks">
+      <a class="btn primary" href="https://github.com/vansh287/HECKTOR2026-VisionII/blob/main/paper/HECKTOR_16.pdf" rel="noopener">Paper (PDF)</a>
+      <a class="btn" href="https://github.com/vansh287/HECKTOR2026-VisionII" rel="noopener">Code &amp; reproduction</a>
+    </div>
+    </div>
+
+    <aside class="glance">
+      <h4>At a glance</h4>
+      <dl>
+        <dt>Venue</dt>
+        <dd>MICCAI 2026 · HECKTOR Challenge</dd>
+        <dt>Date</dt>
+        <dd>August 2026</dd>
+        <dt>Team</dt>
+        <dd>Vision-II</dd>
+        <dt>Tasks</dt>
+        <dd>Segmentation · TN staging · Recurrence-free survival</dd>
+        <dt>Result</dt>
+        <dd><b>Top 15</b> of the challenge</dd>
+        <dt>Modality</dt>
+        <dd>FDG-PET/CT, multi-centre</dd>
+        <dt>Availability</dt>
+        <dd>Code MIT · paper CC BY 4.0</dd>
+      </dl>
+    </aside>
+    </div>
+
+    <figure class="plate">
+      <a class="zoom" href="figures/pipeline-full.webp" target="_blank" rel="noopener"
+         aria-label="Open the pipeline diagram at full size">
+        <picture>
+          <source type="image/webp" sizes="(max-width:760px) 92vw, (max-width:1180px) 84vw, 900px"
+                  srcset="figures/pipeline-900.webp 900w, figures/pipeline-1400.webp 1400w, figures/pipeline-2000.webp 2000w" />
+          <img src="figures/pipeline.png" width="2925" height="1634" loading="lazy" decoding="async"
+               alt="Three-stage pipeline diagram. Stage one segments PET/CT with an nnU-Net to produce primary tumour and nodal masks. Stage two derives nodal stage from six geometric features through an ordinal gradient booster and a PET activity gate, and derives tumour stage by fusing a ConvNeXt on a 140 mm crop with a tabular classifier. Stage three predicts recurrence-free survival with a mask-free Cox model over clinical variables and predicted stage." />
+        </picture>
+        <span class="zoomtag">View full size</span>
+      </a>
+      <figcaption><b>Figure 1.</b> The pipeline. Segmentation feeds both staging heads; the survival model is deliberately mask-free. The flame marks a learned component, the blue tag marks a fixed rule with no training at all.</figcaption>
+    </figure>
+
+    <figure class="plate">
+      <picture>
+        <source type="image/webp" sizes="(max-width:760px) 92vw, (max-width:1180px) 84vw, 900px"
+                srcset="figures/models-800.webp 800w, figures/models-1181.webp 1181w" />
+        <img src="figures/model_comparison.png" width="1181" height="382" loading="lazy" decoding="async"
+             alt="Three bar charts comparing candidate models for nodal staging, tumour staging and survival. Each candidate shows a blue bar for the mean over held-out centres and an orange bar for the worst held-out centre. The geometric nodal head, the ConvNeXt tumour model and the Cox survival model are outlined as the chosen components." />
+      </picture>
+      <figcaption><b>Figure 2.</b> Why these components. Blue is the mean over held-out centres, orange is the worst one. Selecting on the worst centre instead of the mean is what put the geometric head and the linear survival model into the final pipeline.</figcaption>
+    </figure>
+  </article>
+</section>
+
+<!-- ==================== RESEARCH ==================== -->
+<section class="s wrap" id="research">
+  <div class="shead reveal"><span class="n">04</span><h2>Research</h2></div>
+
+  <article class="item reveal">
+    <div>
+      <h3>Reading ultrasound before it becomes a picture</h3>
+      <div class="prose">
+        <p>I develop the core B-mode radiomics pipeline of QuantUS, an open-source quantitative ultrasound platform. It computes first-order and GLCM texture features directly from <b>raw RF signals</b>, before the beamformed grey image most people picture as an ultrasound exists.</p>
+        <p>The features are the easy half. The hard half is making a number mean the same thing on two different machines, so I implemented phantom-based normalisation for device-independent, reproducible results. I also work on backend refactoring and GUI integration, because a method is only useful if a clinical researcher can reach it.</p>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="now">Ongoing</span>
+      <span>QuantUS · TU Dresden</span>
+      <span>Jan 2026 →</span>
+    </div>
+  </article>
+
+  <article class="item reveal">
+    <div>
+      <h3>Segmenting things no dataset warned you about</h3>
+      <div class="prose">
+        <p>A vision system that only recognises what it was shown is a liability on a real road. I built a pipeline for semantic segmentation of both known and <b>novel</b> objects, extending AIDE with lightweight captioning models (GLAMM, CODA-LM) so the system can describe what it cannot yet classify. Prototyped on Cityscapes, benchmarked on IDD, IDD-Anomaly and Carla-Anomaly.</p>
+        <p>This is the project that decided the rest. Segmentation was the first time I could watch the mathematics do something visible.</p>
+      </div>
+    </div>
+    <div class="meta">
+      <span>IISER Thiruvananthapuram</span>
+      <span>Aug – Dec 2025</span>
+    </div>
+  </article>
+
+  <article class="item reveal">
+    <div>
+      <h3>Rebuilding machine learning before trusting it</h3>
+      <div class="prose">
+        <p>A summer implementing classical and Bayesian machine-learning models from scratch in NumPy, then comparing them honestly against their scikit-learn equivalents on real data. The library call is one line; knowing why it converges is the education.</p>
+      </div>
+    </div>
+    <div class="meta">
+      <span>IIT Madras</span>
+      <span>May – Jul 2025</span>
+    </div>
+  </article>
+</section>
+
+<!-- ==================== PLACES / MAP ==================== -->
+<section class="s wrap" id="places">
+  <div class="shead reveal"><span class="n">05</span><h2>Where I&#39;ve worked</h2></div>
+
+  <div class="mapbox reveal">
+    <svg class="map" viewBox="0 0 720 420" xmlns="http://www.w3.org/2000/svg"
+         aria-label="Stylised map of the places Vansh has studied and worked: Dresden, Kashmir, Jammu, Chennai and Thiruvananthapuram">
+      <g class="grat">
+        <line x1="0" y1="105" x2="720" y2="105"/><line x1="0" y1="210" x2="720" y2="210"/><line x1="0" y1="315" x2="720" y2="315"/>
+        <line x1="180" y1="0" x2="180" y2="420"/><line x1="360" y1="0" x2="360" y2="420"/><line x1="540" y1="0" x2="540" y2="420"/>
+      </g>
+      <text class="axis" x="8" y="100">51&deg;N</text>
+      <text class="axis" x="8" y="205">32&deg;N</text>
+      <text class="axis" x="8" y="310">13&deg;N</text>
+
+      <g class="compass" transform="translate(672,44)">
+        <circle r="18"/><line x1="0" y1="12" x2="0" y2="-12"/>
+        <text x="-4" y="-24">N</text>
+      </g>
+
+      <path class="move" d="M430 64 Q 396 220 494 354"/>
+      <path class="arc" d="M500 360 Q 240 240 152 92"/>
+      <path class="arc" d="M500 360 Q 540 190 472 98"/>
+      <path class="arc" d="M500 360 Q 552 342 558 306"/>
+
+      <circle class="trav t1" r="3"/>
+      <circle class="trav t2" r="3"/>
+      <circle class="trav t3" r="3"/>
+      <g class="node" data-blurb="Dresden, Germany — QuantUS B-mode radiomics at TU Dresden, from January 2026.">
+        <circle class="c" cx="152" cy="92" r="5.5"/>
+        <text x="138" y="76">Dresden</text>
+      </g>
+      <g class="node" data-blurb="Jammu — PET/CT oncology pipelines at IIT Jammu for the MICCAI 2026 HECKTOR challenge.">
+        <circle class="c" cx="472" cy="98" r="5.5"/>
+        <text x="486" y="96">Jammu</text>
+      </g>
+      <g class="node" data-blurb="Kashmir — home. The mountains everything else gets measured against.">
+        <circle class="c" cx="430" cy="56" r="5.5"/>
+        <text x="376" y="48">Kashmir</text>
+      </g>
+      <g class="node" data-blurb="Chennai — statistical learning from scratch at IIT Madras, summer 2025.">
+        <circle class="c" cx="558" cy="306" r="5.5"/>
+        <text x="572" y="304">Chennai</text>
+      </g>
+      <g class="node home" data-blurb="Thiruvananthapuram — home base. BS-MS applied mathematics at IISER TVM, by the Arabian Sea.">
+        <circle class="c" cx="500" cy="360" r="5.5"/>
+        <text x="380" y="382">Thiruvananthapuram</text>
+      </g>
+
+      <text class="foot" x="14" y="406">Plotted loosely by geography, not to scale.</text>
+    </svg>
+  </div>
+  <p class="mapcap reveal"><b>Five places.</b> <span id="mapread">Hover or tap a point for details.</span></p>
+</section>
+
+<!-- ==================== OTHER WORK ==================== -->
+<section class="s wrap" id="other">
+  <div class="shead reveal"><span class="n">06</span><h2>Other work</h2></div>
+
+  <article class="item reveal">
+    <div>
+      <h3>Teaching a drone to stay out of sight</h3>
+      <div class="prose">
+        <p>A custom 3D Gymnasium environment with simplified flight physics, 12-ray LiDAR sensing, procedurally generated terrain and moving observers with limited fields of view. I shaped a multi-objective reward and trained a <b>PPO</b> agent with Stable-Baselines3 and curriculum learning until it could reach its waypoints while staying out of the observers' cones.</p>
+        <p>I also built interactive visualisers in Pygame and Ursina, because watching a policy fly is a much faster way to learn what it has understood than reading a reward curve.</p>
+      </div>
+    </div>
+    <div class="meta">
+      <span>Side project</span>
+      <span>Deep reinforcement learning</span>
+    </div>
+  </article>
+</section>
+
+<!-- ==================== EDUCATION ==================== -->
+<section class="s wrap" id="education">
+  <div class="shead reveal"><span class="n">07</span><h2>Education</h2></div>
+
+  <div class="twoup reveal">
+    <div class="edu reveal">
+      <div class="yr">2023 – 2028 (expected)</div>
+      <h3>IISER Thiruvananthapuram</h3>
+      <div class="deg">BS-MS Dual Degree, Applied Mathematics</div>
+      <p>I grew up in Kashmir and moved most of the length of India to study by the Arabian Sea. The plan was biology, but my Class XII stream did not offer it, so I took applied mathematics and spent the early years deliberately sampling fields until one stuck. Medical imaging turned out to be the way back to the first plan.</p>
+    </div>
+    <div class="edu reveal">
+      <div class="yr">2023</div>
+      <h3>KC Gurukul Public School, Jammu</h3>
+      <div class="deg">Higher Secondary Certificate</div>
+      <p>Schooled in Jammu, made in Kashmir.</p>
     </div>
   </div>
 
-  <!-- ============ 1 INTRO ============ -->
-  <section class="s rv" id="intro">
-    <div class="shead"><span class="snum">§&thinsp;1</span><h2>Introduction<svg class="scribble" viewBox="0 0 220 12" preserveAspectRatio="none"><path d="M3 8 C 40 2, 90 11, 130 6 S 200 4, 217 7" pathLength="1"/></svg></h2></div>
-    <div class="prose">
-      <p class="lead">I work on <b>computer vision for medical imaging</b> — building models that are
-      accurate, interpretable, and grounded in the mathematics underneath, not just the benchmark on
-      top. What follows is how someone from the mountains of Kashmir found his way to that.</p>
-
-      <p class="body">I grew up in <b>Kashmir</b>, surrounded by mountains that take instructions from
-      no one. Maybe that's where it started: I knew early that I didn't want a life spent executing
-      someone else's ideas on someone else's schedule — <span class="hl">I wanted to develop my
-      own.</span> Research was the only job description that matched. So I cleared the IISER Aptitude
-      Test and moved nearly the entire length of India south, to study by the Arabian Sea.</p>
-
-      <p class="body">The original plan, honestly, was <b>biology</b> — but my Class&nbsp;XII stream had
-      other opinions. So I took the next door over: a BS-MS in <b>mathematics</b> with a minor in
-      <b>data science</b>. Rigorous enough to go anywhere; flexible enough, I hoped, to find my way back
-      to living things eventually. (Spoiler: it worked. Medical imaging <i>is</i> biology — you just
-      enter through the mathematics wing.)</p>
-
-      <p class="body">I refused to commit to a field I hadn't tested, so I treated my early years as a
-      deliberate survey of AI and ML. First a summer at <b>IIT Madras</b> doing statistical learning —
-      implementing models from scratch, learning what real data does to clean theory. Then a semester of
-      <b>semantic segmentation</b> back at IISER TVM, and that project decided everything: for the first
-      time I could literally <b>see what my mathematics was doing</b> — masks, boundaries, objects
-      assembling themselves out of pixels. Equations I could watch. I was gone.</p>
-
-      <p class="body">Then I discovered that computer vision and medicine overlap, and the two halves of
-      the plan — the biology I wanted and the mathematics I trained — finally clicked together:
-      ultrasound radiomics with <b>TU Dresden</b>, PET/CT oncology pipelines with <b>IIT Jammu</b>.
-      Since then there is no going back. (Other corners of computer vision remain very much on the
-      exploration list.)</p>
-
-      <div class="rint">
-        <span class="lab">Research interests</span>
-        <p class="body" style="margin-bottom:0">Broadly, I want computer-vision systems that earn a
-        clinician's trust: <span class="hl">robust before they are clever, interpretable before they are
-        state-of-the-art.</span> Whether a model points at the right thing matters to me more than where
-        it lands on a leaderboard.</p>
-        <p class="kw"><b>Currently drawn to:</b> medical image segmentation · radiomics &amp; quantitative
-        imaging · representation &amp; self-supervised learning · 3D / volumetric vision · the geometry and
-        statistics underneath it all.</p>
-        <p class="body" style="margin:14px 0 0">With my <b>master's thesis</b> approaching next year, I'm
-        actively scoping thesis directions across these areas — and very open to ideas and collaborations.</p>
-      </div>
+  <div class="kit reveal">
+    <div>
+      <h4>Working in</h4>
+      <p>Python, LaTeX, PyTorch, NumPy, Pandas, scikit-learn, OpenCV, PyRadiomics, PyMC, Docker, Git.</p>
     </div>
-  </section>
-
-  <!-- ============ 2 NOW ============ -->
-  <section class="s rv" id="now">
-    <div class="shead"><span class="snum">§&thinsp;2</span><h2>What I'm building now<svg class="scribble" viewBox="0 0 220 12" preserveAspectRatio="none"><path d="M3 7 C 50 12, 100 3, 150 8 S 205 6, 217 7" pathLength="1"/></svg></h2></div>
-    <div class="prose">
-
-      <h3 class="sub"><span class="no">2.1</span>Teaching one pipeline three clinical questions</h3>
-      <div class="meta">
-        <span class="chip live">in progress</span>
-        <span class="chip">IIT Jammu · research intern</span>
-        <span class="chip">Jun 2026 → present</span>
-        <span class="chip">MICCAI 2026 · HECKTOR</span>
-      </div>
-      <p class="body">For the <b>MICCAI 2026 HECKTOR challenge</b> I'm building a single, clean multimodal
-      pipeline that reads <b>FDG-PET/CT</b> scans of head-and-neck cancer and answers three clinically
-      linked questions: <i>where is the disease</i> (automatic segmentation of primary tumours and lymph
-      nodes), <i>how advanced is it</i> (radiological TN staging), and <i>what happens next</i>
-      (recurrence-free survival prognosis).</p>
-      <ul class="dets">
-        <li><b>One pipeline, three heads</b> — segmentation, staging and prognosis share one backbone instead of living in three scripts.</li>
-        <li><b>Radiomics-inspired texture features</b> with robust normalization, so results survive the jump between hospitals and scanners.</li>
-        <li><b>Docker-packaged and modular</b>, because "works on my machine" is not a clinical standard.</li>
-      </ul>
-
-      <h3 class="sub"><span class="no">2.2</span>Reading ultrasound before it becomes a picture</h3>
-      <div class="meta">
-        <span class="chip live">in progress</span>
-        <span class="chip">TU Dresden . Germany</span>
-        <span class="chip">Jan 2026 → present</span>
-      </div>
-      <p class="body">In the <b>QuantUS</b> open-source project I develop the core <b>B-mode radiomics
-      pipeline</b> (QuantUS-Backend-QUS): first-order and <b>GLCM texture features</b> computed directly
-      from <b>raw RF ultrasound signals</b> — before the familiar grey picture even exists. The
-      interesting problem is trust: an ultrasound number should mean the same thing on every machine, so
-      I implement <b>phantom-based normalization</b> to make results device-independent and reproducible.
-      I also work on backend refactoring and GUI integration, because a method only matters if a
-      clinician can actually click on it.</p>
-
-      <figure class="fig rv" id="fig1">
-        <div class="figframe">
-          <svg class="map" viewBox="0 0 720 420" xmlns="http://www.w3.org/2000/svg" aria-label="Stylized map of collaborations">
-            <!-- graticule -->
-            <g class="grat">
-              <line x1="0" y1="105" x2="720" y2="105"/><line x1="0" y1="210" x2="720" y2="210"/><line x1="0" y1="315" x2="720" y2="315"/>
-              <line x1="180" y1="0" x2="180" y2="420"/><line x1="360" y1="0" x2="360" y2="420"/><line x1="540" y1="0" x2="540" y2="420"/>
-            </g>
-            <text x="8" y="100" font-size="10">51°N</text>
-            <text x="8" y="205" font-size="10">32°N</text>
-            <text x="8" y="310" font-size="10">13°N</text>
-            <!-- compass -->
-            <g class="compass" transform="translate(668,44)">
-              <circle r="20"/><line x1="0" y1="14" x2="0" y2="-14"/>
-              <path d="M0 -14 l4 7 h-8 z" fill="var(--faint)"/>
-              <text x="-4" y="-26" font-size="11">N</text>
-            </g>
-            <!-- the move south -->
-            <path class="move" d="M430 64 Q 396 220 494 354"/>
-            <!-- arcs from home -->
-            <path class="arc" d="M500 360 Q 240 240 152 92" pathLength="120"/>
-            <path class="arc" d="M500 360 Q 540 190 472 98" pathLength="120"/>
-            <path class="arc" d="M500 360 Q 552 342 558 306" pathLength="120"/>
-            <!-- travelers -->
-            <circle class="traveler t1" r="3.4"/>
-            <circle class="traveler t2" r="3.4"/>
-            <circle class="traveler t3" r="3.4"/>
-            <!-- nodes -->
-            <g class="node" data-blurb="Dresden, Germany — QuantUS radiomics, TU Dresden.">
-              <circle class="pulse" cx="152" cy="92" r="6"/>
-              <circle class="c" cx="152" cy="92" r="6"/>
-              <text x="138" y="74">Dresden · TUD</text>
-            </g>
-            <g class="node" data-blurb="Jammu — research intern at IIT Jammu: PET/CT pipelines for the MICCAI 2026 HECKTOR challenge.">
-              <circle class="pulse" cx="472" cy="98" r="6"/>
-              <circle class="c" cx="472" cy="98" r="6"/>
-              <text x="488" y="96">Jammu · IIT</text>
-            </g>
-            <g class="node" data-blurb="Kashmir — hometown. The mountains I measure everything against.">
-              <circle class="pulse" cx="430" cy="56" r="6"/>
-              <circle class="c" cx="430" cy="56" r="6"/>
-              <text x="344" y="50">Kashmir (home)</text>
-            </g>
-            <g class="node" data-blurb="Chennai — statistical learning from scratch at IIT Madras (summer 2025).">
-              <circle class="pulse" cx="558" cy="306" r="6"/>
-              <circle class="c" cx="558" cy="306" r="6"/>
-              <text x="574" y="304">Chennai · IITM</text>
-            </g>
-            <g class="node home" data-blurb="Thiruvananthapuram — home base. Mathematics at IISER TVM, by the sea.">
-              <circle class="pulse" cx="500" cy="360" r="6"/>
-              <circle class="c" cx="500" cy="360" r="6"/>
-              <text x="330" y="384">Thiruvananthapuram · IISER (home)</text>
-            </g>
-            <text x="14" y="404" font-size="10" font-style="italic">not drawn to scale — apologies to cartographers</text>
-          </svg>
-        </div>
-        <figcaption><b>Figure 1.</b> Collaboration graph, plotted loosely by geography; the red node is the current home base.
-        <span id="figdyn">Hover a node for details.</span></figcaption>
-      </figure>
+    <div>
+      <h4>Still learning</h4>
+      <p>C++, MATLAB, TensorFlow.</p>
     </div>
-  </section>
-
-  <!-- ============ 3 EARLIER ============ -->
-  <section class="s rv" id="earlier">
-    <div class="shead"><span class="snum">§&thinsp;3</span><h2>Earlier work<svg class="scribble" viewBox="0 0 220 12" preserveAspectRatio="none"><path d="M3 8 C 45 3, 95 12, 140 5 S 205 8, 217 6" pathLength="1"/></svg></h2></div>
-    <div class="prose">
-
-      <h3 class="sub"><span class="no">3.1</span>Segmenting things no dataset warned you about</h3>
-      <div class="meta">
-        <span class="chip">IISER TVM</span>
-        <span class="chip">Aug 2025 → Dec 2025</span>
-      </div>
-      <p class="body">Streets are full of objects no training set anticipated — and a vision system that
-      only recognises what it was shown is a liability. I built an automated pipeline for <b>semantic
-      segmentation of both known and novel objects</b>, extending ideas from AIDE with lightweight
-      captioning models (<b>GLAMM</b>, <b>CODA-LM</b>) so the system can <i>describe</i> what it cannot
-      yet <i>classify</i>. Proof-of-concept on <b>Cityscapes</b>; benchmarked on IDD, IDD-Anomaly and
-      Carla-Anomaly.</p>
-
-      <h3 class="sub"><span class="no">3.2</span>Rebuilding machine learning before trusting it</h3>
-      <div class="meta">
-        <span class="chip">IIT Madras</span>
-        <span class="chip">May 2025 → Jul 2025</span>
-      </div>
-      <p class="body">Before I let libraries do my thinking, I spent a summer <b>implementing classical
-      and Bayesian machine-learning models from scratch</b> — NumPy, first principles, no shortcuts — and
-      comparing them honestly against their scikit-learn counterparts on real datasets. Regression,
-      classification, the full report. It permanently changed how I read other people's models.</p>
+    <div>
+      <h4>Coursework</h4>
+      <p>Linear Algebra, Probability Theory, Mathematical Statistics, Machine Learning, Deep Learning, Reinforcement Learning, Scientific Computing, Data Structures and Algorithms.</p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ============ 4 TOOLBOX ============ -->
-  <section class="s rv" id="toolbox">
-    <div class="shead"><span class="snum">§&thinsp;4</span><h2>Methods &amp; instruments<svg class="scribble" viewBox="0 0 220 12" preserveAspectRatio="none"><path d="M3 6 C 55 11, 110 3, 160 9 S 207 5, 217 8" pathLength="1"/></svg></h2></div>
-    <div class="prose">
-      <div class="toolhead"><span class="n">4.1&ensp;</span>Trusted hands — used in real projects, would bet on them</div>
-      <div class="tools">
-        <span class="tool">Python</span><span class="tool">NumPy</span><span class="tool">Pandas</span>
-        <span class="tool">scikit-learn</span><span class="tool">PyMC</span><span class="tool">MATLAB</span><span class="tool">LaTeX</span>
-      </div>
-      <div class="toolhead"><span class="n">4.2&ensp;</span>In training — currently building calluses</div>
-      <div class="tools">
-        <span class="tool train">PyTorch</span><span class="tool train">OpenCV</span>
-        <span class="tool train">TensorFlow</span><span class="tool train">PyRadiomics</span><span class="tool train">Docker</span>
-      </div>
-      <div class="toolhead"><span class="n">4.3&ensp;</span>Formal coursework</div>
-      <p class="body" style="margin-top:10px">Machine Learning I &amp; II · Mathematical Statistics · Probability Theory · Introduction to AI — taken the mathematician's way, with the proofs.</p>
-    </div>
-  </section>
+<!-- ==================== BEYOND ==================== -->
+<section class="s wrap" id="beyond">
+  <div class="shead reveal"><span class="n">08</span><h2>Beyond the lab</h2></div>
+  <ul class="beyond reveal">
+    <li>
+      <b>Red Cross Mission</b>
+      <p>Taught mathematics and science to children with disabilities. If you can explain fractions to a child the textbook gave up on, you can explain your model to anyone.</p>
+    </li>
+    <li>
+      <b>LACAM-25</b>
+      <p>International Conference on Latest Advances in Computational and Applied Mathematics, IISER Thiruvananthapuram.</p>
+      <div class="when">December 2025</div>
+    </li>
+    <li>
+      <b>Data Science Symposium</b>
+      <p>IISER Thiruvananthapuram.</p>
+      <div class="when">2025</div>
+    </li>
+  </ul>
+</section>
 
-  <!-- ============ 5 EDUCATION ============ -->
-  <section class="s rv" id="education">
-    <div class="shead"><span class="snum">§&thinsp;5</span><h2>Education<svg class="scribble" viewBox="0 0 220 12" preserveAspectRatio="none"><path d="M3 8 C 40 12, 85 3, 130 9 S 200 5, 217 7" pathLength="1"/></svg></h2></div>
-    <table class="bt">
-      <thead><tr><th>Years</th><th>Degree</th><th>Institution</th></tr></thead>
-      <tbody>
-        <tr>
-          <td>2023 — 2028 (exp.)</td>
-          <td><b>BS-MS Dual Degree, Computational Mathematics</b> · minor in Data Science<br/>research-first curriculum, currently in my fourth year</td>
-          <td>Indian Institute of Science Education and Research (IISER), Thiruvananthapuram, Kerala</td>
-        </tr>
-        <tr>
-          <td>2023</td>
-          <td><b>Higher Secondary Certificate</b></td>
-          <td>KC Gurukul Public School, Jammu, J&amp;K</td>
-        </tr>
-      </tbody>
-    </table>
-    <p class="tabnote">Table 1: the formal education. The informal kind happens after midnight in the computer lab.</p>
-  </section>
-
-  <!-- ============ 6 BEYOND ============ -->
-  <section class="s rv" id="beyond">
-    <div class="shead"><span class="snum">§&thinsp;6</span><h2>Beyond the lab<svg class="scribble" viewBox="0 0 220 12" preserveAspectRatio="none"><path d="M3 7 C 50 3, 100 11, 150 5 S 205 9, 217 6" pathLength="1"/></svg></h2></div>
-    <div class="prose">
-      <ul class="beyond">
-        <li>
-          <b>Red Cross Mission — teaching mathematics and science to children with disabilities.</b><br/>
-          The hardest and most rewarding teaching I've done. If you can explain fractions to a child the
-          textbook gave up on, you can explain your model to a review committee.
-        </li>
-        <li>
-          <b>LACAM-25</b> — International Conference on Latest Advances in Computational and Applied
-          Mathematics, IISER TVM. <span class="when">Dec 8–11, 2025</span>
-        </li>
-        <li>
-          <b>Data Science Symposium</b>, IISER TVM — talks, posters, and an irresponsible amount of
-          coffee. <span class="when">2025</span>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- ============ 7 CONTACT ============ -->
-  <section class="s rv" id="contact">
-    <div class="shead"><span class="snum">§&thinsp;7</span><h2>Correspondence<svg class="scribble" viewBox="0 0 220 12" preserveAspectRatio="none"><path d="M3 8 C 45 12, 90 4, 140 9 S 200 4, 217 8" pathLength="1"/></svg></h2></div>
-    <div class="prose">
-      <p class="body">The fastest way to reach me is the oldest one:</p>
-      <a class="bigmail" href="mailto:vansh23@iisertvm.ac.in">vansh23@iisertvm.ac.in</a>
-      <p class="body" style="margin-top:14px">I read everything — collaboration ideas, hard questions,
-      reading recommendations, or a polite note pointing out an error in these pages. Especially that
-      last one.</p>
-      <div class="altlinks">
-        <div><span class="lab">github</span><a href="https://github.com/vansh287" target="_blank" rel="noopener">github.com/vansh287 ↗</a></div>
-        <div><span class="lab">linkedin</span><a href="https://www.linkedin.com/in/vansh-pandit-884046272/" target="_blank" rel="noopener">linkedin.com/in/vansh-pandit ↗</a></div>
-        <div><span class="lab">phone</span><a href="tel:+916005942890">+91 60059 42890</a></div>
-        <div><span class="lab">cv</span><a href="mailto:vansh23@iisertvm.ac.in?subject=Please%20send%20your%20full%20CV">full PDF on request</a></div>
-      </div>
-      <div class="stampwrap">
-        <div class="stamp">accepting<br/>collaborations<br/><span style="letter-spacing:1px;font-size:.7rem">est. 2023 · no expiry</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ REFERENCES ============ -->
 </main>
 
-<footer class="colophon">
-  <div class="mono">set in Newsreader &amp; IBM Plex Mono · compiled June 2026 · errata welcome → <a href="mailto:vansh23@iisertvm.ac.in?subject=Erratum">email</a></div>
-  <div class="mono">© <span id="yr"></span> Vansh Pandit. All rights reserved.</div>
-  <div class="mono">also published as: <a href="scan.html">the workstation edition →</a></div>
-  <div class="fin">∎</div>
+<!-- ==================== CONTACT ==================== -->
+<section id="contact">
+  <div class="wrap inner">
+    <p class="kicker">09 — Contact</p>
+    <h2>Currently scoping a master&#39;s thesis.</h2>
+    <p>Collaboration ideas, thesis directions, hard questions, or a note pointing out that something on this page is wrong. Especially the last one. I read everything.</p>
+    <a class="mailbig" href="mailto:vansh23@iisertvm.ac.in">vansh23@iisertvm.ac.in</a>
+    <div class="cxlinks">
+      <a href="https://github.com/vansh287" rel="me noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/vansh-pandit-884046272/" rel="me noopener">LinkedIn</a>
+      <a href="tel:+916005942890">+91 60059 42890</a>
+      <a href="mailto:vansh23@iisertvm.ac.in?subject=CV%20request">CV on request</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap inner">
+    <span>&copy; <span id="yr">2026</span> Vansh Pandit</span>
+    <span><a class="altlink" href="paper.html">Also written as a paper: Learning to See, Carefully &rarr;</a></span>
+    <span>Last updated September 2026</span>
+  </div>
 </footer>
 
-<button id="top-btn" aria-label="Back to top">↑</button>
-
 <script>
-/* ---------- year ---------- */
 document.getElementById('yr').textContent = new Date().getFullYear();
 
-/* ---------- lamp (theme) ---------- */
-const lamp = document.getElementById('lamp'), lampTxt = document.getElementById('lampTxt'), root = document.documentElement;
-function setLampTxt(){ lampTxt.textContent = root.getAttribute('data-theme')==='dark' ? 'lamp off' : 'lamp on'; }
-setLampTxt();
-lamp.addEventListener('click', () => {
-  const dark = root.getAttribute('data-theme')==='dark';
-  if(dark) root.removeAttribute('data-theme'); else root.setAttribute('data-theme','dark');
-  try{ localStorage.setItem('lamp', dark ? 'light' : 'dark'); }catch(e){}
-  setLampTxt();
-});
+/* ---------- theme ---------- */
+(function(){
+  var root = document.documentElement,
+      btn = document.getElementById('themebtn'),
+      mq = matchMedia('(prefers-color-scheme: dark)');
 
-/* ---------- scroll progress + back-to-top + toc highlight ---------- */
-const bar = document.getElementById('bar'), topBtn = document.getElementById('top-btn');
-const tocLinks = [...document.querySelectorAll('nav.toc a')];
-const sections = tocLinks.map(a => document.querySelector(a.getAttribute('href')));
-function onScroll(){
-  const y = scrollY, h = document.documentElement.scrollHeight - innerHeight;
-  bar.style.width = (h>0 ? (y/h)*100 : 0) + '%';
-  topBtn.classList.toggle('show', y > 700);
-  let cur = -1;
-  sections.forEach((s,i) => { if(s && y >= s.offsetTop - 140) cur = i; });
-  tocLinks.forEach((a,i) => a.classList.toggle('on', i===cur));
-}
-addEventListener('scroll', onScroll, {passive:true}); onScroll();
-topBtn.addEventListener('click', () => scrollTo({top:0, behavior:'smooth'}));
+  function current(){
+    var set = root.getAttribute('data-theme');
+    return set ? set : (mq.matches ? 'dark' : 'light');
+  }
+  function label(){
+    btn.setAttribute('aria-label',
+      current() === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
+  }
+  label();
 
-/* ---------- typed status ---------- */
-const phrases = [
-  'cleaning PET/CT volumes…',
-  'extracting GLCM features from raw RF…',
-  'proving a lemma, slowly…',
-  'reading about domain generalization…',
-  'refactoring the QuantUS backend…',
-  'making chai, planning experiments…'
-];
-const typed = document.getElementById('typed');
-let pi=0, ci=0, del=false;
-function type(){
-  const p = phrases[pi];
-  typed.textContent = p.slice(0,ci);
-  if(!del){ if(ci<p.length){ci++; setTimeout(type, 46+Math.random()*44);} else {del=true; setTimeout(type, 2300);} }
-  else { if(ci>0){ci--; setTimeout(type, 22);} else {del=false; pi=(pi+1)%phrases.length; setTimeout(type, 420);} }
-}
-setTimeout(type, 800);
-
-/* ---------- reveals ---------- */
-const io = new IntersectionObserver(es => es.forEach(e => {
-  if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
-}), {threshold:.12});
-document.querySelectorAll('.rv, section.s').forEach(el => io.observe(el));
-
-/* ---------- figure: map hover blurbs ---------- */
-const figdyn = document.getElementById('figdyn');
-if(figdyn){
-  const idle = figdyn.textContent;
-  document.querySelectorAll('.map .node').forEach(n => {
-    n.addEventListener('mouseenter', () => figdyn.textContent = n.dataset.blurb);
-    n.addEventListener('mouseleave', () => figdyn.textContent = idle);
-    n.addEventListener('click', () => figdyn.textContent = n.dataset.blurb);
+  btn.addEventListener('click', function(){
+    var next = current() === 'dark' ? 'light' : 'dark';
+    /* damp the cross-fade so the swap reads as one movement, not a flash */
+    root.classList.add('theming');
+    root.setAttribute('data-theme', next);
+    try{ localStorage.setItem('theme', next); }catch(e){}
+    label();
+    setTimeout(function(){ root.classList.remove('theming'); }, 420);
   });
-}
 
-/* ---------- ink splash on click ---------- */
-addEventListener('click', e => {
-  if(e.target.closest('a,button')) return;            /* keep links crisp */
-  const s = document.createElement('span');
-  s.className = 'splash';
-  s.style.left = e.clientX+'px'; s.style.top = e.clientY+'px';
-  document.body.appendChild(s);
-  setTimeout(() => s.remove(), 650);
-});
+  /* follow the system if the visitor never chose */
+  mq.addEventListener('change', function(){
+    var stored = null;
+    try{ stored = localStorage.getItem('theme'); }catch(e){}
+    if(!stored) label();
+  });
+})();
+
+/* ---------- menu ---------- */
+(function(){
+  var btn = document.getElementById('menubtn'),
+      menu = document.getElementById('menu'),
+      scrim = document.getElementById('scrim');
+
+  function setOpen(open){
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    menu.classList.toggle('open', open);
+    scrim.classList.toggle('open', open);
+    document.body.classList.toggle('locked', open);
+  }
+  btn.addEventListener('click', function(){
+    setOpen(btn.getAttribute('aria-expanded') !== 'true');
+  });
+  scrim.addEventListener('click', function(){ setOpen(false); });
+  menu.addEventListener('click', function(e){ if(e.target.closest('a')) setOpen(false); });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && btn.getAttribute('aria-expanded') === 'true'){ setOpen(false); btn.focus(); }
+  });
+
+  /* keep focus inside the panel while it is open */
+  menu.addEventListener('keydown', function(e){
+    if(e.key !== 'Tab') return;
+    var f = menu.querySelectorAll('a');
+    if(!f.length) return;
+    var first = f[0], last = f[f.length - 1];
+    if(e.shiftKey && document.activeElement === first){ e.preventDefault(); btn.focus(); }
+    else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); btn.focus(); }
+  });
+
+  /* mark the section you are currently in */
+  var links = Array.prototype.slice.call(menu.querySelectorAll('a[href^="#"]'));
+  var targets = links.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+  var ticking = false;
+  function spy(){
+    ticking = false;
+    var line = scrollY + innerHeight * 0.32, cur = -1;
+    targets.forEach(function(t, i){ if(t && t.offsetTop <= line) cur = i; });
+    links.forEach(function(a, i){ a.classList.toggle('here', i === cur); });
+  }
+  addEventListener('scroll', function(){
+    if(!ticking){ ticking = true; requestAnimationFrame(spy); }
+  }, {passive:true});
+  spy();
+})();
+
+/* ---------- map: read out the place under the cursor ---------- */
+(function(){
+  var out = document.getElementById('mapread');
+  if(!out) return;
+  var idle = out.textContent;
+  document.querySelectorAll('.map .node').forEach(function(n){
+    n.addEventListener('mouseenter', function(){ out.textContent = n.dataset.blurb; });
+    n.addEventListener('mouseleave', function(){ out.textContent = idle; });
+    n.addEventListener('click', function(){ out.textContent = n.dataset.blurb; });
+  });
+})();
 </script>
 </body>
 </html>

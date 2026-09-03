@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Website editor — Vansh Pandit</title>
+<style>
+:root{
+  --bg:#f7f6f3; --panel:#fff; --ink:#1c1b17; --ink2:#5c584e; --faint:#918d83;
+  --rule:#e2ded4; --accent:#1d4f91; --accent-tint:#eaf0f7; --danger:#a3392c;
+  --ok:#1f6b45;
+  --ui:'Switzer',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+}
+@font-face{font-family:Switzer;src:url('../fonts/switzer-400.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:Switzer;src:url('../fonts/switzer-500.woff2') format('woff2');font-weight:500;font-display:swap}
+@font-face{font-family:Switzer;src:url('../fonts/switzer-600.woff2') format('woff2');font-weight:600;font-display:swap}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--ui);background:var(--bg);color:var(--ink);font-size:14px;line-height:1.55;height:100vh;overflow:hidden}
+
+/* ---------- shell ---------- */
+.app{display:grid;grid-template-columns:214px minmax(0,1fr) minmax(0,var(--pw,46%));height:100vh}
+.app.nopreview{grid-template-columns:214px minmax(0,1fr) 0}
+
+/* ---------- sidebar ---------- */
+aside{background:var(--panel);border-right:1px solid var(--rule);display:flex;flex-direction:column;overflow:hidden}
+.brand{padding:16px 18px 12px;border-bottom:1px solid var(--rule)}
+.brand h1{font-size:14px;font-weight:600;letter-spacing:-.01em}
+.brand p{font-size:11.5px;color:var(--faint)}
+nav{flex:1;overflow-y:auto;padding:8px}
+nav button{
+  display:flex;width:100%;align-items:center;gap:9px;text-align:left;
+  padding:8px 11px;border:0;background:none;color:var(--ink2);cursor:pointer;
+  font:inherit;font-size:13.5px;border-radius:5px;
+}
+nav button:hover{background:var(--bg);color:var(--ink)}
+nav button.on{background:var(--accent-tint);color:var(--accent);font-weight:600}
+nav button i{font-style:normal;font-size:10.5px;color:var(--faint);min-width:15px;font-variant-numeric:tabular-nums}
+nav button.on i{color:var(--accent)}
+.savebar{padding:12px;border-top:1px solid var(--rule);display:flex;flex-direction:column;gap:8px}
+
+/* ---------- buttons ---------- */
+button.btn{
+  font:inherit;font-size:13px;font-weight:600;padding:9px 14px;cursor:pointer;
+  border:1px solid var(--rule);background:var(--panel);color:var(--ink);border-radius:5px;
+  transition:background .15s,border-color .15s,color .15s;
+}
+button.btn:hover{border-color:var(--ink)}
+button.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+button.btn.primary:hover{background:#163d70;border-color:#163d70}
+button.btn.primary:disabled{opacity:.55;cursor:default}
+button.btn.small{padding:5px 9px;font-size:12px;font-weight:500}
+button.btn.danger{color:var(--danger)}
+button.btn.danger:hover{border-color:var(--danger)}
+.status{font-size:11.5px;color:var(--faint);min-height:16px;text-align:center}
+.status.ok{color:var(--ok)}
+.status.err{color:var(--danger)}
+
+/* ---------- form column ---------- */
+main{overflow-y:auto;padding:26px clamp(18px,3vw,38px) 90px}
+.head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:6px}
+main h2{font-size:20px;font-weight:600;letter-spacing:-.015em}
+main .hint{font-size:12.5px;color:var(--faint);margin-bottom:22px;max-width:70ch}
+.field{margin-bottom:16px}
+.field > label{display:block;font-size:12px;font-weight:600;color:var(--ink2);margin-bottom:5px;letter-spacing:.01em}
+.field .sub{font-size:11.5px;color:var(--faint);font-weight:400;margin-left:6px}
+input[type=text],textarea,input[type=number]{
+  width:100%;font:inherit;font-size:13.5px;padding:9px 11px;color:var(--ink);
+  border:1px solid var(--rule);border-radius:5px;background:var(--panel);resize:vertical;
+}
+input:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:-1px;border-color:transparent}
+textarea{min-height:76px;line-height:1.6}
+textarea.tall{min-height:132px}
+label.check{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--ink2);cursor:pointer}
+
+/* ---------- repeatable cards ---------- */
+.card{border:1px solid var(--rule);border-radius:7px;background:var(--panel);padding:15px;margin-bottom:12px}
+.card .cardhead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+.card .cardhead strong{font-size:12px;font-weight:600;color:var(--faint);letter-spacing:.08em;text-transform:uppercase}
+.card .tools{display:flex;gap:5px}
+.addrow{margin-top:4px}
+.list-empty{font-size:12.5px;color:var(--faint);padding:10px 0}
+
+/* ---------- lines editor (arrays of strings) ---------- */
+.lines .line{display:flex;gap:7px;margin-bottom:7px;align-items:flex-start}
+.lines .line textarea,.lines .line input{flex:1}
+
+/* ---------- photo ---------- */
+.photowrap{display:flex;gap:22px;flex-wrap:wrap;align-items:flex-start}
+.photoprev{width:210px;flex:none}
+.photoprev img{width:100%;border:1px solid var(--rule);border-radius:5px;display:block;background:var(--bg)}
+.photoctl{flex:1;min-width:230px}
+.photoctl .field{margin-bottom:14px}
+input[type=range]{width:100%}
+.drop{
+  border:1.5px dashed var(--rule);border-radius:7px;padding:22px;text-align:center;
+  color:var(--faint);font-size:13px;cursor:pointer;transition:border-color .15s,background .15s;
+}
+.drop:hover,.drop.over{border-color:var(--accent);background:var(--accent-tint);color:var(--accent)}
+
+/* ---------- preview ---------- */
+.preview{border-left:1px solid var(--rule);background:var(--panel);display:flex;flex-direction:column;overflow:hidden}
+.app.nopreview .preview{display:none}
+.previewbar{display:flex;align-items:center;gap:8px;padding:8px 10px;border-bottom:1px solid var(--rule);font-size:12px;color:var(--faint)}
+.previewbar .grow{flex:1}
+.preview iframe{flex:1;width:100%;border:0;background:#fff}
+</style>
+</head>
+<body>
+
+<div class="app" id="app">
+
+  <aside>
+    <div class="brand">
+      <h1>Website editor</h1>
+      <p>Edits go straight into your site</p>
+    </div>
+    <nav id="nav"></nav>
+    <div class="savebar">
+      <button class="btn primary" id="save">Save &amp; rebuild</button>
+      <div class="status" id="status">Loading…</div>
+    </div>
+  </aside>
+
+  <main id="form"></main>
+
+  <div class="preview">
+    <div class="previewbar">
+      <span id="pvlabel">Preview</span>
+      <span class="grow"></span>
+      <button class="btn small" id="reload">Refresh</button>
+      <button class="btn small" id="hide">Hide</button>
+    </div>
+    <iframe id="pv" src="/index.html" title="Site preview"></iframe>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   state
+   ============================================================ */
+let C = null;                 // the whole content object
+let dirty = false;
+let current = 'basics';
+
+const $ = (s, r = document) => r.querySelector(s);
+const el = (tag, attrs = {}, ...kids) => {
+  const n = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (k === 'class') n.className = v;
+    else if (k === 'html') n.innerHTML = v;
+    else if (k.startsWith('on')) n.addEventListener(k.slice(2), v);
+    else if (v !== null && v !== undefined) n.setAttribute(k, v);
+  }
+  kids.flat().forEach(k => n.appendChild(typeof k === 'string' ? document.createTextNode(k) : k));
+  return n;
+};
+
+function markDirty(){
+  dirty = true;
+  setStatus('Unsaved changes', '');
+  $('#save').disabled = false;
+}
+function setStatus(msg, cls){
+  const s = $('#status'); s.textContent = msg; s.className = 'status ' + (cls || '');
+}
+
+/* ============================================================
+   generic field builders
+   ============================================================ */
+function text(label, obj, key, opts = {}){
+  const f = el('div', {class:'field'});
+  f.append(el('label', {}, label, opts.hint ? el('span', {class:'sub'}, opts.hint) : ''));
+  const input = el('input', {type:'text', value: obj[key] ?? ''});
+  input.addEventListener('input', () => { obj[key] = input.value; markDirty(); });
+  f.append(input);
+  return f;
+}
+function area(label, obj, key, opts = {}){
+  const f = el('div', {class:'field'});
+  f.append(el('label', {}, label, opts.hint ? el('span', {class:'sub'}, opts.hint) : ''));
+  const t = el('textarea', {class: opts.tall ? 'tall' : ''});
+  t.value = obj[key] ?? '';
+  t.addEventListener('input', () => { obj[key] = t.value; markDirty(); });
+  f.append(t);
+  return f;
+}
+function check(label, obj, key){
+  const f = el('div', {class:'field'});
+  const box = el('input', {type:'checkbox'});
+  box.checked = !!obj[key];
+  box.addEventListener('change', () => { obj[key] = box.checked; markDirty(); });
+  f.append(el('label', {class:'check'}, box, label));
+  return f;
+}
+
+/* an editable array of plain strings */
+function lines(label, arr, owner, key, opts = {}){
+  const f = el('div', {class:'field'});
+  f.append(el('label', {}, label, opts.hint ? el('span', {class:'sub'}, opts.hint) : ''));
+  const box = el('div', {class:'lines'});
+  const redraw = () => {
+    box.innerHTML = '';
+    arr.forEach((val, i) => {
+      const input = opts.multiline ? el('textarea', {}) : el('input', {type:'text', value: val});
+      if (opts.multiline) input.value = val;
+      input.addEventListener('input', () => { arr[i] = input.value; markDirty(); });
+      box.append(el('div', {class:'line'},
+        input,
+        el('button', {class:'btn small', title:'Move up', onclick(){ if(i>0){ [arr[i-1],arr[i]]=[arr[i],arr[i-1]]; markDirty(); redraw(); } }}, '↑'),
+        el('button', {class:'btn small', title:'Move down', onclick(){ if(i<arr.length-1){ [arr[i+1],arr[i]]=[arr[i],arr[i+1]]; markDirty(); redraw(); } }}, '↓'),
+        el('button', {class:'btn small danger', title:'Delete', onclick(){ arr.splice(i,1); markDirty(); redraw(); }}, '×')
+      ));
+    });
+    box.append(el('div', {class:'addrow'},
+      el('button', {class:'btn small', onclick(){ arr.push(''); markDirty(); redraw(); }}, '+ Add')));
+  };
+  redraw();
+  f.append(box);
+  return f;
+}
+
+/* an editable array of objects, each rendered by `render(item, index)` */
+function cards(arr, label, render, blank){
+  const box = el('div', {});
+  const redraw = () => {
+    box.innerHTML = '';
+    if (!arr.length) box.append(el('div', {class:'list-empty'}, 'Nothing here yet.'));
+    arr.forEach((item, i) => {
+      const c = el('div', {class:'card'});
+      c.append(el('div', {class:'cardhead'},
+        el('strong', {}, label + ' ' + (i + 1)),
+        el('div', {class:'tools'},
+          el('button', {class:'btn small', onclick(){ if(i>0){ [arr[i-1],arr[i]]=[arr[i],arr[i-1]]; markDirty(); redraw(); } }}, '↑'),
+          el('button', {class:'btn small', onclick(){ if(i<arr.length-1){ [arr[i+1],arr[i]]=[arr[i],arr[i+1]]; markDirty(); redraw(); } }}, '↓'),
+          el('button', {class:'btn small danger', onclick(){ if(confirm('Delete this ' + label.toLowerCase() + '?')){ arr.splice(i,1); markDirty(); redraw(); } }}, 'Delete')
+        )));
+      render(item, i).forEach(n => c.append(n));
+      box.append(c);
+    });
+    box.append(el('div', {class:'addrow'},
+      el('button', {class:'btn', onclick(){ arr.push(JSON.parse(JSON.stringify(blank))); markDirty(); redraw(); }}, '+ Add ' + label.toLowerCase())));
+  };
+  redraw();
+  return box;
+}
+
+function page(title, hint, ...nodes){
+  const m = $('#form');
+  m.innerHTML = '';
+  m.append(el('div', {class:'head'}, el('h2', {}, title)));
+  if (hint) m.append(el('p', {class:'hint'}, hint));
+  nodes.flat().forEach(n => m.append(n));
+  m.scrollTop = 0;
+}
+
+const HTML_HINT = 'HTML allowed: <b>bold</b>, <i>italic</i>, <a class="inline" href="…">link</a>';
+
+/* ============================================================
+   pages
+   ============================================================ */
+const PAGES = {
+  basics: () => page('Basics', 'Your name, the line under it, and how the page describes itself to search engines and link previews.',
+    text('Name', C.person, 'name'),
+    text('Kicker line', C.person, 'kicker', {hint:'above your name'}),
+    text('Role line', C.person, 'role', {hint:'the italic line'}),
+    area('Page title', C.meta, 'title'),
+    area('Search description', C.meta, 'description'),
+    area('Link-preview description', C.meta, 'og_description'),
+    text('Last updated', C.meta, 'last_updated'),
+    text('Email', C.person, 'email'),
+    text('Phone (shown)', C.person, 'phone'),
+    text('GitHub URL', C.person, 'github'),
+    text('LinkedIn URL', C.person, 'linkedin')
+  ),
+
+  photo: () => {
+    const wrap = el('div', {class:'photowrap'});
+    const prev = el('img', {src:'/img/vansh-340.jpg?t=' + Date.now(), alt:'Portrait preview'});
+    let pending = null;
+
+    const file = el('input', {type:'file', accept:'image/*', style:'display:none'});
+    const drop = el('div', {class:'drop'}, 'Click or drop a new photo here');
+    drop.addEventListener('click', () => file.click());
+    ['dragover','dragenter'].forEach(e => drop.addEventListener(e, ev => { ev.preventDefault(); drop.classList.add('over'); }));
+    ['dragleave','drop'].forEach(e => drop.addEventListener(e, () => drop.classList.remove('over')));
+    drop.addEventListener('drop', ev => { ev.preventDefault(); if (ev.dataTransfer.files[0]) read(ev.dataTransfer.files[0]); });
+    file.addEventListener('change', () => { if (file.files[0]) read(file.files[0]); });
+
+    function read(f){
+      const r = new FileReader();
+      r.onload = () => { pending = r.result; apply(); };
+      r.readAsDataURL(f);
+    }
+
+    const offset = el('input', {type:'range', min:'0', max:'100', value:'50'});
+    const zoom   = el('input', {type:'range', min:'100', max:'250', value:'100'});
+    let timer = null;
+    const queue = () => { clearTimeout(timer); timer = setTimeout(apply, 220); };
+    offset.addEventListener('input', queue);
+    zoom.addEventListener('input', queue);
+
+    async function apply(){
+      setStatus('Processing photo…', '');
+      const body = { offset: offset.value / 100, zoom: zoom.value / 100 };
+      let route = '/api/recrop';
+      if (pending) { body.data = pending; route = '/api/photo'; }
+      try{
+        const r = await fetch(route, {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(body)});
+        const j = await r.json();
+        if (j.error) throw new Error(j.error);
+        prev.src = j.thumb;
+        setStatus('Photo updated — press Save to rebuild', 'ok');
+        dirty = true; $('#save').disabled = false;
+      }catch(err){ setStatus(err.message, 'err'); }
+    }
+
+    wrap.append(
+      el('div', {class:'photoprev'}, prev),
+      el('div', {class:'photoctl'},
+        drop, file,
+        el('div', {class:'field', style:'margin-top:16px'}, el('label', {}, 'Vertical position'), offset),
+        el('div', {class:'field'}, el('label', {}, 'Zoom'), zoom),
+        el('button', {class:'btn', onclick: apply}, 'Re-crop current photo')
+      ));
+
+    page('Photo', 'Drop in a new picture, then nudge the crop until your face sits well. Every size the site needs is generated for you.',
+      wrap,
+      text('Alt text', C.person, 'photo_alt', {hint:'described for screen readers'}),
+      text('Caption, left', C.person, 'photo_caption_left'),
+      text('Caption, right', C.person, 'photo_caption_right')
+    );
+  },
+
+  intro: () => page('Introduction', 'The opening block: the paragraphs beside your photo, the highlighted “Right now” note, and the two buttons.',
+    lines('Paragraphs', C.intro.paragraphs_html, C.intro, 'paragraphs_html', {multiline:true, hint:HTML_HINT}),
+    text('“Right now” label', C.intro, 'now_label'),
+    area('“Right now” text', C.intro, 'now_html', {hint:HTML_HINT}),
+    el('div', {class:'field'}, el('label', {}, 'Buttons')),
+    cards(C.intro.buttons, 'Button', (b) => [
+      text('Label', b, 'label'), text('Link', b, 'href'), check('Filled (accent colour)', b, 'primary')
+    ], {label:'New button', href:'#contact', primary:false})
+  ),
+
+  updates: () => page('Recent', 'The dated list under your photo. Newest first — this is what shows a visitor you are active.',
+    cards(C.updates, 'Update', (u) => [
+      text('Date', u, 'date', {hint:'e.g. Aug 2026'}),
+      area('Text', u, 'html', {hint:HTML_HINT})
+    ], {date:'', html:''})
+  ),
+
+  interests: () => page('Research interests', 'The short statement and the tag row beneath it.',
+    text('Heading', C.interests, 'heading'),
+    area('Statement', C.interests, 'lead_html', {tall:true, hint:HTML_HINT}),
+    lines('Tags', C.interests.tags, C.interests, 'tags')
+  ),
+
+  publication: () => page('Publication', 'The featured paper. The “At a glance” rows on the right are what most readers skim first.',
+    text('Section heading', C.publication, 'heading'),
+    text('Venue', C.publication, 'venue'),
+    area('Title', C.publication, 'title'),
+    text('Authors line', C.publication, 'authors_html', {hint:HTML_HINT}),
+    text('Badge', C.publication, 'badge', {hint:'leave empty to hide'}),
+    lines('Paragraphs', C.publication.paragraphs_html, C.publication, 'paragraphs_html', {multiline:true, hint:HTML_HINT}),
+    el('div', {class:'field'}, el('label', {}, 'Links')),
+    cards(C.publication.links, 'Link', (l) => [
+      text('Label', l, 'label'), text('URL', l, 'href'), check('Filled (accent colour)', l, 'primary')
+    ], {label:'', href:'', primary:false}),
+    el('div', {class:'field'}, el('label', {}, 'At a glance')),
+    cards(C.publication.glance, 'Row', (g) => [
+      text('Label', g, 'label'), text('Value', g, 'value_html', {hint:HTML_HINT})
+    ], {label:'', value_html:''}),
+    el('div', {class:'field'}, el('label', {}, 'Figure captions')),
+    cards(C.publication.figures, 'Figure', (f) => [
+      text('Caption lead', f, 'caption_lead', {hint:'e.g. Figure 1.'}),
+      area('Caption', f, 'caption_html'),
+      area('Alt text', f, 'alt', {hint:'described for screen readers'})
+    ], {caption_lead:'', caption_html:'', alt:'', fallback:'', width:0, height:0, srcset:'', zoom:'', zoom_label:''})
+  ),
+
+  research: () => page('Research', 'Your research entries, newest first. “Ongoing” adds the blue dot.',
+    text('Section heading', C.research, 'heading'),
+    cards(C.research.items, 'Entry', (it) => [
+      text('Title', it, 'title'),
+      lines('Paragraphs', it.paragraphs_html, it, 'paragraphs_html', {multiline:true, hint:HTML_HINT}),
+      check('Ongoing', it, 'ongoing'),
+      text('Ongoing label', it, 'ongoing_label', {hint:'defaults to “Ongoing”'}),
+      lines('Side notes', it.meta, it, 'meta', {hint:'institution, dates — one per line'})
+    ], {title:'', paragraphs_html:[''], ongoing:false, ongoing_label:'', meta:['','']})
+  ),
+
+  other: () => page('Other work', 'Side projects and anything that is not core research.',
+    text('Section heading', C.other, 'heading'),
+    cards(C.other.items, 'Entry', (it) => [
+      text('Title', it, 'title'),
+      lines('Paragraphs', it.paragraphs_html, it, 'paragraphs_html', {multiline:true, hint:HTML_HINT}),
+      check('Ongoing', it, 'ongoing'),
+      lines('Side notes', it.meta, it, 'meta')
+    ], {title:'', paragraphs_html:[''], ongoing:false, ongoing_label:'', meta:['']})
+  ),
+
+  places: () => page('Where I\'ve worked', 'The map. x and y are positions inside a 720 × 420 drawing — x grows rightwards, y grows downwards. Label x/y position the text next to each point.',
+    text('Section heading', C.places, 'heading'),
+    text('Caption lead', C.places, 'caption_lead'),
+    text('Caption idle text', C.places, 'caption_idle'),
+    area('Map description', C.places, 'map_alt', {hint:'described for screen readers'}),
+    text('Footnote', C.places, 'footnote'),
+    cards(C.places.nodes, 'Place', (n) => [
+      text('Label', n, 'label'),
+      area('Blurb', n, 'blurb', {hint:'shown when hovered'}),
+      el('div', {style:'display:grid;grid-template-columns:repeat(4,1fr);gap:10px'},
+        text('Point x', n, 'x'), text('Point y', n, 'y'),
+        text('Label x', n, 'lx'), text('Label y', n, 'ly')),
+      check('Home (filled marker)', n, 'home')
+    ], {label:'', blurb:'', x:360, y:210, lx:370, ly:205, home:false})
+  ),
+
+  education: () => page('Education', 'Degrees, and the three tool columns beneath them.',
+    text('Section heading', C.education, 'heading'),
+    cards(C.education.items, 'Entry', (e) => [
+      text('Years', e, 'years'),
+      text('Institution', e, 'institution'),
+      text('Degree', e, 'degree'),
+      area('Text', e, 'text_html', {hint:HTML_HINT})
+    ], {years:'', institution:'', degree:'', text_html:''}),
+    el('div', {class:'field'}, el('label', {}, 'Tools &amp; coursework')),
+    cards(C.education.kit, 'Column', (k) => [
+      text('Heading', k, 'heading'), area('Text', k, 'text_html')
+    ], {heading:'', text_html:''})
+  ),
+
+  beyond: () => page('Beyond the lab', 'Outreach, conferences, anything outside research.',
+    text('Section heading', C.beyond, 'heading'),
+    cards(C.beyond.items, 'Entry', (b) => [
+      text('Title', b, 'title'),
+      area('Text', b, 'text_html', {hint:HTML_HINT}),
+      text('When', b, 'when', {hint:'leave empty to hide'})
+    ], {title:'', text_html:'', when:''})
+  ),
+
+  contact: () => page('Contact', 'The dark block at the bottom of the page.',
+    text('Kicker', C.contact, 'kicker'),
+    area('Heading', C.contact, 'title'),
+    area('Text', C.contact, 'text_html', {hint:HTML_HINT}),
+    el('div', {class:'field'}, el('label', {}, 'Links')),
+    cards(C.contact.links, 'Link', (l) => [
+      text('Label', l, 'label'), text('URL', l, 'href'), check('Is one of my profiles (rel=me)', l, 'me')
+    ], {label:'', href:'', me:false})
+  ),
+
+  menu: () => page('Menu', 'The list behind the three-line button. The numbers here also set the numbers shown beside each section heading, so they can never drift apart.',
+    cards(C.menu, 'Item', (m) => [
+      text('Number', m, 'num'), text('Label', m, 'label'), text('Anchor', m, 'href', {hint:'e.g. #research'})
+    ], {num:'', label:'', href:'#'})
+  )
+};
+
+const NAV = [
+  ['basics','Basics'], ['photo','Photo'], ['intro','Introduction'], ['updates','Recent'],
+  ['interests','Research interests'], ['publication','Publication'], ['research','Research'],
+  ['places','Map'], ['other','Other work'], ['education','Education'],
+  ['beyond','Beyond the lab'], ['contact','Contact'], ['menu','Menu']
+];
+
+function buildNav(){
+  const nav = $('#nav'); nav.innerHTML = '';
+  NAV.forEach(([key, label], i) => {
+    const b = el('button', {class: key === current ? 'on' : '', onclick(){ show(key); }},
+      el('i', {}, String(i + 1).padStart(2, '0')), label);
+    nav.append(b);
+  });
+}
+function show(key){
+  if (!PAGES[key]) key = 'basics';
+  current = key;
+  if (location.hash.slice(1) !== key) history.replaceState(null, '', '#' + key);
+  buildNav();
+  PAGES[key]();
+}
+addEventListener('hashchange', () => {
+  const k = location.hash.slice(1);
+  if (k && k !== current) show(k);
+});
+
+/* ============================================================
+   load / save
+   ============================================================ */
+async function load(){
+  const r = await fetch('/api/content');
+  C = await r.json();
+  if (C.error) { setStatus(C.error, 'err'); return; }
+  buildNav();
+  show(location.hash.slice(1) || current);
+  setStatus('Ready', '');
+  $('#save').disabled = true;
+}
+
+$('#save').addEventListener('click', async () => {
+  setStatus('Saving…', '');
+  $('#save').disabled = true;
+  try{
+    const r = await fetch('/api/save', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({content: C})
+    });
+    const j = await r.json();
+    if (j.error) throw new Error(j.error);
+    dirty = false;
+    setStatus(`Saved ${j.at} — ${j.kb} KB`, 'ok');
+    refresh();
+  }catch(err){
+    setStatus(err.message, 'err');
+    $('#save').disabled = false;
+  }
+});
+
+function refresh(){
+  const f = $('#pv');
+  f.src = '/index.html?t=' + Date.now();
+}
+$('#reload').addEventListener('click', refresh);
+$('#hide').addEventListener('click', () => {
+  const app = $('#app');
+  app.classList.toggle('nopreview');
+  $('#hide').textContent = app.classList.contains('nopreview') ? 'Show' : 'Hide';
+});
+
+addEventListener('keydown', e => {
+  if ((e.ctrlKey || e.metaKey) && e.key === 's'){ e.preventDefault(); $('#save').click(); }
+});
+addEventListener('beforeunload', e => {
+  if (dirty){ e.preventDefault(); e.returnValue = ''; }
+});
+
+load();
+</script>
+</body>
+</html>

@@ -6,3 +6,13 @@ desktop.ini
 # Editor / tooling
 .vscode/
 *.log
+__pycache__/
+
+# Editor working files (not needed on the deployed site)
+site/backups/
+img/_original-portrait.jpg
+
+# Private — never publish
+HECKTOR_comparison.xlsx
+linkedin-banner.png
+linkedin-banner.svg

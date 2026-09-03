@@ -1,0 +1,431 @@
+{
+  "_readme": "Everything on the site lives in this file. Edit it through the GUI (run 'Edit website.bat') or by hand, then run build.py. Type real characters (· – → &) — they are escaped for you. Only fields ending in _html accept markup: <b>bold</b>, <i>italic</i>, <a class=\"inline\" href=\"...\">links</a>.",
+  "meta": {
+    "title": "Vansh Pandit — Computer vision for medical imaging",
+    "description": "Vansh Pandit — BS-MS student in applied mathematics at IISER Thiruvananthapuram working on computer vision for medical imaging: segmentation, radiomics and outcome prediction from PET/CT and ultrasound.",
+    "og_description": "Segmentation, radiomics and outcome prediction from PET/CT and ultrasound. MICCAI 2026 HECKTOR, QuantUS, IISER Thiruvananthapuram.",
+    "url": "https://vansh287.github.io/portfolio/",
+    "og_image": "https://vansh287.github.io/portfolio/og-image.png",
+    "last_updated": "September 2026",
+    "footer_link_label": "Also written as a paper: Learning to See, Carefully",
+    "footer_link_href": "paper.html"
+  },
+  "person": {
+    "name": "Vansh Pandit",
+    "kicker": "Computer vision · Medical imaging · Applied mathematics",
+    "role": "I teach machines to read medical scans.",
+    "job_title": "Student researcher, computer vision and medical image analysis",
+    "schema_description": "BS-MS student in applied mathematics at IISER Thiruvananthapuram working on computer vision for medical imaging.",
+    "affiliation": "IISER Thiruvananthapuram",
+    "knows_about": [
+      "Computer Vision",
+      "Medical Image Analysis",
+      "Image Segmentation",
+      "Radiomics",
+      "Quantitative Ultrasound",
+      "Survival Analysis",
+      "Reinforcement Learning",
+      "Applied Mathematics"
+    ],
+    "email": "vansh23@iisertvm.ac.in",
+    "phone": "+91 60059 42890",
+    "phone_href": "tel:+916005942890",
+    "github": "https://github.com/vansh287",
+    "linkedin": "https://www.linkedin.com/in/vansh-pandit-884046272/",
+    "photo_alt": "Portrait of Vansh Pandit",
+    "photo_caption_left": "Vansh Pandit",
+    "photo_caption_right": "Thiruvananthapuram, 2026"
+  },
+  "intro": {
+    "paragraphs_html": [
+      "I am a fourth-year BS-MS student in applied mathematics at <b>IISER Thiruvananthapuram</b>. My work sits where computer vision meets medicine: segmenting what matters in a scan, turning it into numbers that hold up, and predicting something a clinician actually needs to know.",
+      "What I care about most is generalisation. A model that scores well on the hospitals it trained on can fall apart at one it has never seen, and I would rather have a small model whose reasoning I can follow than a large one I have to trust on faith. I like taking an idea from the mathematics underneath it down to a reproducible implementation somebody else can run."
+    ],
+    "now_label": "Right now:",
+    "now_html": "building the B-mode radiomics pipeline for QuantUS at TU Dresden, and scoping a master's thesis for next year. Open to conversations about either.",
+    "buttons": [
+      {
+        "label": "Read my paper",
+        "href": "#publication",
+        "primary": true
+      },
+      {
+        "label": "Get in touch",
+        "href": "#contact",
+        "primary": false
+      }
+    ]
+  },
+  "updates": [
+    {
+      "date": "Aug 2026",
+      "html": "First paper out. <a class=\"inline\" href=\"#publication\">Geometry Meets Metabolism</a> placed in the top 15 at the MICCAI 2026 HECKTOR challenge."
+    },
+    {
+      "date": "Aug 2026",
+      "html": "Wrapped up the PET/CT oncology work at IIT Jammu; code and feature tables released publicly."
+    },
+    {
+      "date": "Jan 2026",
+      "html": "Started on the QuantUS B-mode radiomics pipeline with TU Dresden."
+    },
+    {
+      "date": "Dec 2025",
+      "html": "LACAM-25, IISER Thiruvananthapuram."
+    }
+  ],
+  "interests": {
+    "heading": "Research interests",
+    "lead_html": "Broadly, I want computer-vision systems that earn a clinician's trust: robust before they are clever, interpretable before they are state of the art. Whether a model points at the right thing matters to me more than where it lands on a leaderboard. I am equally curious about the wider landscape of vision, from driving scenes to anomaly detection.",
+    "tags": [
+      "Medical image segmentation",
+      "Radiomics & quantitative imaging",
+      "Cross-centre generalisation",
+      "Representation & self-supervised learning",
+      "3D / volumetric vision",
+      "Novelty & anomaly detection",
+      "Survival analysis"
+    ]
+  },
+  "publication": {
+    "heading": "Publication",
+    "venue": "MICCAI 2026 · HECKTOR Challenge",
+    "title": "Geometry Meets Metabolism: Interpretable Segmentation, Staging, and Prognosis in Head and Neck PET/CT",
+    "authors_html": "<em>V. Pandit</em> et al. · team Vision-II · August 2026",
+    "badge": "Ranked in the top 15 of the challenge",
+    "paragraphs_html": [
+      "The challenge pools head-and-neck PET/CT scans from several hospitals and asks three clinical questions at once: outline the primary tumour and the involved lymph nodes, assign the tumour and nodal stage, and predict recurrence-free survival. We built one pipeline for all three, and designed every component for <b>stability across centres</b> rather than for the leaderboard.",
+      "That constraint decided the design. Nodal stage is read directly off a few geometric measurements of the segmented nodes, chiefly a greatest-dimension diameter that mirrors the size criterion a radiologist already uses, then refined by a fixed rule on metabolic activity. Tumour stage fuses a tabular classifier with a convolutional network on a tumour-centred crop. Survival is a Cox model over clinical variables and predicted stage, with imaging deliberately left out because it is the most scanner-dependent part of the pipeline. Every staging and survival component was selected by its accuracy on a hospital held out during development, not by its average.",
+      "Two results I did not expect: for nodal staging the plain geometric head beat every image model we tried, on the average centre and on the weakest one; and for survival, nothing with more capacity beat a linear model."
+    ],
+    "links": [
+      {
+        "label": "Paper (PDF)",
+        "href": "https://github.com/vansh287/HECKTOR2026-VisionII/blob/main/paper/HECKTOR_16.pdf",
+        "primary": true
+      },
+      {
+        "label": "Code & reproduction",
+        "href": "https://github.com/vansh287/HECKTOR2026-VisionII",
+        "primary": false
+      }
+    ],
+    "glance_heading": "At a glance",
+    "glance": [
+      {
+        "label": "Venue",
+        "value_html": "MICCAI 2026 · HECKTOR Challenge"
+      },
+      {
+        "label": "Date",
+        "value_html": "August 2026"
+      },
+      {
+        "label": "Team",
+        "value_html": "Vision-II"
+      },
+      {
+        "label": "Tasks",
+        "value_html": "Segmentation · TN staging · Recurrence-free survival"
+      },
+      {
+        "label": "Result",
+        "value_html": "<b>Top 15</b> of the challenge"
+      },
+      {
+        "label": "Modality",
+        "value_html": "FDG-PET/CT, multi-centre"
+      },
+      {
+        "label": "Availability",
+        "value_html": "Code MIT · paper CC BY 4.0"
+      }
+    ],
+    "schema": {
+      "date_published": "2026-08-09",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "event": "MICCAI 2026 HECKTOR Challenge",
+      "code_repository": "https://github.com/vansh287/HECKTOR2026-VisionII",
+      "keywords": [
+        "Head and neck cancer",
+        "PET/CT",
+        "Tumour segmentation",
+        "TNM staging",
+        "Survival analysis",
+        "Interpretable models",
+        "Cross-centre generalisation"
+      ]
+    },
+    "figures": [
+      {
+        "caption_lead": "Figure 1.",
+        "caption_html": "The pipeline. Segmentation feeds both staging heads; the survival model is deliberately mask-free. The flame marks a learned component, the blue tag marks a fixed rule with no training at all.",
+        "alt": "Three-stage pipeline diagram. Stage one segments PET/CT with an nnU-Net to produce primary tumour and nodal masks. Stage two derives nodal stage from six geometric features through an ordinal gradient booster and a PET activity gate, and derives tumour stage by fusing a ConvNeXt on a 140 mm crop with a tabular classifier. Stage three predicts recurrence-free survival with a mask-free Cox model over clinical variables and predicted stage.",
+        "fallback": "figures/pipeline.png",
+        "width": 2925,
+        "height": 1634,
+        "srcset": "figures/pipeline-900.webp 900w, figures/pipeline-1400.webp 1400w, figures/pipeline-2000.webp 2000w",
+        "zoom": "figures/pipeline-full.webp",
+        "zoom_label": "Open the pipeline diagram at full size"
+      },
+      {
+        "caption_lead": "Figure 2.",
+        "caption_html": "Why these components. Blue is the mean over held-out centres, orange is the worst one. Selecting on the worst centre instead of the mean is what put the geometric head and the linear survival model into the final pipeline.",
+        "alt": "Three bar charts comparing candidate models for nodal staging, tumour staging and survival. Each candidate shows a blue bar for the mean over held-out centres and an orange bar for the worst held-out centre. The geometric nodal head, the ConvNeXt tumour model and the Cox survival model are outlined as the chosen components.",
+        "fallback": "figures/model_comparison.png",
+        "width": 1181,
+        "height": 382,
+        "srcset": "figures/models-800.webp 800w, figures/models-1181.webp 1181w",
+        "zoom": "",
+        "zoom_label": ""
+      }
+    ]
+  },
+  "research": {
+    "heading": "Research",
+    "items": [
+      {
+        "title": "Reading ultrasound before it becomes a picture",
+        "paragraphs_html": [
+          "I develop the core B-mode radiomics pipeline of QuantUS, an open-source quantitative ultrasound platform. It computes first-order and GLCM texture features directly from <b>raw RF signals</b>, before the beamformed grey image most people picture as an ultrasound exists.",
+          "The features are the easy half. The hard half is making a number mean the same thing on two different machines, so I implemented phantom-based normalisation for device-independent, reproducible results. I also work on backend refactoring and GUI integration, because a method is only useful if a clinical researcher can reach it."
+        ],
+        "ongoing": true,
+        "ongoing_label": "Ongoing",
+        "meta": [
+          "QuantUS · TU Dresden",
+          "Jan 2026 →"
+        ]
+      },
+      {
+        "title": "Segmenting things no dataset warned you about",
+        "paragraphs_html": [
+          "A vision system that only recognises what it was shown is a liability on a real road. I built a pipeline for semantic segmentation of both known and <b>novel</b> objects, extending AIDE with lightweight captioning models (GLAMM, CODA-LM) so the system can describe what it cannot yet classify. Prototyped on Cityscapes, benchmarked on IDD, IDD-Anomaly and Carla-Anomaly.",
+          "This is the project that decided the rest. Segmentation was the first time I could watch the mathematics do something visible."
+        ],
+        "ongoing": false,
+        "ongoing_label": "",
+        "meta": [
+          "IISER Thiruvananthapuram",
+          "Aug – Dec 2025"
+        ]
+      },
+      {
+        "title": "Rebuilding machine learning before trusting it",
+        "paragraphs_html": [
+          "A summer implementing classical and Bayesian machine-learning models from scratch in NumPy, then comparing them honestly against their scikit-learn equivalents on real data. The library call is one line; knowing why it converges is the education."
+        ],
+        "ongoing": false,
+        "ongoing_label": "",
+        "meta": [
+          "IIT Madras",
+          "May – Jul 2025"
+        ]
+      }
+    ]
+  },
+  "places": {
+    "heading": "Where I've worked",
+    "caption_lead": "Five places.",
+    "caption_idle": "Hover or tap a point for details.",
+    "map_alt": "Stylised map of the places Vansh has studied and worked: Dresden, Kashmir, Jammu, Chennai and Thiruvananthapuram",
+    "footnote": "Plotted loosely by geography, not to scale.",
+    "nodes": [
+      {
+        "label": "Dresden",
+        "x": 152,
+        "y": 92,
+        "lx": 138,
+        "ly": 76,
+        "home": false,
+        "blurb": "Dresden, Germany — QuantUS B-mode radiomics at TU Dresden, from January 2026."
+      },
+      {
+        "label": "Jammu",
+        "x": 472,
+        "y": 98,
+        "lx": 486,
+        "ly": 96,
+        "home": false,
+        "blurb": "Jammu — PET/CT oncology pipelines at IIT Jammu for the MICCAI 2026 HECKTOR challenge."
+      },
+      {
+        "label": "Kashmir",
+        "x": 430,
+        "y": 56,
+        "lx": 376,
+        "ly": 48,
+        "home": false,
+        "blurb": "Kashmir — home. The mountains everything else gets measured against."
+      },
+      {
+        "label": "Chennai",
+        "x": 558,
+        "y": 306,
+        "lx": 572,
+        "ly": 304,
+        "home": false,
+        "blurb": "Chennai — statistical learning from scratch at IIT Madras, summer 2025."
+      },
+      {
+        "label": "Thiruvananthapuram",
+        "x": 500,
+        "y": 360,
+        "lx": 380,
+        "ly": 382,
+        "home": true,
+        "blurb": "Thiruvananthapuram — home base. BS-MS applied mathematics at IISER TVM, by the Arabian Sea."
+      }
+    ],
+    "arcs": [
+      "M500 360 Q 240 240 152 92",
+      "M500 360 Q 540 190 472 98",
+      "M500 360 Q 552 342 558 306"
+    ],
+    "migration": "M430 64 Q 396 220 494 354"
+  },
+  "other": {
+    "heading": "Other work",
+    "items": [
+      {
+        "title": "Teaching a drone to stay out of sight",
+        "paragraphs_html": [
+          "A custom 3D Gymnasium environment with simplified flight physics, 12-ray LiDAR sensing, procedurally generated terrain and moving observers with limited fields of view. I shaped a multi-objective reward and trained a <b>PPO</b> agent with Stable-Baselines3 and curriculum learning until it could reach its waypoints while staying out of the observers' cones.",
+          "I also built interactive visualisers in Pygame and Ursina, because watching a policy fly is a much faster way to learn what it has understood than reading a reward curve."
+        ],
+        "ongoing": false,
+        "ongoing_label": "",
+        "meta": [
+          "Side project",
+          "Deep reinforcement learning"
+        ]
+      }
+    ]
+  },
+  "education": {
+    "heading": "Education",
+    "items": [
+      {
+        "years": "2023 – 2028 (expected)",
+        "institution": "IISER Thiruvananthapuram",
+        "degree": "BS-MS Dual Degree, Applied Mathematics",
+        "text_html": "I grew up in Kashmir and moved most of the length of India to study by the Arabian Sea. The plan was biology, but my Class XII stream did not offer it, so I took applied mathematics and spent the early years deliberately sampling fields until one stuck. Medical imaging turned out to be the way back to the first plan."
+      },
+      {
+        "years": "2023",
+        "institution": "KC Gurukul Public School, Jammu",
+        "degree": "Higher Secondary Certificate",
+        "text_html": "Schooled in Jammu, made in Kashmir."
+      }
+    ],
+    "kit": [
+      {
+        "heading": "Working in",
+        "text_html": "Python, LaTeX, PyTorch, NumPy, Pandas, scikit-learn, OpenCV, PyRadiomics, PyMC, Docker, Git."
+      },
+      {
+        "heading": "Still learning",
+        "text_html": "C++, MATLAB, TensorFlow."
+      },
+      {
+        "heading": "Coursework",
+        "text_html": "Linear Algebra, Probability Theory, Mathematical Statistics, Machine Learning, Deep Learning, Reinforcement Learning, Scientific Computing, Data Structures and Algorithms."
+      }
+    ]
+  },
+  "beyond": {
+    "heading": "Beyond the lab",
+    "items": [
+      {
+        "title": "Red Cross Mission",
+        "text_html": "Taught mathematics and science to children with disabilities. If you can explain fractions to a child the textbook gave up on, you can explain your model to anyone.",
+        "when": ""
+      },
+      {
+        "title": "LACAM-25",
+        "text_html": "International Conference on Latest Advances in Computational and Applied Mathematics, IISER Thiruvananthapuram.",
+        "when": "December 2025"
+      },
+      {
+        "title": "Data Science Symposium",
+        "text_html": "IISER Thiruvananthapuram.",
+        "when": "2025"
+      }
+    ]
+  },
+  "contact": {
+    "heading": "Contact",
+    "kicker": "09 — Contact",
+    "title": "Currently scoping a master's thesis.",
+    "text_html": "Collaboration ideas, thesis directions, hard questions, or a note pointing out that something on this page is wrong. Especially the last one. I read everything.",
+    "links": [
+      {
+        "label": "GitHub",
+        "href": "https://github.com/vansh287",
+        "me": true
+      },
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/vansh-pandit-884046272/",
+        "me": true
+      },
+      {
+        "label": "+91 60059 42890",
+        "href": "tel:+916005942890",
+        "me": false
+      },
+      {
+        "label": "CV on request",
+        "href": "mailto:vansh23@iisertvm.ac.in?subject=CV%20request",
+        "me": false
+      }
+    ]
+  },
+  "menu": [
+    {
+      "num": "01",
+      "label": "Introduction",
+      "href": "#intro"
+    },
+    {
+      "num": "02",
+      "label": "Research interests",
+      "href": "#interests"
+    },
+    {
+      "num": "03",
+      "label": "Publication",
+      "href": "#publication"
+    },
+    {
+      "num": "04",
+      "label": "Research",
+      "href": "#research"
+    },
+    {
+      "num": "05",
+      "label": "Where I've worked",
+      "href": "#places"
+    },
+    {
+      "num": "06",
+      "label": "Other work",
+      "href": "#other"
+    },
+    {
+      "num": "07",
+      "label": "Education",
+      "href": "#education"
+    },
+    {
+      "num": "08",
+      "label": "Beyond the lab",
+      "href": "#beyond"
+    },
+    {
+      "num": "09",
+      "label": "Contact",
+      "href": "#contact"
+    }
+  ]
+}
