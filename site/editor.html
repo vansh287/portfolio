@@ -437,20 +437,24 @@ const PAGES = {
     ], {title:'', paragraphs_html:[''], ongoing:false, ongoing_label:'', meta:['']})
   ),
 
-  places: () => page('Where I\'ve worked', 'The map. x and y are positions inside a 720 × 420 drawing — x grows rightwards, y grows downwards. Label x/y position the text next to each point.',
+  places: () => page("Where I've worked", 'The globe. Latitude and longitude place each marker and decide where the globe turns when that button is pressed. The x/y numbers only position the flat map that is shown when a browser cannot do WebGL.',
     text('Section heading', C.places, 'heading'),
-    text('Caption lead', C.places, 'caption_lead'),
-    text('Caption idle text', C.places, 'caption_idle'),
-    area('Map description', C.places, 'map_alt', {hint:'described for screen readers'}),
-    text('Footnote', C.places, 'footnote'),
+    text('Lead line', C.places, 'globe_caption', {hint:'above the buttons'}),
+    text('Idle readout', C.places, 'caption_idle', {hint:'shown until a place is picked'}),
+    area('Globe description', C.places, 'globe_alt', {hint:'described for screen readers'}),
+    area('Flat-map description', C.places, 'map_alt', {hint:'the WebGL fallback'}),
+    text('Flat-map footnote', C.places, 'footnote'),
     cards(C.places.nodes, 'Place', (n) => [
       text('Label', n, 'label'),
-      area('Blurb', n, 'blurb', {hint:'shown when hovered'}),
+      area('Blurb', n, 'blurb', {hint:'shown when the place is picked'}),
+      el('div', {style:'display:grid;grid-template-columns:1fr 1fr;gap:10px'},
+        text('Latitude', n, 'lat', {hint:'-90 to 90'}),
+        text('Longitude', n, 'lng', {hint:'-180 to 180'})),
       el('div', {style:'display:grid;grid-template-columns:repeat(4,1fr);gap:10px'},
-        text('Point x', n, 'x'), text('Point y', n, 'y'),
+        text('Map x', n, 'x'), text('Map y', n, 'y'),
         text('Label x', n, 'lx'), text('Label y', n, 'ly')),
       check('Home (filled marker)', n, 'home')
-    ], {label:'', blurb:'', x:360, y:210, lx:370, ly:205, home:false})
+    ], {label:'', blurb:'', lat:0, lng:0, x:360, y:210, lx:370, ly:205, home:false})
   ),
 
   education: () => page('Education', 'Degrees, and the three tool columns beneath them.',

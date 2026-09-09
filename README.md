@@ -12,6 +12,7 @@ A single static page. No build step, no framework, no external requests.
 | `fonts/` | Gambetta (headings) and Switzer (text), Indian Type Foundry via Fontshare, free for commercial use. Self-hosted woff2. |
 | `img/vansh.jpg` | Portrait used in the introduction and the link-preview card. |
 | `figures/` | Figures from the HECKTOR paper, taken from the project repo (MIT). |
+| `js/` | [COBE](https://github.com/shuding/cobe) and its WebGL layer `phenomenon`, self-hosted (12 KB together) for the globe. |
 | `og-image.html` → `og-image.png` | Source and output for the link-preview card. |
 | `robots.txt`, `sitemap.xml` | Crawl hints. |
 | `paper.html` | The paper edition — a second, standalone page linked from the footer. Hand-written, not generated. |

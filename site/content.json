@@ -229,7 +229,7 @@
   "places": {
     "heading": "Where I've worked",
     "caption_lead": "Five places.",
-    "caption_idle": "Hover or tap a point for details.",
+    "caption_idle": "Pick a place and the globe turns to it. Drag to spin it yourself.",
     "map_alt": "Stylised map of the places Vansh has studied and worked: Dresden, Kashmir, Jammu, Chennai and Thiruvananthapuram",
     "footnote": "Plotted loosely by geography, not to scale.",
     "nodes": [
@@ -240,7 +240,9 @@
         "lx": 138,
         "ly": 76,
         "home": false,
-        "blurb": "Dresden, Germany — QuantUS B-mode radiomics at TU Dresden, from January 2026."
+        "blurb": "Dresden, Germany — QuantUS B-mode radiomics at TU Dresden, from January 2026.",
+        "lat": 51.0504,
+        "lng": 13.7373
       },
       {
         "label": "Jammu",
@@ -249,7 +251,9 @@
         "lx": 486,
         "ly": 96,
         "home": false,
-        "blurb": "Jammu — PET/CT oncology pipelines at IIT Jammu for the MICCAI 2026 HECKTOR challenge."
+        "blurb": "Jammu — PET/CT oncology pipelines at IIT Jammu for the MICCAI 2026 HECKTOR challenge.",
+        "lat": 32.7266,
+        "lng": 74.857
       },
       {
         "label": "Kashmir",
@@ -258,7 +262,9 @@
         "lx": 376,
         "ly": 48,
         "home": false,
-        "blurb": "Kashmir — home. The mountains everything else gets measured against."
+        "blurb": "Kashmir — home. The mountains everything else gets measured against.",
+        "lat": 34.0837,
+        "lng": 74.7973
       },
       {
         "label": "Chennai",
@@ -267,7 +273,9 @@
         "lx": 572,
         "ly": 304,
         "home": false,
-        "blurb": "Chennai — statistical learning from scratch at IIT Madras, summer 2025."
+        "blurb": "Chennai — statistical learning from scratch at IIT Madras, summer 2025.",
+        "lat": 13.0827,
+        "lng": 80.2707
       },
       {
         "label": "Thiruvananthapuram",
@@ -276,7 +284,9 @@
         "lx": 380,
         "ly": 382,
         "home": true,
-        "blurb": "Thiruvananthapuram — home base. BS-MS applied mathematics at IISER TVM, by the Arabian Sea."
+        "blurb": "Thiruvananthapuram — home base. BS-MS applied mathematics at IISER TVM, by the Arabian Sea.",
+        "lat": 8.5241,
+        "lng": 76.9366
       }
     ],
     "arcs": [
@@ -284,7 +294,9 @@
       "M500 360 Q 540 190 472 98",
       "M500 360 Q 552 342 558 306"
     ],
-    "migration": "M430 64 Q 396 220 494 354"
+    "migration": "M430 64 Q 396 220 494 354",
+    "globe_caption": "Five places, one globe.",
+    "globe_alt": "Interactive globe marking the places Vansh has studied and worked: Dresden, Kashmir, Jammu, Chennai and Thiruvananthapuram."
   },
   "other": {
     "heading": "Other work",

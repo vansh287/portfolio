@@ -78,6 +78,7 @@ def render(content=None):
     html = tpl.render(
         css=(PARTIALS / "style.css").read_text(encoding="utf-8"),
         app_js=(PARTIALS / "app.js").read_text(encoding="utf-8"),
+        globe_js=(PARTIALS / "globe.js").read_text(encoding="utf-8"),
         head_js=(PARTIALS / "head.js").read_text(encoding="utf-8"),
         jsonld=build_jsonld(c),
         num=lambda href: by_href.get(href, ""),
