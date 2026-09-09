@@ -1,15 +1,15 @@
 {
-  "_readme": "Everything on the site lives in this file. Edit it through the GUI (run 'Edit website.bat') or by hand, then run build.py. Type real characters (· – → &) — they are escaped for you. Only fields ending in _html accept markup: <b>bold</b>, <i>italic</i>, <a class=\"inline\" href=\"...\">links</a>.",
+  "_readme": "Everything on the site lives in this file. Edit it through the GUI (run 'Edit website.bat') or by hand, then run build.py. Type real characters (· – → &); they are escaped for you. Only fields ending in _html accept markup: <b>bold</b>, <i>italic</i>, <a class=\"inline\" href=\"...\">links</a>.",
   "meta": {
-    "title": "Vansh Pandit — Computer vision",
-    "description": "Vansh Pandit — BS-MS student in applied mathematics at IISER Thiruvananthapuram working in computer vision: segmentation, representation learning and generalisation. Most of the work so far has been in medical imaging, but the questions are not specific to medicine.",
-    "og_description": "Computer vision — segmentation, representation learning, and whether a model still works on data it has never seen. Mostly medical imaging so far; open to the rest.",
+    "title": "Vansh Pandit · Computer vision",
+    "description": "Vansh Pandit is a BS-MS student in applied mathematics at IISER Thiruvananthapuram working in computer vision: segmentation, representation learning and generalisation. Most of the work so far has been in medical imaging, but the questions are not specific to medicine.",
+    "og_description": "Computer vision: segmentation, representation learning, and whether a model still works on data it has never seen. Mostly medical imaging so far; open to the rest.",
     "url": "https://vansh287.github.io/portfolio/",
     "og_image": "https://vansh287.github.io/portfolio/og-image.png",
     "last_updated": "September 2026",
     "footer_link_label": "Also written as a paper: Learning to See, Carefully",
     "footer_link_href": "paper.html",
-    "og_image_alt": "Vansh Pandit — computer vision"
+    "og_image_alt": "Vansh Pandit, computer vision"
   },
   "person": {
     "name": "Vansh Pandit",
@@ -40,8 +40,8 @@
   },
   "intro": {
     "paragraphs_html": [
-      "I am a fourth-year BS-MS student in applied mathematics at <b>IISER Thiruvananthapuram</b>, and computer vision is the thing I keep coming back to. Most of my work so far has been on medical images — finding what matters in a scan, turning it into numbers that hold up, predicting something a clinician actually needs to know — but the questions that keep me there are not really about medicine.",
-      "What I care about is <b>generalisation</b>. A model that scores well on the data it was trained on can fall apart on data it has never seen, and I would rather have a small model whose reasoning I can follow than a large one I have to take on trust. That problem turns up everywhere — different hospitals and scanners, streets in weather nobody photographed, terrain a simulator invented — which is how I have ended up chasing it through PET/CT, ultrasound, driving scenes and a drone."
+      "I am a fourth-year BS-MS student in applied mathematics at <b>IISER Thiruvananthapuram</b>, and computer vision is the thing I keep coming back to. Most of my work so far has been on medical images: finding what matters in a scan, turning it into numbers that hold up, predicting something a clinician actually needs to know. But the questions that keep me there are not really about medicine.",
+      "What I care about is <b>generalisation</b>. A model that scores well on the data it was trained on can fall apart on data it has never seen, and I would rather have a small model whose reasoning I can follow than a large one I have to take on trust. That problem turns up everywhere: different hospitals and scanners, streets in weather nobody photographed, terrain a simulator invented. It is how I have ended up chasing it through PET/CT, ultrasound, driving scenes and a drone."
     ],
     "now_label": "Right now:",
     "now_html": "building the B-mode radiomics pipeline for QuantUS at TU Dresden, and looking for a master's thesis for next year. Medical imaging is the likeliest home for it, but I would happily be talked into another corner of vision.",
@@ -61,7 +61,7 @@
   "updates": [
     {
       "date": "Aug 2026",
-      "html": "First paper out. <a class=\"inline\" href=\"#publication\">Geometry Meets Metabolism</a> placed in the top 15 at the MICCAI 2026 HECKTOR challenge."
+      "html": "First paper out. <a class=\"inline\" href=\"#publication\">Geometry Meets Metabolism</a> placed in the top 10 at the MICCAI 2026 HECKTOR challenge."
     },
     {
       "date": "Aug 2026",
@@ -78,7 +78,7 @@
   ],
   "interests": {
     "heading": "Research interests",
-    "lead_html": "I want vision systems that earn trust: robust before they are clever, interpretable before they are state of the art. Whether a model points at the right thing matters to me more than where it lands on a leaderboard. Medicine is where that bar is hardest to clear, which is why most of my work lives there — but the same question follows me anywhere a model has to cope with data nobody showed it.",
+    "lead_html": "I want vision systems that earn trust: robust before they are clever, interpretable before they are state of the art. Whether a model points at the right thing matters to me more than where it lands on a leaderboard. Medicine is where that bar is hardest to clear, which is why most of my work lives there, but the same question follows me anywhere a model has to cope with data nobody showed it.",
     "tags": [
       "Segmentation",
       "Generalisation & domain shift",
@@ -94,7 +94,7 @@
     "venue": "MICCAI 2026 · HECKTOR Challenge",
     "title": "Geometry Meets Metabolism: Interpretable Segmentation, Staging, and Prognosis in Head and Neck PET/CT",
     "authors_html": "<em>V. Pandit</em> et al. · team Vision-II · August 2026",
-    "badge": "Ranked in the top 15 of the challenge",
+    "badge": "Ranked in the top 10 of the challenge",
     "paragraphs_html": [
       "The challenge pools head-and-neck PET/CT scans from several hospitals and asks three clinical questions at once: outline the primary tumour and the involved lymph nodes, assign the tumour and nodal stage, and predict recurrence-free survival. We built one pipeline for all three, and designed every component for <b>stability across centres</b> rather than for the leaderboard.",
       "That constraint decided the design. Nodal stage is read directly off a few geometric measurements of the segmented nodes, chiefly a greatest-dimension diameter that mirrors the size criterion a radiologist already uses, then refined by a fixed rule on metabolic activity. Tumour stage fuses a tabular classifier with a convolutional network on a tumour-centred crop. Survival is a Cox model over clinical variables and predicted stage, with imaging deliberately left out because it is the most scanner-dependent part of the pipeline. Every staging and survival component was selected by its accuracy on a hospital held out during development, not by its average.",
@@ -132,7 +132,7 @@
       },
       {
         "label": "Result",
-        "value_html": "<b>Top 15</b> of the challenge"
+        "value_html": "<b>Top 10</b> of the challenge"
       },
       {
         "label": "Modality",
@@ -200,6 +200,20 @@
         ]
       },
       {
+        "title": "One pipeline, three clinical questions",
+        "paragraphs_html": [
+          "A unified multimodal pipeline for head-and-neck cancer on FDG-PET/CT, answering three clinically linked questions at once: segmenting the primary tumour and the involved lymph nodes, predicting radiological TN stage, and estimating recurrence-free survival.",
+          "Radiomics-inspired texture features and robust normalisation keep the numbers comparable between centres, and the whole thing is packaged with Docker so it reproduces. Written up as <a class=\"inline\" href=\"#publication\">Geometry Meets Metabolism</a>, which placed in the top 10 of the challenge."
+        ],
+        "ongoing": false,
+        "ongoing_label": "",
+        "meta": [
+          "IIT Jammu",
+          "MICCAI 2026 HECKTOR",
+          "Jun – Aug 2026"
+        ]
+      },
+      {
         "title": "Segmenting things no dataset warned you about",
         "paragraphs_html": [
           "A vision system that only recognises what it was shown is a liability on a real road. I built a pipeline for semantic segmentation of both known and <b>novel</b> objects, extending AIDE with lightweight captioning models (GLAMM, CODA-LM) so the system can describe what it cannot yet classify. Prototyped on Cityscapes, benchmarked on IDD, IDD-Anomaly and Carla-Anomaly.",
@@ -240,7 +254,7 @@
         "lx": 138,
         "ly": 76,
         "home": false,
-        "blurb": "Dresden, Germany — QuantUS B-mode radiomics at TU Dresden, from January 2026.",
+        "blurb": "Dresden, Germany. QuantUS B-mode radiomics at TU Dresden, from January 2026.",
         "lat": 51.0504,
         "lng": 13.7373
       },
@@ -251,7 +265,7 @@
         "lx": 486,
         "ly": 96,
         "home": false,
-        "blurb": "Jammu — PET/CT oncology pipelines at IIT Jammu for the MICCAI 2026 HECKTOR challenge.",
+        "blurb": "Jammu. PET/CT oncology pipelines at IIT Jammu for the MICCAI 2026 HECKTOR challenge.",
         "lat": 32.7266,
         "lng": 74.857
       },
@@ -262,7 +276,7 @@
         "lx": 376,
         "ly": 48,
         "home": false,
-        "blurb": "Kashmir — home. The mountains everything else gets measured against.",
+        "blurb": "Kashmir, home. The mountains everything else gets measured against.",
         "lat": 34.0837,
         "lng": 74.7973
       },
@@ -273,7 +287,7 @@
         "lx": 572,
         "ly": 304,
         "home": false,
-        "blurb": "Chennai — statistical learning from scratch at IIT Madras, summer 2025.",
+        "blurb": "Chennai. Statistical learning from scratch at IIT Madras, summer 2025.",
         "lat": 13.0827,
         "lng": 80.2707
       },
@@ -284,7 +298,7 @@
         "lx": 380,
         "ly": 382,
         "home": true,
-        "blurb": "Thiruvananthapuram — home base. BS-MS applied mathematics at IISER TVM, by the Arabian Sea.",
+        "blurb": "Thiruvananthapuram, home base. BS-MS applied mathematics at IISER TVM, by the Arabian Sea.",
         "lat": 8.5241,
         "lng": 76.9366
       }
@@ -369,9 +383,9 @@
   },
   "contact": {
     "heading": "Contact",
-    "kicker": "09 — Contact",
+    "kicker": "09 · Contact",
     "title": "Looking for a master's thesis.",
-    "text_html": "Collaboration ideas, thesis directions, a hard question, or a note telling me something on this page is wrong — especially that last one. I read everything, and I answer.",
+    "text_html": "Collaboration ideas, thesis directions, a hard question, or a note telling me something on this page is wrong. Especially that last one. I read everything, and I answer.",
     "links": [
       {
         "label": "GitHub",

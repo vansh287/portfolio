@@ -1,5 +1,5 @@
 /* ===========================================================
-   Gambetta (headings) + Switzer (text) — Indian Type Foundry,
+   Gambetta (headings) + Switzer (text), Indian Type Foundry,
    self-hosted. Warm white, ink, one blue accent.
    =========================================================== */
 @font-face{font-family:Gambetta;src:url('fonts/gambetta-400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
@@ -105,7 +105,7 @@ body{
 body.locked{overflow:hidden}
 img{max-width:100%;display:block}
 
-/* a whisper of paper grain — gives the flat colour some tooth */
+/* a whisper of paper grain, gives the flat colour some tooth */
 body::after{
   content:'';position:fixed;inset:0;z-index:1;pointer-events:none;
   opacity:var(--grain);
@@ -126,7 +126,7 @@ html.theming *{
 @media (prefers-reduced-motion: no-preference){
 
   /* The intro settles in on load. It is above the fold, so this always
-     completes — it is the one place a fade is safe. */
+     completes; it is the one place a fade is safe. */
   .introgrid > *{animation:intro-in .7s cubic-bezier(.22,.7,.3,1) both}
   .introgrid > *:nth-child(2){animation-delay:.09s}
   @keyframes intro-in{
@@ -136,7 +136,7 @@ html.theming *{
 
   /* Everything below lifts as it scrolls into view, driven by the native
      scroll timeline. It animates position only, never opacity, so a browser
-     without support — or a stalled timeline — still shows every word. */
+     without support, or a stalled timeline, still shows every word. */
   @supports (animation-timeline: view()){
     .reveal{
       animation:lift linear both;
@@ -193,7 +193,7 @@ p + p{margin-top:13px}
 .btn.primary:hover{background:var(--accent-2);border-color:var(--accent-2)}
 
 /* ===========================================================
-   MENU  —  three-line button, top right
+   MENU: three-line button, top right
    =========================================================== */
 .chrome{
   position:fixed;top:clamp(14px,2.4vw,26px);right:clamp(14px,2.4vw,26px);z-index:120;

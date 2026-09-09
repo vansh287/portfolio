@@ -3,23 +3,23 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Vansh Pandit — Learning to See, Carefully</title>
-<meta name="description" content="Working notes of Vansh Pandit — an applied mathematics student at IISER Thiruvananthapuram working in computer vision. Segmentation, generalisation, novelty detection; mostly medical imaging so far, but not only." />
+<title>Vansh Pandit · Learning to See, Carefully</title>
+<meta name="description" content="Working notes of Vansh Pandit, an applied mathematics student at IISER Thiruvananthapuram working in computer vision. Segmentation, generalisation, novelty detection; mostly medical imaging so far, but not only." />
 <meta name="author" content="Vansh Pandit" />
 <meta name="theme-color" content="#f6f1e7" />
 <meta name="robots" content="index, follow" />
 <link rel="canonical" href="https://vansh287.github.io/portfolio/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Vansh Pandit" />
-<meta property="og:title" content="Vansh Pandit — Learning to see, carefully" />
-<meta property="og:description" content="Computer vision research, projects and skills — by an applied mathematics student at IISER Thiruvananthapuram." />
+<meta property="og:title" content="Vansh Pandit · Learning to see, carefully" />
+<meta property="og:description" content="Computer vision research, projects and skills, by an applied mathematics student at IISER Thiruvananthapuram." />
 <meta property="og:url" content="https://vansh287.github.io/portfolio/" />
 <meta property="og:image" content="https://vansh287.github.io/portfolio/og-image.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="Vansh Pandit — computer vision, medical imaging, mathematics" />
+<meta property="og:image:alt" content="Vansh Pandit, computer vision, medical imaging, mathematics" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Vansh Pandit — Learning to see, carefully" />
+<meta name="twitter:title" content="Vansh Pandit · Learning to see, carefully" />
 <meta name="twitter:description" content="Computer vision and medical imaging research, projects, and skills." />
 <meta name="twitter:image" content="https://vansh287.github.io/portfolio/og-image.png" />
 <script type="application/ld+json">
@@ -243,7 +243,7 @@ p.body b{font-weight:600}
 /* tiny detail list */
 ul.dets{list-style:none;margin:10px 0 6px}
 ul.dets li{padding-left:24px;position:relative;margin-bottom:8px;font-size:.95rem;color:var(--ink-soft)}
-ul.dets li::before{content:'—';position:absolute;left:0;color:var(--red)}
+ul.dets li::before{content:'–';position:absolute;left:0;color:var(--red)}
 ul.dets li b{color:var(--ink);font-weight:600}
 
 /* ================= figure ================= */
@@ -468,7 +468,7 @@ footer.colophon .fin{font-size:1.5rem;margin-top:22px;color:var(--red)}
       <span class="tag">rev. September 2026</span>
     </div>
     <h1 class="paper-title">Learning to see,<br/><span class="careful">carefully<svg viewBox="0 0 200 14" preserveAspectRatio="none"><path d="M3 9 C 35 3, 70 12, 105 7 S 170 4, 197 8" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.1s .9s ease forwards"/></svg></span>.</h1>
-    <p class="subtitle">Working notes of an applied mathematics student who builds vision systems — mostly, so far, for medicine.</p>
+    <p class="subtitle">Working notes of an applied mathematics student who builds vision systems, mostly, so far, for medicine.</p>
 
     <div class="author">
       <div class="nm">Vansh Pandit<sup>†&thinsp;‡</sup></div>
@@ -483,17 +483,17 @@ footer.colophon .fin{font-size:1.5rem;margin-top:22px;color:var(--red)}
     <div class="abstract rv">
       <h3>Abstract</h3>
       <p>I am a fourth-year BS-MS dual-degree student in applied mathematics who originally wanted to
-      study biology, and who found — after a long detour through theorems and code — that computer
+      study biology, and who found, after a long detour through theorems and code, that computer
       vision was the thing worth staying for. What holds my attention is representation learning,
       generalization and novelty detection: the unglamorous, essential work of making a model behave
       when it meets data nobody showed it. I learned statistics by implementing it from scratch at
       IIT&nbsp;Madras, fell for vision while chasing unknown objects through street scenes, spent a
-      summer teaching PET/CT scans of head-and-neck cancer to answer three clinical questions at once —
-      which became my first paper, and placed in the top&nbsp;15 at MICCAI&nbsp;2026 HECKTOR — and am
+      summer teaching PET/CT scans of head-and-neck cancer to answer three clinical questions at once,
+      which became my first paper and placed in the top&nbsp;10 at MICCAI&nbsp;2026 HECKTOR, and am
       currently being humbled by raw ultrasound signals at TU&nbsp;Dresden. Medicine is where most of
       this has happened, and it is a good place to work, because the standard is high and the failures
       matter. It is not the boundary of what interests me. What follows is a snapshot of that
-      trajectory. This document is under active revision — and so am I.</p>
+      trajectory. This document is under active revision, and so am I.</p>
     </div>
     <div class="keywords rv"><b>Keywords:</b> computer vision · segmentation · generalization · novelty detection · medical image analysis · reproducibility</div>
 
@@ -509,31 +509,31 @@ footer.colophon .fin{font-size:1.5rem;margin-top:22px;color:var(--red)}
   <section class="s rv" id="intro">
     <div class="shead"><span class="snum">§&thinsp;1</span><h2>Introduction<svg class="scribble" viewBox="0 0 220 12" preserveAspectRatio="none"><path d="M3 8 C 40 2, 90 11, 130 6 S 200 4, 217 7" pathLength="1"/></svg></h2></div>
     <div class="prose">
-      <p class="lead">I work on <b>computer vision for medical imaging</b> — building models that are
+      <p class="lead">I work on <b>computer vision for medical imaging</b>: building models that are
       accurate, interpretable, and grounded in the mathematics underneath, not just the benchmark on
       top. What follows is how someone from the mountains of Kashmir found his way to that.</p>
 
       <p class="body">I grew up in <b>Kashmir</b>, surrounded by mountains that take instructions from
       no one. Maybe that's where it started: I knew early that I didn't want a life spent executing
-      someone else's ideas on someone else's schedule — <span class="hl">I wanted to develop my
+      someone else's ideas on someone else's schedule. <span class="hl">I wanted to develop my
       own.</span> Research was the only job description that matched. So I cleared the IISER Aptitude
       Test and moved nearly the entire length of India south, to study by the Arabian Sea.</p>
 
-      <p class="body">The original plan, honestly, was <b>biology</b> — but my Class&nbsp;XII stream had
+      <p class="body">The original plan, honestly, was <b>biology</b>, but my Class&nbsp;XII stream had
       other opinions. So I took the next door over: a BS-MS in <b>mathematics</b> with a minor in
       <b>data science</b>. Rigorous enough to go anywhere; flexible enough, I hoped, to find my way back
-      to living things eventually. (Spoiler: it worked. Medical imaging <i>is</i> biology — you just
+      to living things eventually. (Spoiler: it worked. Medical imaging <i>is</i> biology; you just
       enter through the mathematics wing.)</p>
 
       <p class="body">I refused to commit to a field I hadn't tested, so I treated my early years as a
-      deliberate survey of AI and ML. First a summer at <b>IIT Madras</b> doing statistical learning —
+      deliberate survey of AI and ML. First a summer at <b>IIT Madras</b> doing statistical learning,
       implementing models from scratch, learning what real data does to clean theory. Then a semester of
       <b>semantic segmentation</b> back at IISER TVM, and that project decided everything: for the first
-      time I could literally <b>see what my mathematics was doing</b> — masks, boundaries, objects
+      time I could literally <b>see what my mathematics was doing</b>: masks, boundaries, objects
       assembling themselves out of pixels. Equations I could watch. I was gone.</p>
 
       <p class="body">Then I discovered that computer vision and medicine overlap, and the two halves of
-      the plan — the biology I wanted and the mathematics I trained — finally clicked together:
+      the plan, the biology I wanted and the mathematics I trained, finally clicked together:
       ultrasound radiomics with <b>TU Dresden</b>, PET/CT oncology pipelines with <b>IIT Jammu</b>.
       Since then there is no going back. (Other corners of computer vision remain very much on the
       exploration list.)</p>
@@ -548,7 +548,7 @@ footer.colophon .fin{font-size:1.5rem;margin-top:22px;color:var(--red)}
         imaging · representation &amp; self-supervised learning · 3D / volumetric vision · the geometry and
         statistics underneath it all.</p>
         <p class="body" style="margin:14px 0 0">With my <b>master's thesis</b> approaching next year, I'm
-        actively scoping thesis directions across these areas — and very open to ideas and collaborations.</p>
+        actively scoping thesis directions across these areas, and very open to ideas and collaborations.</p>
       </div>
     </div>
   </section>
@@ -563,7 +563,7 @@ footer.colophon .fin{font-size:1.5rem;margin-top:22px;color:var(--red)}
         <span class="chip">IIT Jammu · research intern</span>
         <span class="chip">Jun → Aug 2026</span>
         <span class="chip">MICCAI 2026 · HECKTOR</span>
-        <span class="chip">top 15</span>
+        <span class="chip">top 10</span>
       </div>
       <p class="body">For the <b>MICCAI 2026 HECKTOR challenge</b> I built a single, clean multimodal
       pipeline that reads <b>FDG-PET/CT</b> scans of head-and-neck cancer and answers three clinically
@@ -572,10 +572,10 @@ footer.colophon .fin{font-size:1.5rem;margin-top:22px;color:var(--red)}
       (recurrence-free survival prognosis). It became <a href="#refs">my first paper</a>, and placed in
       the top&nbsp;15 of the challenge.</p>
       <ul class="dets">
-        <li><b>One pipeline, three heads</b> — segmentation, staging and prognosis share one backbone instead of living in three scripts.</li>
+        <li><b>One pipeline, three heads.</b> Segmentation, staging and prognosis share one backbone instead of living in three scripts.</li>
         <li><b>Radiomics-inspired texture features</b> with robust normalization, so results survive the jump between hospitals and scanners.</li>
         <li><b>Docker-packaged and modular</b>, because "works on my machine" is not a clinical standard.</li>
-        <li><b>Chosen on the worst hospital, not the average one</b> — every staging and survival component was selected by its accuracy on a centre held out during development.</li>
+        <li><b>Chosen on the worst hospital, not the average one.</b> Every staging and survival component was selected by its accuracy on a centre held out during development.</li>
       </ul>
 
       <h3 class="sub"><span class="no">2.2</span>Reading ultrasound before it becomes a picture</h3>
@@ -586,7 +586,7 @@ footer.colophon .fin{font-size:1.5rem;margin-top:22px;color:var(--red)}
       </div>
       <p class="body">In the <b>QuantUS</b> open-source project I develop the core <b>B-mode radiomics
       pipeline</b> (QuantUS-Backend-QUS): first-order and <b>GLCM texture features</b> computed directly
-      from <b>raw RF ultrasound signals</b> — before the familiar grey picture even exists. The
+      from <b>raw RF ultrasound signals</b>, before the familiar grey picture even exists. The
       interesting problem is trust: an ultrasound number should mean the same thing on every machine, so
       I implement <b>phantom-based normalization</b> to make results device-independent and reproducible.
       I also work on backend refactoring and GUI integration, because a method only matters if a
@@ -620,32 +620,32 @@ footer.colophon .fin{font-size:1.5rem;margin-top:22px;color:var(--red)}
             <circle class="traveler t2" r="3.4"/>
             <circle class="traveler t3" r="3.4"/>
             <!-- nodes -->
-            <g class="node" data-blurb="Dresden, Germany — QuantUS radiomics, TU Dresden.">
+            <g class="node" data-blurb="Dresden, Germany. QuantUS radiomics, TU Dresden.">
               <circle class="pulse" cx="152" cy="92" r="6"/>
               <circle class="c" cx="152" cy="92" r="6"/>
               <text x="138" y="74">Dresden · TUD</text>
             </g>
-            <g class="node" data-blurb="Jammu — IIT Jammu: PET/CT pipelines for the MICCAI 2026 HECKTOR challenge (Jun–Aug 2026).">
+            <g class="node" data-blurb="Jammu. IIT Jammu: PET/CT pipelines for the MICCAI 2026 HECKTOR challenge (Jun–Aug 2026).">
               <circle class="pulse" cx="472" cy="98" r="6"/>
               <circle class="c" cx="472" cy="98" r="6"/>
               <text x="488" y="96">Jammu · IIT</text>
             </g>
-            <g class="node" data-blurb="Kashmir — hometown. The mountains I measure everything against.">
+            <g class="node" data-blurb="Kashmir, hometown. The mountains I measure everything against.">
               <circle class="pulse" cx="430" cy="56" r="6"/>
               <circle class="c" cx="430" cy="56" r="6"/>
               <text x="344" y="50">Kashmir (home)</text>
             </g>
-            <g class="node" data-blurb="Chennai — statistical learning from scratch at IIT Madras (summer 2025).">
+            <g class="node" data-blurb="Chennai. Statistical learning from scratch at IIT Madras (summer 2025).">
               <circle class="pulse" cx="558" cy="306" r="6"/>
               <circle class="c" cx="558" cy="306" r="6"/>
               <text x="574" y="304">Chennai · IITM</text>
             </g>
-            <g class="node home" data-blurb="Thiruvananthapuram — home base. BS-MS applied mathematics at IISER TVM, by the sea.">
+            <g class="node home" data-blurb="Thiruvananthapuram, home base. BS-MS applied mathematics at IISER TVM, by the sea.">
               <circle class="pulse" cx="500" cy="360" r="6"/>
               <circle class="c" cx="500" cy="360" r="6"/>
               <text x="330" y="384">Thiruvananthapuram · IISER (home)</text>
             </g>
-            <text x="14" y="404" font-size="10" font-style="italic">not drawn to scale — apologies to cartographers</text>
+            <text x="14" y="404" font-size="10" font-style="italic">not drawn to scale, apologies to cartographers</text>
           </svg>
         </div>
         <figcaption><b>Figure 1.</b> Collaboration graph, plotted loosely by geography; the red node is the current home base.
@@ -664,7 +664,7 @@ footer.colophon .fin{font-size:1.5rem;margin-top:22px;color:var(--red)}
         <span class="chip">IISER TVM</span>
         <span class="chip">Aug 2025 → Dec 2025</span>
       </div>
-      <p class="body">Streets are full of objects no training set anticipated — and a vision system that
+      <p class="body">Streets are full of objects no training set anticipated, and a vision system that
       only recognises what it was shown is a liability. I built an automated pipeline for <b>semantic
       segmentation of both known and novel objects</b>, extending ideas from AIDE with lightweight
       captioning models (<b>GLAMM</b>, <b>CODA-LM</b>) so the system can <i>describe</i> what it cannot
@@ -677,7 +677,7 @@ footer.colophon .fin{font-size:1.5rem;margin-top:22px;color:var(--red)}
         <span class="chip">May 2025 → Jul 2025</span>
       </div>
       <p class="body">Before I let libraries do my thinking, I spent a summer <b>implementing classical
-      and Bayesian machine-learning models from scratch</b> — NumPy, first principles, no shortcuts — and
+      and Bayesian machine-learning models from scratch</b>: NumPy, first principles, no shortcuts, and
       comparing them honestly against their scikit-learn counterparts on real datasets. Regression,
       classification, the full report. It permanently changed how I read other people's models.</p>
 
@@ -699,18 +699,18 @@ footer.colophon .fin{font-size:1.5rem;margin-top:22px;color:var(--red)}
   <section class="s rv" id="toolbox">
     <div class="shead"><span class="snum">§&thinsp;4</span><h2>Methods &amp; instruments<svg class="scribble" viewBox="0 0 220 12" preserveAspectRatio="none"><path d="M3 6 C 55 11, 110 3, 160 9 S 207 5, 217 8" pathLength="1"/></svg></h2></div>
     <div class="prose">
-      <div class="toolhead"><span class="n">4.1&ensp;</span>Trusted hands — used in real projects, would bet on them</div>
+      <div class="toolhead"><span class="n">4.1&ensp;</span>Trusted hands, used in real projects, would bet on them</div>
       <div class="tools">
         <span class="tool">Python</span><span class="tool">PyTorch</span><span class="tool">NumPy</span><span class="tool">Pandas</span>
         <span class="tool">scikit-learn</span><span class="tool">OpenCV</span><span class="tool">PyRadiomics</span><span class="tool">PyMC</span>
         <span class="tool">Docker</span><span class="tool">Git</span><span class="tool">LaTeX</span>
       </div>
-      <div class="toolhead"><span class="n">4.2&ensp;</span>In training — currently building calluses</div>
+      <div class="toolhead"><span class="n">4.2&ensp;</span>In training, currently building calluses</div>
       <div class="tools">
         <span class="tool train">C++</span><span class="tool train">MATLAB</span><span class="tool train">TensorFlow</span>
       </div>
       <div class="toolhead"><span class="n">4.3&ensp;</span>Formal coursework</div>
-      <p class="body" style="margin-top:10px">Linear Algebra · Probability Theory · Mathematical Statistics · Machine Learning · Deep Learning · Reinforcement Learning · Scientific Computing · Data Structures &amp; Algorithms — taken the mathematician's way, with the proofs.</p>
+      <p class="body" style="margin-top:10px">Linear Algebra · Probability Theory · Mathematical Statistics · Machine Learning · Deep Learning · Reinforcement Learning · Scientific Computing · Data Structures &amp; Algorithms, taken the mathematician's way, with the proofs.</p>
     </div>
   </section>
 
@@ -721,7 +721,7 @@ footer.colophon .fin{font-size:1.5rem;margin-top:22px;color:var(--red)}
       <thead><tr><th>Years</th><th>Degree</th><th>Institution</th></tr></thead>
       <tbody>
         <tr>
-          <td>2023 — 2028 (exp.)</td>
+          <td>2023 – 2028 (exp.)</td>
           <td><b>BS-MS Dual Degree, Applied Mathematics</b><br/>research-first curriculum, currently in my fourth year</td>
           <td>Indian Institute of Science Education and Research (IISER), Thiruvananthapuram, Kerala</td>
         </tr>
@@ -741,16 +741,16 @@ footer.colophon .fin{font-size:1.5rem;margin-top:22px;color:var(--red)}
     <div class="prose">
       <ul class="beyond">
         <li>
-          <b>Red Cross Mission — teaching mathematics and science to children with disabilities.</b><br/>
+          <b>Red Cross Mission: teaching mathematics and science to children with disabilities.</b><br/>
           The hardest and most rewarding teaching I've done. If you can explain fractions to a child the
           textbook gave up on, you can explain your model to a review committee.
         </li>
         <li>
-          <b>LACAM-25</b> — International Conference on Latest Advances in Computational and Applied
+          <b>LACAM-25.</b> International Conference on Latest Advances in Computational and Applied
           Mathematics, IISER TVM. <span class="when">Dec 8–11, 2025</span>
         </li>
         <li>
-          <b>Data Science Symposium</b>, IISER TVM — talks, posters, and an irresponsible amount of
+          <b>Data Science Symposium</b>, IISER TVM. Talks, posters, and an irresponsible amount of
           coffee. <span class="when">2025</span>
         </li>
       </ul>
@@ -763,7 +763,7 @@ footer.colophon .fin{font-size:1.5rem;margin-top:22px;color:var(--red)}
     <div class="prose">
       <p class="body">The fastest way to reach me is the oldest one:</p>
       <a class="bigmail" href="mailto:vansh23@iisertvm.ac.in">vansh23@iisertvm.ac.in</a>
-      <p class="body" style="margin-top:14px">I read everything — collaboration ideas, hard questions,
+      <p class="body" style="margin-top:14px">I read everything: collaboration ideas, hard questions,
       reading recommendations, or a polite note pointing out an error in these pages. Especially that
       last one.</p>
       <div class="altlinks">
@@ -784,13 +784,13 @@ footer.colophon .fin{font-size:1.5rem;margin-top:22px;color:var(--red)}
       <li>
         V. Pandit <i>et al.</i> <b>Geometry Meets Metabolism: Interpretable Segmentation, Staging, and
         Prognosis in Head and Neck PET/CT.</b> MICCAI 2026 HECKTOR Challenge, team Vision-II, August 2026.
-        Ranked in the top 15.
+        Ranked in the top 10.
         &nbsp;<a href="https://github.com/vansh287/HECKTOR2026-VisionII/blob/main/paper/HECKTOR_16.pdf" target="_blank" rel="noopener">pdf ↗</a>
         &nbsp;<a href="https://github.com/vansh287/HECKTOR2026-VisionII" target="_blank" rel="noopener">code ↗</a>
       </li>
     </ol>
     <p class="refnote">Every staging and survival component in that pipeline was selected by its accuracy
-    on a hospital held out during development, rather than on the average — which is the whole argument
+    on a hospital held out during development, rather than on the average, which is the whole argument
     of the paper, and the reason the simplest head won twice.</p>
   </section>
 </main>

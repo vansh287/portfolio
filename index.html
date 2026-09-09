@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Vansh Pandit — Computer vision</title>
-<meta name="description" content="Vansh Pandit — BS-MS student in applied mathematics at IISER Thiruvananthapuram working in computer vision: segmentation, representation learning and generalisation. Most of the work so far has been in medical imaging, but the questions are not specific to medicine." />
+<title>Vansh Pandit · Computer vision</title>
+<meta name="description" content="Vansh Pandit is a BS-MS student in applied mathematics at IISER Thiruvananthapuram working in computer vision: segmentation, representation learning and generalisation. Most of the work so far has been in medical imaging, but the questions are not specific to medicine." />
 <meta name="author" content="Vansh Pandit" />
 <meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)" />
 <meta name="theme-color" content="#14151a" media="(prefers-color-scheme: dark)" />
@@ -19,16 +19,16 @@ if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)
 
 <meta property="og:type" content="profile" />
 <meta property="og:site_name" content="Vansh Pandit" />
-<meta property="og:title" content="Vansh Pandit — Computer vision" />
-<meta property="og:description" content="Computer vision — segmentation, representation learning, and whether a model still works on data it has never seen. Mostly medical imaging so far; open to the rest." />
+<meta property="og:title" content="Vansh Pandit · Computer vision" />
+<meta property="og:description" content="Computer vision: segmentation, representation learning, and whether a model still works on data it has never seen. Mostly medical imaging so far; open to the rest." />
 <meta property="og:url" content="https://vansh287.github.io/portfolio/" />
 <meta property="og:image" content="https://vansh287.github.io/portfolio/og-image.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="Vansh Pandit — computer vision" />
+<meta property="og:image:alt" content="Vansh Pandit, computer vision" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Vansh Pandit — Computer vision" />
-<meta name="twitter:description" content="Computer vision — segmentation, representation learning, and whether a model still works on data it has never seen. Mostly medical imaging so far; open to the rest." />
+<meta name="twitter:title" content="Vansh Pandit · Computer vision" />
+<meta name="twitter:description" content="Computer vision: segmentation, representation learning, and whether a model still works on data it has never seen. Mostly medical imaging so far; open to the rest." />
 <meta name="twitter:image" content="https://vansh287.github.io/portfolio/og-image.png" />
 
 <link rel="preload" href="fonts/gambetta-700.woff2" as="font" type="font/woff2" crossorigin />
@@ -100,7 +100,7 @@ if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)
 
 <style>
 /* ===========================================================
-   Gambetta (headings) + Switzer (text) — Indian Type Foundry,
+   Gambetta (headings) + Switzer (text), Indian Type Foundry,
    self-hosted. Warm white, ink, one blue accent.
    =========================================================== */
 @font-face{font-family:Gambetta;src:url('fonts/gambetta-400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
@@ -206,7 +206,7 @@ body{
 body.locked{overflow:hidden}
 img{max-width:100%;display:block}
 
-/* a whisper of paper grain — gives the flat colour some tooth */
+/* a whisper of paper grain, gives the flat colour some tooth */
 body::after{
   content:'';position:fixed;inset:0;z-index:1;pointer-events:none;
   opacity:var(--grain);
@@ -227,7 +227,7 @@ html.theming *{
 @media (prefers-reduced-motion: no-preference){
 
   /* The intro settles in on load. It is above the fold, so this always
-     completes — it is the one place a fade is safe. */
+     completes; it is the one place a fade is safe. */
   .introgrid > *{animation:intro-in .7s cubic-bezier(.22,.7,.3,1) both}
   .introgrid > *:nth-child(2){animation-delay:.09s}
   @keyframes intro-in{
@@ -237,7 +237,7 @@ html.theming *{
 
   /* Everything below lifts as it scrolls into view, driven by the native
      scroll timeline. It animates position only, never opacity, so a browser
-     without support — or a stalled timeline — still shows every word. */
+     without support, or a stalled timeline, still shows every word. */
   @supports (animation-timeline: view()){
     .reveal{
       animation:lift linear both;
@@ -294,7 +294,7 @@ p + p{margin-top:13px}
 .btn.primary:hover{background:var(--accent-2);border-color:var(--accent-2)}
 
 /* ===========================================================
-   MENU  —  three-line button, top right
+   MENU: three-line button, top right
    =========================================================== */
 .chrome{
   position:fixed;top:clamp(14px,2.4vw,26px);right:clamp(14px,2.4vw,26px);z-index:120;
@@ -680,8 +680,8 @@ footer .altlink:hover{color:var(--band-link);border-bottom-color:currentColor}
       <p class="role">I teach machines to see.</p>
 
       <div class="prose">
-        <p>I am a fourth-year BS-MS student in applied mathematics at <b>IISER Thiruvananthapuram</b>, and computer vision is the thing I keep coming back to. Most of my work so far has been on medical images — finding what matters in a scan, turning it into numbers that hold up, predicting something a clinician actually needs to know — but the questions that keep me there are not really about medicine.</p>
-        <p>What I care about is <b>generalisation</b>. A model that scores well on the data it was trained on can fall apart on data it has never seen, and I would rather have a small model whose reasoning I can follow than a large one I have to take on trust. That problem turns up everywhere — different hospitals and scanners, streets in weather nobody photographed, terrain a simulator invented — which is how I have ended up chasing it through PET/CT, ultrasound, driving scenes and a drone.</p>
+        <p>I am a fourth-year BS-MS student in applied mathematics at <b>IISER Thiruvananthapuram</b>, and computer vision is the thing I keep coming back to. Most of my work so far has been on medical images: finding what matters in a scan, turning it into numbers that hold up, predicting something a clinician actually needs to know. But the questions that keep me there are not really about medicine.</p>
+        <p>What I care about is <b>generalisation</b>. A model that scores well on the data it was trained on can fall apart on data it has never seen, and I would rather have a small model whose reasoning I can follow than a large one I have to take on trust. That problem turns up everywhere: different hospitals and scanners, streets in weather nobody photographed, terrain a simulator invented. It is how I have ended up chasing it through PET/CT, ultrasound, driving scenes and a drone.</p>
       </div>
 
       <p class="here"><b>Right now:</b> building the B-mode radiomics pipeline for QuantUS at TU Dresden, and looking for a master's thesis for next year. Medical imaging is the likeliest home for it, but I would happily be talked into another corner of vision.</p>
@@ -710,7 +710,7 @@ footer .altlink:hover{color:var(--band-link);border-bottom-color:currentColor}
       <ul>
         <li>
           <span class="d">Aug 2026</span>
-          <p>First paper out. <a class="inline" href="#publication">Geometry Meets Metabolism</a> placed in the top 15 at the MICCAI 2026 HECKTOR challenge.</p>
+          <p>First paper out. <a class="inline" href="#publication">Geometry Meets Metabolism</a> placed in the top 10 at the MICCAI 2026 HECKTOR challenge.</p>
         </li>
         <li>
           <span class="d">Aug 2026</span>
@@ -734,7 +734,7 @@ footer .altlink:hover{color:var(--band-link);border-bottom-color:currentColor}
 <section class="s wrap" id="interests">
   <div class="shead reveal"><span class="n">02</span><h2>Research interests</h2></div>
   <div class="prose">
-    <p>I want vision systems that earn trust: robust before they are clever, interpretable before they are state of the art. Whether a model points at the right thing matters to me more than where it lands on a leaderboard. Medicine is where that bar is hardest to clear, which is why most of my work lives there — but the same question follows me anywhere a model has to cope with data nobody showed it.</p>
+    <p>I want vision systems that earn trust: robust before they are clever, interpretable before they are state of the art. Whether a model points at the right thing matters to me more than where it lands on a leaderboard. Medicine is where that bar is hardest to clear, which is why most of my work lives there, but the same question follows me anywhere a model has to cope with data nobody showed it.</p>
   </div>
   <div class="tags reveal">
     <span>Segmentation</span>
@@ -755,7 +755,7 @@ footer .altlink:hover{color:var(--band-link);border-bottom-color:currentColor}
     <p class="venue">MICCAI 2026 · HECKTOR Challenge</p>
     <h3>Geometry Meets Metabolism: Interpretable Segmentation, Staging, and Prognosis in Head and Neck PET/CT</h3>
     <p class="authors"><em>V. Pandit</em> et al. · team Vision-II · August 2026</p>
-    <p class="badge">Ranked in the top 15 of the challenge</p>
+    <p class="badge">Ranked in the top 10 of the challenge</p>
 
     <div class="paperbody">
     <div>
@@ -783,7 +783,7 @@ footer .altlink:hover{color:var(--band-link);border-bottom-color:currentColor}
         <dt>Tasks</dt>
         <dd>Segmentation · TN staging · Recurrence-free survival</dd>
         <dt>Result</dt>
-        <dd><b>Top 15</b> of the challenge</dd>
+        <dd><b>Top 10</b> of the challenge</dd>
         <dt>Modality</dt>
         <dd>FDG-PET/CT, multi-centre</dd>
         <dt>Availability</dt>
@@ -834,6 +834,21 @@ footer .altlink:hover{color:var(--band-link);border-bottom-color:currentColor}
       <span class="now">Ongoing</span>
       <span>QuantUS · TU Dresden</span>
       <span>Jan 2026 →</span>
+    </div>
+  </article>
+
+  <article class="item reveal">
+    <div>
+      <h3>One pipeline, three clinical questions</h3>
+      <div class="prose">
+        <p>A unified multimodal pipeline for head-and-neck cancer on FDG-PET/CT, answering three clinically linked questions at once: segmenting the primary tumour and the involved lymph nodes, predicting radiological TN stage, and estimating recurrence-free survival.</p>
+        <p>Radiomics-inspired texture features and robust normalisation keep the numbers comparable between centres, and the whole thing is packaged with Docker so it reproduces. Written up as <a class="inline" href="#publication">Geometry Meets Metabolism</a>, which placed in the top 10 of the challenge.</p>
+      </div>
+    </div>
+    <div class="meta">
+      <span>IIT Jammu</span>
+      <span>MICCAI 2026 HECKTOR</span>
+      <span>Jun – Aug 2026</span>
     </div>
   </article>
 
@@ -919,7 +934,7 @@ footer .altlink:hover{color:var(--band-link);border-bottom-color:currentColor}
         <li>
           <button type="button" class="placebtn"
                   data-lat="51.0504" data-lng="13.7373"
-                  data-blurb="Dresden, Germany — QuantUS B-mode radiomics at TU Dresden, from January 2026." aria-pressed="false">
+                  data-blurb="Dresden, Germany. QuantUS B-mode radiomics at TU Dresden, from January 2026." aria-pressed="false">
             <span class="dot" aria-hidden="true"></span>
             <span class="nm">Dresden</span>
           </button>
@@ -927,7 +942,7 @@ footer .altlink:hover{color:var(--band-link);border-bottom-color:currentColor}
         <li>
           <button type="button" class="placebtn"
                   data-lat="32.7266" data-lng="74.857"
-                  data-blurb="Jammu — PET/CT oncology pipelines at IIT Jammu for the MICCAI 2026 HECKTOR challenge." aria-pressed="false">
+                  data-blurb="Jammu. PET/CT oncology pipelines at IIT Jammu for the MICCAI 2026 HECKTOR challenge." aria-pressed="false">
             <span class="dot" aria-hidden="true"></span>
             <span class="nm">Jammu</span>
           </button>
@@ -935,7 +950,7 @@ footer .altlink:hover{color:var(--band-link);border-bottom-color:currentColor}
         <li>
           <button type="button" class="placebtn"
                   data-lat="34.0837" data-lng="74.7973"
-                  data-blurb="Kashmir — home. The mountains everything else gets measured against." aria-pressed="false">
+                  data-blurb="Kashmir, home. The mountains everything else gets measured against." aria-pressed="false">
             <span class="dot" aria-hidden="true"></span>
             <span class="nm">Kashmir</span>
           </button>
@@ -943,7 +958,7 @@ footer .altlink:hover{color:var(--band-link);border-bottom-color:currentColor}
         <li>
           <button type="button" class="placebtn"
                   data-lat="13.0827" data-lng="80.2707"
-                  data-blurb="Chennai — statistical learning from scratch at IIT Madras, summer 2025." aria-pressed="false">
+                  data-blurb="Chennai. Statistical learning from scratch at IIT Madras, summer 2025." aria-pressed="false">
             <span class="dot" aria-hidden="true"></span>
             <span class="nm">Chennai</span>
           </button>
@@ -951,7 +966,7 @@ footer .altlink:hover{color:var(--band-link);border-bottom-color:currentColor}
         <li>
           <button type="button" class="placebtn home"
                   data-lat="8.5241" data-lng="76.9366"
-                  data-blurb="Thiruvananthapuram — home base. BS-MS applied mathematics at IISER TVM, by the Arabian Sea." aria-pressed="false">
+                  data-blurb="Thiruvananthapuram, home base. BS-MS applied mathematics at IISER TVM, by the Arabian Sea." aria-pressed="false">
             <span class="dot" aria-hidden="true"></span>
             <span class="nm">Thiruvananthapuram</span>
           </button>
@@ -1042,9 +1057,9 @@ footer .altlink:hover{color:var(--band-link);border-bottom-color:currentColor}
 <!-- ==================== CONTACT ==================== -->
 <section id="contact">
   <div class="wrap inner">
-    <p class="kicker">09 — Contact</p>
+    <p class="kicker">09 · Contact</p>
     <h2>Looking for a master&#39;s thesis.</h2>
-    <p>Collaboration ideas, thesis directions, a hard question, or a note telling me something on this page is wrong — especially that last one. I read everything, and I answer.</p>
+    <p>Collaboration ideas, thesis directions, a hard question, or a note telling me something on this page is wrong. Especially that last one. I read everything, and I answer.</p>
     <a class="mailbig" href="mailto:vansh23@iisertvm.ac.in">vansh23@iisertvm.ac.in</a>
     <div class="cxlinks">
       <a href="https://github.com/vansh287" rel="me noopener">GitHub</a>
